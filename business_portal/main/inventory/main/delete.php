@@ -6,11 +6,6 @@
 	$product_id=$_GET['product_id'];
 	$pmt_method=$_GET['pmt_method'];
 	echo "sales order id: 	$sales_order_id";
-	//$sdsd=$_GET['dle'];
-	//$c=$_GET['invoice'];
-	//$qty=$_GET['qty'];
-	//$wapak=$_GET['code'];
-	//edit qty
 	
 	$sql = "UPDATE products 
 			SET qty_onhand=qty_onhand+?

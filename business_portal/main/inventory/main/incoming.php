@@ -15,13 +15,6 @@ $result->execute();
 for($i=0; $row = $result->fetch(); $i++){
     $unit_profit = $row['profit'];
     $unit_price = $row['unit_price'];
-/*$code=$row['product_code'];
-$gen=$row['gen_name'];
-$name=$row['product_name'];
-$asasa=$row['price'];
-$code=$row['product_code'];
-$gen=$row['gen_name'];
-$name=$row['product_name'];*/
 }
 
 // Update qty onhand in products
@@ -31,9 +24,6 @@ $sql = "UPDATE products
 $q = $db->prepare($sql);
 $q->execute(array($qty_picked,$product_id));
 
-// Insert a sales order of a product
-//$fffffff=$asasa-$discount;
-//$profit=$p*$c;
 $sales_order_amount = $qty_picked * $unit_price;
 $total_profit = $qty_picked * $unit_profit;
 // query

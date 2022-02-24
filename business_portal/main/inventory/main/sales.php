@@ -1,3 +1,7 @@
+<?php
+	include('../connect.php');
+	include('../model/inventory.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +18,7 @@
   })
 </script>
 <title>
-POS
+Vietstar Shipping
 </title>
 <?php
 	require_once('auth.php');
@@ -85,25 +89,13 @@ window.onload=startclock;
 
 </head>
 <?php
+
 function createRandomPassword() {
-	$chars = "003232303232023232023456789";
-	srand((double)microtime()*1000000);
-	$i = 0;
-	$pass = '' ;
-	while ($i <= 7) {
-
-		$num = rand() % 33;
-
-		$tmp = substr($chars, $num, 1);
-
-		$pass = $pass . $tmp;
-
-		$i++;
-
-	}
-	return $pass;
+	$last_invoice_number =  getLastSalesInvoice();
+	$next_invoice_number = $last_invoice_number + 1;
+	return $next_invoice_number;
 }
-$finalcode='RS-'.createRandomPassword();
+$finalcode=createRandomPassword();
 ?>
 <body>
 <?php include('navfixed.php');?>
@@ -196,7 +188,7 @@ if($position=='admin') {
 		
 			<?php
 				$id=$_GET['invoice'];
-				include('../connect.php');
+				//include('../connect.php');
 				$query = "SELECT * FROM sales_order so JOIN products p 
 				ON so.product_id = p.product_id
 				WHERE invoice = :invoice_id";

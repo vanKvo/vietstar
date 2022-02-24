@@ -1,3 +1,7 @@
+<?php
+	include('../connect.php');
+	include('../model/inventory.php');
+?>
 <html>
 <head>
 <title>
@@ -41,24 +45,11 @@ require_once('auth.php');
 </head>
 <?php
 function createRandomPassword() {
-	$chars = "003232303232023232023456789";
-	srand((double)microtime()*1000000);
-	$i = 0;
-	$pass = '' ;
-	while ($i <= 7) {
-
-		$num = rand() % 33;
-
-		$tmp = substr($chars, $num, 1);
-
-		$pass = $pass . $tmp;
-
-		$i++;
-
-	}
+	$last_sales_invoice =  getLastSalesInvoice();
+	$pass = $last_sales_invoice['invoice_number'] + 1;
 	return $pass;
 }
-$finalcode='RS-'.createRandomPassword();
+$finalcode=createRandomPassword();
 ?>
 
 <script>
