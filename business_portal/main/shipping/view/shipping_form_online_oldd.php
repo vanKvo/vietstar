@@ -282,7 +282,30 @@ $tmp = get_temp_shipping_order($shipping_order_id);
 								<div class="forum-table-header-cell">Qty</div>
 						</div><!--table-header--> 
             <div id="forum-table-body">
-    
+              <div id="item0">    
+                  <select name="product0" class="chzn-select instore-item" >
+                    <option></option>
+                    <?php
+                      $products = get_products();
+                      for($i=0; $i < count($products); $i++){
+                    ?>
+                    <option value="<?php echo $products[$i]['product_id'];?>"><?php echo $products[$i]['product_name']; ?> | Qty: <?php echo $products[$i]['qty_onhand']; ?> | Code: <?php echo $products[$i]['product_code']; ?>| Unit Price: <?php echo $products[$i]['unit_price']; ?></option>
+                    <?php } ?>
+                  </select>
+                <input class="instore-item" type="number" name="picked_qty1">
+              </div>   
+              <!--<div id="item1">    
+                  <select name="product1" class="chzn-select instore-item" >
+                    <option></option>
+                    <?php
+                      $products = get_products();
+                      for($i=0; $i < count($products); $i++){
+                    ?>
+                    <option value="<?php echo $products[$i]['product_id'];?>"><?php echo $products[$i]['product_name']; ?> | Qty: <?php echo $products[$i]['qty_onhand']; ?> | Code: <?php echo $products[$i]['product_code']; ?>| Unit Price: <?php echo $products[$i]['unit_price']; ?></option>
+                    <?php } ?>
+                  </select>
+                <input class="instore-item" type="number" name="picked_qty1">
+              </div> -->
 						</div><!--table-body-->
           </div>
           <input type="hidden" id="num_of_items" name="num_of_items">
@@ -311,10 +334,10 @@ $tmp = get_temp_shipping_order($shipping_order_id);
           </div><!--row--> 
           <div class="row">
             <div class="col-6">
-              <label>Custom Fee</label>
+              <label>Insurance</label>
             </div><!--col-6-->
             <div class="item col-6">
-              <div><input type="text"  name="custom_fee" class="fee" placeholder="0.00" required></div>  
+              <div><input type="text"  name="insurance" class="fee" placeholder="0.00"></div>
             </div><!--col-6-->
           </div><!--row-->
           <div class="row">
@@ -327,10 +350,10 @@ $tmp = get_temp_shipping_order($shipping_order_id);
           </div><!--row--> 
           <div class="row">
             <div class="col-6">
-              <label>Insurance</label>
+              <label>Custom Fee</label>
             </div><!--col-6-->
             <div class="item col-6">
-              <div><input type="text"  name="insurance" class="fee" placeholder="0.00"></div>
+              <div><input type="text"  name="custom_fee" class="fee" placeholder="0.00"></div>  
             </div><!--col-6-->
           </div><!--row-->
           <hr>
@@ -385,6 +408,18 @@ $tmp = get_temp_shipping_order($shipping_order_id);
 	</div><!--main-content-->  
 </body>
 <script type="text/javascript">
+/*function addRecipient() {
+  var recipient_phone = $('#recipient_phone').val();
+  var recipient_name = $('#recipient_name').val();
+  $.ajax({
+    url: "test.php",
+    type: "POST",
+    data:{"myData":recipient_name}
+  }).done(function(data) {
+      console.log(data);
+  });
+ 
+}*/
 function returnToPreviousPage() {
     window.history.back(); // not use, but good to use to return previous page
 }
@@ -399,19 +434,15 @@ function formValidation() {
   return true;
 }
 
-function containsObject(obj, list) {
-    var i;
-    for (i = 0; i < list.length; i++) {
-        if (list[i] === obj) {
-            return true;
-        }
-    }
-    return false;
+function calInstoreItem() {
+
 }
 
 $(document).ready(function(){
   // Get the value of select option and search values in the select option
-
+$(".chzn-select").chosen().change(function() {
+  // alert($(this).val());
+});
   /** Toggle recipient form */
   $(".add-recipient-btn").click(function(){
     $("#recipient_form").toggle();
@@ -437,79 +468,42 @@ $(document).ready(function(){
     i = i-1;
   })
 
-  $(".chzn-select").chosen().change(function() {
-    // alert($(this).val());
-    });
-      // Automatically calculate inventory
-  $(".forum-table-header-cell").on('input', '.instore-item', function() { // when user change a package weight
-        alert('instore is clikced');
-  });
   /**  Add Item */
   var item_idx = -1;
-  var total_instore = 0;
-  //var products = []; // store product ids that are selected
-  var products = new Map();
-  var ids = [];
-  var product_id = '';
   $('#num_of_items').val(item_idx);
   $('#add-item-btn').on('click', function() {  
-    //console.log('Begin add-item-btn function()');
     item_idx = item_idx+1;
-    var item = '<div id="item'+item_idx+'" class="forum-table-row">'    
+   /* var item = '<div id="item'+item_idx+'" class="forum-table-row">'    
                 +'<div class="forum-table-header-cell">'
-                + ' <select id="item'+item_idx+'" name="item'+item_idx+'" class="chzn-select instore-item">'
+                + ' <select name="item'+item_idx+'"class="chzn-select instore-item">'
                 +   ' <option></option>'
                     <?php
                        $products = get_products();
                       for($i=0; $i < count($products); $i++){
                     ?>
-                + '   <option value="<?php echo $products[$i]['product_id'];?>" data-value='+"'"+'{"product_id":"<?php echo $products[$i]['product_id'];?>", "unit_price":"<?php echo $products[$i]['unit_price'];?>"}'+"'"+'><?php echo $products[$i]['product_name']; ?> | Qty: <?php echo $products[$i]['qty_onhand']; ?> | Code: <?php echo $products[$i]['product_code']; ?>| Unit Price: <?php echo $products[$i]['unit_price']; ?></option>' 
+                + '   <option value="<?php echo $products[$i]['product_id'];?>"><?php echo $products[$i]['product_name']; ?> | Qty: <?php echo $products[$i]['qty_onhand']; ?> | Code: <?php echo $products[$i]['product_code']; ?>| Unit Price: <?php echo $products[$i]['unit_price']; ?></option>'
                     <?php } ?>
                 + ' </select>'
                 + '</div>'
-                + '<div class="forum-table-header-cell"><input class="instore-item" type="number" id="picked_qty'+item_idx+'" name="picked_qty'+item_idx+'"></div>'
-              +' </div>';
-    $('#forum-table-body').append(item);
-    //$(item).appendTo('#forum-table-body');
+                + '<div class="forum-table-header-cell"><input class="instore-item" type="number" name="picked_qty'+item_idx+'"></div>'
+              +' </div>';*/
+        var test = '<div id="item0"> '   
+                  +'<select name="product0" class="chzn-select instore-item" >'
+                  + ' <option></option>'
+                  +  <?php
+                      $products = get_products();
+                      for($i=0; $i < count($products); $i++){
+                    ?>
+                  +  '<option value="<?php echo $products[$i]['product_id'];?>"><?php echo $products[$i]['product_name']; ?> | Qty: <?php echo $products[$i]['qty_onhand']; ?> | Code: <?php echo $products[$i]['product_code']; ?>| Unit Price: <?php echo $products[$i]['unit_price']; ?></option>'
+                    <?php } ?>
+                  + '</select>'
+                +'<input class="instore-item" type="number" name="picked_qty1">'
+             +' </div> ';
+    /*$('#forum-table-body').append(item);*/
+    /*$(item).appendTo('#forum-table-body');*/
+    $(test).appendTo('#forum-table-body');
     $('#num_of_items').val(item_idx);
-    $(".chzn-select").chosen().change(function() { // this function allows we can type text in select tag
-    // alert($(this).val());
-    });
-      // Automatically calculate instore items that are sold
-    $(".forum-table-header-cell").on('input', '.instore-item', function() { // when user change a package weight
-     // console.log('Begin forum-table-header-cell input instore-item func');
-      product_id =  parseFloat($('#item'+item_idx).find(":selected").data("value").product_id);
-      var qty = parseInt($('#picked_qty'+item_idx).val());
-      var unit_price =  parseFloat($('#item'+item_idx).find(":selected").data("value").unit_price);
-      var product = {"unit_price":unit_price, "qty":qty};
-      
-      if (ids.includes(product_id)) {  // product exists in the array
-        //alert("# of products in map: " + products.size +"prod exists in the map: Prod_id - " + product_id + " Qty: " +  products.get(product_id).qty + " NEw qty: " + qty);
-        // is product picked qty changed?
-        if (products.get(product_id).qty != qty && !Number.isNaN(qty) && (qty > 0)) {
-          let current_qty = parseInt(products.get(product_id).qty);
-          let new_qty = parseInt(qty);
-
-          // update new qty for the product
-          product = {"unit_price":unit_price, "qty":qty};
-          products.set(product_id, product);
-
-          total_instore = total_instore - current_qty*unit_price; // subtract the amount of old qtyå
-          total_instore = total_instore + new_qty*unit_price;
-          console.log("Total Instore: " + total_instore);
-        }
-      } else {// the selected product does not exist in the array yet
-        ids.push(product_id);
-        //products.push(product); // add product to the arr
-        products.set(product_id, product);
-        //alert(qty + 'unit_price: ' + unit_price + ' Prod_id:' + product_id + 'Products: ' + products + 'Num of prods: '+ products.length);
-        total_instore = total_instore + qty*unit_price;
-      }
-      $('#instore').val(total_instore);
-      //console.log('End forum-table-header-cell input instore-item func');
-    });
-    //console.log('End add-item-btn function()');
-  });
+  })
 
   /** Remove Item */
     $('#remove-item-btn').on('click', function() {  
@@ -517,13 +511,7 @@ $(document).ready(function(){
     $('#'+id).remove();
     item_idx = item_idx-1;
     $('#num_of_items').val(item_idx);
-    let current_qty = parseInt(products.get(product_id).qty);
-    let unit_price = parseFloat(products.get(product_id).unit_price);
-    total_instore = total_instore - current_qty*unit_price;
-    $('#instore').val(total_instore);
-    products.delete(product_id);
-    console.log("# of products in map: " + products.size);
-  });
+  })
 
 // Automatically calculate total package weight
   $(".item").on('input','.pkg_weight',function() {
@@ -569,6 +557,10 @@ $(document).ready(function(){
     $('#shipping_fee').val((wt*price_per_lb).toFixed(2));
   });
 
+  // Automatically calculate inventory
+  $(".forum-table-header-cell").on('input', '.instore-item', function() { // when user change a package weight
+      alert('instore is clikced');
+  });
 
 });
  

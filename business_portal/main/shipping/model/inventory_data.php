@@ -69,6 +69,7 @@ function add_sales_order($v1,$v2,$v3) {
   echo " <br>Start add_sales_order() <br>";
   $product = get_product($v2); 
   $v4 = $product['unit_price']; // get current unit price of the product
+  echo $v2;
   $query = 'INSERT INTO `sales_order`(`qty_picked`,`product_id`, `sales_id`, `sales_unit_price`) VALUES (:v1,:v2,:v3,:v4)';
   $stmt = $db->prepare($query);
   $res = $stmt->execute(array(

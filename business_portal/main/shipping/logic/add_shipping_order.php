@@ -83,9 +83,8 @@ else { // Check if recipient info exists or not(Blank or Online Shipping Form)
 }
 
 /** Get packages info */
-echo '<br>No Packages:'.$num_pkg;
+echo '<br>No Packages:'.$num_pkg.'<br>';
 for ($i=0; $i < $num_pkg; $i++) {
-  echo '<br>num of packages in add_shipping_order:'.($i+1);
   $packages[$i]['pkg_desc'] = clean_input($_GET['pkg_desc'.($i)]); // $packages[0][] is empty, 1st element starts from $packages[1][]
   $packages[$i]['pkg_wt'] = clean_input($_GET['pkg_wt'.($i)]);
   $packages[$i]['mst'] = $mst;
@@ -93,15 +92,23 @@ for ($i=0; $i < $num_pkg; $i++) {
 }
 
 /** Get in-store items if applicable */
-echo '<br>Num of ITEMS:'. $num_of_items;
+echo '<br>Num of ITEMS:'. ($num_of_items+1);
 if ($num_of_items != -1) {
-  add_sales($pmt_method, $cust_name, $send_dt, $sales_amount, $mst, $user_id);
+  /*add_sales($pmt_method, $cust_name, $send_dt, $sales_amount, $mst, $user_id);
   $sales = get_sales($mst);
-  $sales_id = $sales['sales_id'];
-  echo "Some in-store items are purchased";
+  $sales_id = $sales['sales_id'];*/
+  $sales_id = '218';
+  $num_of_items = '1';
+  echo "<br>Some in-store items are purchased<br>";
   for ($j=0; $j <= $num_of_items; $j++) {
     $items[$j]['product_id'] = clean_input($_GET['item'.$j]);
+    echo "<br>PROD_ID: ". $items[$j]['product_id']. "<br>";
     $items[$j]['picked_qty'] = clean_input($_GET['picked_qty'.$j]);
+    echo "PICKED_QTY: ". $items[$j]['picked_qty']. "<br>";
+    if (empty($items[$j]['product_id']) && empty($items[$j]['picked_qty'])) { // skip if prod id or picked qty is blank
+      continue; 
+    }
+    
     add_sales_order($items[$j]['picked_qty'],$items[$j]['product_id'], $sales_id); // add a new sales order
     decrease_supply($items[$j]['picked_qty'],  $items[$j]['product_id']); // decrease onhand qty of the product in inventory
   }

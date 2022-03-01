@@ -22,7 +22,7 @@ $customer = search_customer($search_input);
   <link rel="stylesheet" href="../../css/lib/bootstrap.css">
   <link rel="stylesheet" href="../../css/lib/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="../../css/styles.css">
-  <link rel="stylesheet" type="text/css" href="../../css/navbar.css">
+  <link rel="stylesheet" type="text/css" href="../../css/navbar_new.css">
   <link rel="stylesheet" type="text/css" href="../../css/shipform.css">
   <script src="../../js/lib/jquery.min.js"></script>
 	<script src="../../js/scripts.js"></script>

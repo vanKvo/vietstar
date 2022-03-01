@@ -12,7 +12,7 @@ $position=$_SESSION['SESS_POSITION'];
 <link rel="stylesheet" href="css/lib/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/styles.css">
 <link rel="stylesheet" type="text/css" href="css/maindashboard.css">
-<link rel="stylesheet" type="text/css" href="css/navbar.css">
+<link rel="stylesheet" type="text/css" href="css/navbar_new.css">
 <script src="js/scripts.js"></script>
 <style>
 	.sticky {
