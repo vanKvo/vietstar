@@ -1,11 +1,27 @@
-<?php
-	include('../connect.php');
-	include('../model/inventory.php');
+<?php 
+include('../connect.php');
+include('function.php');
+$finalcode=createRandomPassword();
 ?>
-<!DOCTYPE html>
 <html>
 <head>
-	<!-- js -->			
+<title>Vietstar_Shipping</title>
+<link href="css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="css/navbar.css" media="screen" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.well li {
+	line-height: 20px;
+	list-style: none;
+	padding-bottom: 10px;
+}
+</style>
+<!--sa poip up-->
+<script src="jeffartagame.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/application.js" type="text/javascript" charset="utf-8"></script>
 <link href="src/facebox.css" media="screen" rel="stylesheet" type="text/css" />
 <script src="lib/jquery.js" type="text/javascript"></script>
 <script src="src/facebox.js" type="text/javascript"></script>
@@ -17,47 +33,9 @@
     })
   })
 </script>
-<title>
-Vietstar Shipping
-</title>
-<?php
-	require_once('auth.php');
-?>
-       
-		<link href="vendors/uniform.default.css" rel="stylesheet" media="screen">
-  <link href="css/bootstrap.css" rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
-  
-  <link rel="stylesheet" href="css/font-awesome.min.css">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-    </style>
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
-
-	<!-- combosearch box-->	
-	
-	  <script src="vendors/jquery-1.7.2.min.js"></script>
-    <script src="vendors/bootstrap.js"></script>
-
-	
-	
-<link href="../style.css" media="screen" rel="stylesheet" type="text/css" />
-<!--sa poip up-->
-
-
-
-
- <script language="javascript" type="text/javascript">
+<script language="javascript" type="text/javascript">
 /* Visit http://www.yaldex.com/ for full source code
 and get more free JavaScript, CSS and DHTML scripts! */
-<!-- Begin
 var timerID = null;
 var timerRunning = false;
 function stopclock (){
@@ -84,34 +62,11 @@ stopclock();
 showtime();
 }
 window.onload=startclock;
-// End -->
-</SCRIPT>	
-
+</script>	
 </head>
-<?php
-
-function createRandomPassword() {
-	$last_invoice_number =  getLastSalesInvoice();
-	$next_invoice_number = $last_invoice_number + 1;
-	return $next_invoice_number;
-}
-$finalcode=createRandomPassword();
-?>
 <body>
 <?php include('navfixed.php');?>
-	<?php
-$position=$_SESSION['SESS_LAST_NAME'];
-if($position=='cashier') {
-?>
-<!--<a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>">Cash</a>-->
 <a href="sales.php?pmt_method=cash&invoice=<?php echo $finalcode ?>">Cash</a>
-
-<a href="../index.php">Logout</a>
-<?php
-}
-if($position=='admin') {
-?>
-	
 <div class="container-fluid">
       <div class="row-fluid">
 	<div class="span2">
@@ -119,10 +74,9 @@ if($position=='admin') {
               <ul class="nav nav-list">
               <li><a href="index.php"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
 			<li class="active"><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Sales</a>  </li>             
-			<li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Products</a>                                     </li>
-			<li><a href="customer.php"><i class="icon-group icon-2x"></i> Customers</a>                                    </li>
-			<li><a href="supplier.php"><i class="icon-group icon-2x"></i> Suppliers</a>                                    </li>
-			<li><a href="salesreport.php?d1=0&d2=0"><i class="icon-bar-chart icon-2x"></i> Sales Report</a>                </li>
+			<li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Inventory</a> </li>
+			<li><a href="supplier.php"><i class="icon-group icon-2x"></i> Suppliers</a> </li>
+			<li><a href="purchase.php"><i class="icon-group icon-2x"></i> Purchase</a> </li>                                                 
 			<br><br><br><br><br><br>
 			<li>
 			 <div class="hero-unit-clock">
@@ -131,10 +85,8 @@ if($position=='admin') {
 			<font color="white">Time: <br></font>&nbsp;<input style="width:150px;" type="text" class="trans" name="face" value="" disabled>
 			</form>
 			  </div>
-			</li>
-				
-				</ul>    
-<?php } ?>				
+			</li>		
+				</ul>    		
           </div><!--/.well -->
         </div><!--/span-->
 	<div class="span10">
@@ -152,7 +104,7 @@ if($position=='admin') {
 <form action="incoming.php" method="post" >								
 	<input type="hidden" name="pmt_method" value="<?php echo $_GET['pmt_method']; ?>" />
 	<input type="hidden" name="invoice" value="<?php echo $_GET['invoice']; ?>" />
-	<select name="product_id" style="width:650px; "class="chzn-select" required>
+	<select name="product_id" style="width:650px;" class="chzn-select" required>
 	<option></option>
 		<?php
 		include('../connect.php');
@@ -180,7 +132,6 @@ if($position=='admin') {
 			<th> Unit Price </th>
 			<th> Qty </th>
 			<th> Amount </th>
-			<th> Profit </th>
 			<th> Action </th>
 		</tr>
 	</thead>
@@ -188,7 +139,7 @@ if($position=='admin') {
 		
 			<?php
 				$id=$_GET['invoice'];
-				//include('../connect.php');
+				include('../connect.php');
 				$query = "SELECT * FROM sales_order so JOIN products p 
 				ON so.product_id = p.product_id
 				WHERE invoice = :invoice_id";
@@ -215,12 +166,6 @@ if($position=='admin') {
 					echo formatMoney($sales_order_amount, true);
 					?>
 					</td>
-					<td>
-					<?php
-					$profit=$row['sales_order_profit'];
-					echo formatMoney($profit, true);
-					?>
-					</td>
 					<td width="90"><a href="delete.php?sales_order_id=<?php echo $row['sales_order_id']; ?>&invoice=<?php echo $_GET['invoice']; ?>&pmt_method=<?php echo $_GET['pmt_method']; ?>&qty_picked=<?php echo $row['qty_picked'];?>&product_id=<?php echo $row['product_id'];?>"><button class="btn btn-mini btn-warning"><i class="icon icon-remove"></i> Cancel </button></a></td>
 					</tr>
 			<?php
@@ -233,7 +178,6 @@ if($position=='admin') {
 			<th>  </th>
 			<th>  </th>
 			<td> Total Amount: </td>
-		 <td> Total Profit: </td>
 			<th>  </th>
 		</tr>
 			<tr>
@@ -264,17 +208,6 @@ if($position=='admin') {
 				}
 				?>
 				</strong></td>
-				<td colspan="1"><strong style="font-size: 12px; color: #222222;">
-			<?php 
-				$resulta = $db->prepare("SELECT sum(sales_order_profit) FROM sales_order WHERE invoice= :b");
-				$resulta->bindParam(':b', $invoice);
-				$resulta->execute();
-				for($i=0; $qwe = $resulta->fetch(); $i++){
-				$total_profit=$qwe['sum(sales_order_profit)'];
-				echo formatMoney($total_profit, true);
-				} 
-			?>
-				</td>
 				<th></th>
 			</tr>
 		

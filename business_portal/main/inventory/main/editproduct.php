@@ -17,11 +17,7 @@
 <span>Product Name: </span><input type="text" style="width:265px; height:30px;"  name="product_name" value="<?php echo $row['product_name']; ?>" /><br>
 <span>Category / Description: </span><input type="text" style="width:265px; height:30px;"  name="product_category" value="<?php echo $row['product_category']; ?>" /><br>
 <span>Location: </span><input type="text" style="width:265px; height:30px;"  name="product_location" value="<?php echo $row['product_location']; ?>" /><br>
-<!--<span>Date Arrival: </span><input type	="date" style="width:265px; height:30px;" name="date_arrival" value="<?php //echo $row['date_arrival']; ?>" /><br>
-<span>Expiry Date : </span><input type	="date" style="width:265px; height:30px;" name="exdate" value="<?php //echo $row['expiry_date']; ?>" /><br>-->
 <span>Unit Price : </span><input type="text" style="width:265px; height:30px;" id="txt1" name="unit_price" value="<?php echo $row['unit_price']; ?>" onkeyup="sum();" Required/><br>
-<!--<span>Unit Cost : </span><input type="text" style="width:265px; height:30px;" id="txt2" name="unit_cost" value="<?php //echo $row['unit_cost']; ?>" onkeyup="sum();" Required/><br>-->
-<!--<span>Profit : </span><input type="text" style="width:265px; height:30px;" id="txt3" name="profit" value="<?php //echo $row['profit']; ?>" readonly><br>-->
 <span>Supplier : </span>
 <select name="supplier" style="width:265px; height:30px; margin-left:-5px;" >
 	<option><?php echo $row['supplier']; ?></option>
@@ -37,7 +33,6 @@
 	?>
 </select><br>
 <span>Qty Onhand: </span><input type="number" style="width:265px; height:30px;" min="0" name="qty_onhand" value="<?php echo $row['qty_onhand']; ?>" /><br>
-<span>Qty Supplied: </span><input type="number" style="width:265px; height:30px;" min="0" name="qty_supplied" value="<?php echo $row['qty_supplied']; ?>" /><br>
 
 <div style="float:right; margin-right:10px;">
 

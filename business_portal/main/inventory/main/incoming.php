@@ -24,6 +24,7 @@ $sql = "UPDATE products
 $q = $db->prepare($sql);
 $q->execute(array($qty_picked,$product_id));
 
+// Insert a sales order of a product
 $sales_order_amount = $qty_picked * $unit_price;
 $total_profit = $qty_picked * $unit_profit;
 // query

@@ -153,7 +153,7 @@ var application = new Vue({
 	},
 	methods: {
 		fetchData:function(){
-			axios.post('../logic/get_online_shipping_orders.php', {
+			axios.post('../logic/get_online_shipping_orders_new.php', {
 				query:this.query,
         date1: this.date1,
         date2: this.date2

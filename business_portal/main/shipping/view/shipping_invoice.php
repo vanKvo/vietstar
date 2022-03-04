@@ -1,9 +1,13 @@
 <?php
 require_once '../../connect.php';
 require_once '../model/shipping_data.php';
+require_once '../model/inventory_data.php';
 $mst = trim(filter_input(INPUT_GET, 'mst', FILTER_SANITIZE_STRING));
 $shipord = get_shipping_invoice_info($mst);
-//print_r($shipord);
+$sales_id = $shipord[0]['sales_id'];
+if (!empty($sales_id)) { // Some instore items are purcahse
+  $sales_orders = get_sales_order($sales_id);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -164,6 +168,7 @@ $shipord = get_shipping_invoice_info($mst);
           </div>
           <!-- end pkg-table-responsive -->
       <!-- begin in-store-item-table-responsive -->
+      <?php if (!empty($sales_id)) { ?>
           <div class="graybox pt-2 pb-2">
             <strong class="text-inverse"><u> In-store items</u></strong><br>
           </div>
@@ -179,16 +184,23 @@ $shipord = get_shipping_invoice_info($mst);
                   </tr>
               </thead>
               <tbody>
-                  <tr>
-                    <td  width="25%">Ensure</td>
-                    <td  width="25%">10</td>
-                    <td  width="25%">13</td>
-                    <td  width="25%">130</td>
-                  </tr>
+                <?php 
+                  $total_instore = 0;
+                  for($j = 0; $j < count($sales_orders); $j++) {
+                    $total_price = $sales_orders[$j]['qty_picked'] * $sales_orders[$j]['unit_price'];
+                    $total_instore =  $total_instore + $total_price;
+                ?>
+                    <tr>
+                      <td width="25%"><?=$sales_orders[$j]['product_name']?></td>
+                      <td width="25%"><?=$sales_orders[$j]['qty_picked']?></td>
+                      <td width="25%"><?=$sales_orders[$j]['unit_price']?></td>
+                      <td width="25%"><?=$total_price?></td>
+                    </tr>
+                  <?php } ?>    
               </tbody>
             </table>
           </div><!--table-responsive -->
-       
+         <?php } ?><!--is shown if some instore items are purchased -->
            <div class="row">
                 <div class="col-7"></div>
                 <div class="col-5"><strong>Total: </strong></div>
@@ -220,6 +232,14 @@ $shipord = get_shipping_invoice_info($mst);
             </div><!--col-6-->
           </div><!--row-->
           <div class="row">
+            <div class="item col-6">
+              <label>Instore Item</label>
+            </div><!--col-6-->
+            <div class="item col-6">
+              <?=$total_instore;?>
+            </div><!--col-6-->
+          </div><!--row--> 
+          <div class="row">
             <div class="col-6">
               <label>Insurance</label>
             </div><!--col-6-->
@@ -227,14 +247,6 @@ $shipord = get_shipping_invoice_info($mst);
               <?=$shipord[0]['insurance'];?>
             </div><!--col-6-->
           </div><!--row-->
-          <div class="row">
-            <div class="item col-6">
-              <label>In-store Item</label>
-            </div><!--col-6-->
-            <div class="item col-6">
-               Unkown
-            </div><!--col-6-->
-          </div><!--row--> 
           <hr>
           <div class="row">
             <div class="item col-6">
@@ -256,38 +268,6 @@ $shipord = get_shipping_invoice_info($mst);
       </div><!--row-->  
        <!-- end payment-table-responsive -->  
          <!--End Test code-->
-            <!-- begin invoice-price -->
-            <!--<div class="invoice-price">
-               <div class="invoice-price-left">
-                  <div class="invoice-price-row">
-                     <div class="sub-price">
-                        <small>SUBTOTAL</small>
-                        <span class="text-inverse">$4,500.00</span>
-                     </div>
-                     <div class="sub-price">
-                        <i class="fa fa-plus text-muted"></i>
-                     </div>
-                     <div class="sub-price">
-                        <small>PAYPAL FEE (5.4%)</small>
-                        <span class="text-inverse">$108.00</span>
-                     </div>
-                  </div>
-                  TOTAL
-               </div>
-               <div class="invoice-price-right">
-                  <span class="f-w-600">$4508.00</span>
-               </div>
-            </div>-->
-            <!-- end invoice-price 
-         </div>-->
-         <!-- end invoice-content -->
-         <!-- begin invoice-note -->
-        <!-- <div class="invoice-note">
-            * Make all cheques payable to [Your Company Name]<br>
-            * Payment is due within 30 days<br>
-            * If you have any questions concerning this invoice, contact  [Name, Phone Number, Email]
-         </div>-->
-         <!-- end invoice-note -->
       </div><!--print_content-->
    </div><!--col-md-12-->
 	</div><!--main-content-->  

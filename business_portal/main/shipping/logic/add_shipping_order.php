@@ -93,12 +93,10 @@ for ($i=0; $i < $num_pkg; $i++) {
 
 /** Get in-store items if applicable */
 echo '<br>Num of ITEMS:'. ($num_of_items+1);
-if ($num_of_items != -1) {
-  /*add_sales($pmt_method, $cust_name, $send_dt, $sales_amount, $mst, $user_id);
+if ($num_of_items != -1) {  // Some instore items are purchased
+  add_sales($pmt_method, $cust_name, $send_dt, $sales_amount, $mst, $user_id);
   $sales = get_sales($mst);
-  $sales_id = $sales['sales_id'];*/
-  $sales_id = '218';
-  $num_of_items = '1';
+  $sales_id = $sales['sales_id'];
   echo "<br>Some in-store items are purchased<br>";
   for ($j=0; $j <= $num_of_items; $j++) {
     $items[$j]['product_id'] = clean_input($_GET['item'.$j]);
@@ -112,18 +110,20 @@ if ($num_of_items != -1) {
     add_sales_order($items[$j]['picked_qty'],$items[$j]['product_id'], $sales_id); // add a new sales order
     decrease_supply($items[$j]['picked_qty'],  $items[$j]['product_id']); // decrease onhand qty of the product in inventory
   }
+} else { // None instore item is purchased
+  $sales_id = 0; 
 }
 echo "Items PURHCHASED: ";
-print_r($items);
+//print_r($items);
 
 // Add new shipping ord to the db
-/*if (valid_shipping_ord($mst)) {
+if (valid_shipping_ord($mst)) {
   echo "Get inside";
-  add_shipping_order($mst, $send_dt, $airport_dt, $pkg_weight, $num_pkg, $pkg_val, $custom_fee, $insurance, $pmt_method, $user_id, $location, $cust_id, $recipient_id, $price_per_lb, $amount, $custom_fee_taxed_item); 
+  add_shipping_order($mst, $send_dt, $airport_dt, $pkg_weight, $num_pkg, $pkg_val, $custom_fee, $insurance, $pmt_method, $user_id, $location, $cust_id, $recipient_id, $price_per_lb, $amount, $custom_fee_taxed_item, $sales_id); 
   $shipping_order = get_shipping_order($mst);
   $shipping_order_id =  $shipping_order[0]['shipping_order_id']; // Get shipping order id of an mst package
   add_package($shipping_order_id, $packages);
-}*/
-
+}
+//header('location:../view/shipping_form_online.php');
 ?>
 <a href="../view/shipping_form_online.php">Back</a>

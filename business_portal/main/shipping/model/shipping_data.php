@@ -125,11 +125,11 @@ function get_location() {
   return $locations;
 }
 
-function add_shipping_order($v1,$v2,$v3,$v4,$v5,$v6,$v7,$v8,$v9,$v10,$v11,$v12,$v13,$v14,$v15,$v16) {
-  echo "mst: $v1, senddt: $v2, airportdt: $v3, total wt:  $v4, no_packages:$v5, value: $v6, custom fee:  $v7, insurance: $v8,  payment_method: $v9, user_id`: $v10, location: $v11, customer_id:  $v12,recipient_id: $v13, price_per_lb: $v14, amount: $v15, custom_fee_taxed_item: $v16";
+function add_shipping_order($v1,$v2,$v3,$v4,$v5,$v6,$v7,$v8,$v9,$v10,$v11,$v12,$v13,$v14,$v15,$v16,$v17) {
+  echo "mst: $v1, senddt: $v2, airportdt: $v3, total wt:  $v4, no_packages:$v5, value: $v6, custom fee:  $v7, insurance: $v8,  payment_method: $v9, user_id`: $v10, location: $v11, customer_id:  $v12,recipient_id: $v13, price_per_lb: $v14, amount: $v15, custom_fee_taxed_item: $v16, sales_id: $v17";
   echo "<br>Start Add Ship ORd<br>"; 
   global $db;
-  $query = 'INSERT INTO `shipping_order`(`mst`, `send_date`, `airport_delivery_date`, `total_weight`, `num_of_packages`, `package_value`, `custom_fee`, `insurance`, `payment_method`, `user_id`, `location`, `customer_id`, `recipient_id`, `price_per_lb`,`amount`, `custom_fee_taxed_item`) VALUES (:v1,:v2,:v3,:v4,:v5,:v6,:v7,:v8,:v9,:v10,:v11,:v12,:v13,:v14,:v15,:v16)'; 
+  $query = 'INSERT INTO `shipping_order`(`mst`, `send_date`, `airport_delivery_date`, `total_weight`, `num_of_packages`, `package_value`, `custom_fee`, `insurance`, `payment_method`, `user_id`, `location`, `customer_id`, `recipient_id`, `price_per_lb`,`amount`, `custom_fee_taxed_item`,`sales_id`) VALUES (:v1,:v2,:v3,:v4,:v5,:v6,:v7,:v8,:v9,:v10,:v11,:v12,:v13,:v14,:v15,:v16,:v17)'; 
   $stmt = $db->prepare($query);
   $res = $stmt->execute(array(
      ':v1' => $v1,
@@ -147,7 +147,8 @@ function add_shipping_order($v1,$v2,$v3,$v4,$v5,$v6,$v7,$v8,$v9,$v10,$v11,$v12,$
      ':v13' => $v13,
      ':v14' => $v14,
      ':v15' => $v15,
-     ':v16' => $v16
+     ':v16' => $v16,
+     ':v17' => $v17
     ));
     if ($res) echo '<br>Success<br>';
     else echo '<br>Fail<br>';
@@ -273,10 +274,10 @@ function valid_recipient($cust_id, $name) {
   $row = $stmt->fetch(PDO::FETCH_ASSOC);
   echo $row['num'];
   if ($row['num'] == 0) {
-    echo '<br>Valid recipient<br>'; 
+    echo '<br>Customer data does not exist<br>'; 
     return true;
   } else {
-    echo '<br>Invalid recipient<br>'; 
+     echo '<br>Customer data exists in DB<br>'; 
     return false;
   }
   $stmt-->closeCursor();
@@ -318,10 +319,10 @@ function valid_customer($cust_name, $cust_phone) {
   $row = $stmt->fetch(PDO::FETCH_ASSOC);
   echo $row['num'];
   if ($row['num'] == 0) {
-    echo '<br>Valid customer<br>'; 
+    echo '<br>Customer data does not exist<br>'; 
     return true;
   } else {
-    echo '<br>Invalid customer<br>'; 
+    echo '<br>Customer data exists in DB<br>'; 
     return false;
   }
   $stmt-->closeCursor();

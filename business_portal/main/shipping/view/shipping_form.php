@@ -97,10 +97,10 @@ $customer = search_customer($search_input);
   <form id="shipping-form" action="../logic/add_shipping_order.php" autocomplete="on">  
     <div class="container center">
       <div class="row">
-        <div class="subheader"> Người Gửi (Sender)</div>
+        <div class="subheader"> Người Gửi - Sender</div>
         <div class="col-6">
           <div class="item">
-            <label for="name"> Họ & Tên (Full Name)<span>*</span></label>
+            <label for="name"> Họ & Tên - Full Name<span>*</span></label>
             <input id="name" type="text" name="cust_name" value="<?=$customer[0]['cust_name']?>" required/>
           </div>
           <div class="item">
@@ -112,18 +112,71 @@ $customer = search_customer($search_input);
               <input id="email" type="text"   name="cust_email" value="<?=$customer[0]['cust_email']?>">
             </div>
           <div class="item">
-            <label for="address1">Địa Chỉ (Address)<span>*</span></label>
+            <label for="address1">Địa Chỉ - Address<span>*</span></label>
             <input id="address1" type="text"   name="cust_address" value="<?=$customer[0]['cust_address']?>">
           </div>
         </div><!--col-6-->
           <div class="col-6">   
           <div class="item">
-              <label for="city">City<span>*</span></label>
+              <label for="city">Thành Phố - City<span>*</span></label>
               <input id="city" type="text"   name="cust_city" value="<?=$customer[0]['cust_city']?>">
             </div>
             <div class="item">
-              <label for="state">State<span>*</span></label>
-              <input id="state" type="text"   name="cust_state" value="<?=$customer[0]['cust_state']?>">
+              <label for="state">Tiểu Bang - State<span>*</span></label>
+              <input id="state" type="text" name="cust_state" list="state" value="<?=$customer[0]['cust_state']?>">
+              <datalist id="state">
+                  <option  value="VA">Virginia</option>
+                  <option  value="AL">Alabama</option>
+									<option  value="AK">Alaska</option>
+									<option  value="AZ">Arizona</option>
+									<option  value="AR">Arkansas</option>
+									<option  value="CA">California</option>
+									<option  value="CO">Colorado</option>
+									<option  value="CT">Connecticut</option>
+									<option  value="DE">Delaware</option>
+									<option  value="DC">District Of Columbia</option>
+									<option  value="FL">Florida</option>
+									<option  value="GA">Georgia</option>
+									<option  value="HI">Hawaii</option>
+									<option  value="ID">Idaho</option>
+									<option  value="IL">Illinois</option>
+									<option  value="IN">Indiana</option>
+									<option  value="IA">Iowa</option>
+									<option  value="KS">Kansas</option>
+									<option  value="KY">Kentucky</option>
+									<option  value="LA">Louisiana</option>
+									<option  value="ME">Maine</option>
+									<option  value="MD">Maryland</option>
+									<option  value="MA">Massachusetts</option>
+									<option  value="MI">Michigan</option>
+									<option  value="MN">Minnesota</option>
+									<option  value="MS">Mississippi</option>
+									<option  value="MO">Missouri</option>
+									<option  value="MT">Montana</option>
+									<option  value="NE">Nebraska</option>
+									<option  value="NV">Nevada</option>
+									<option  value="NH">New Hampshire</option>
+									<option  value="NJ">New Jersey</option>
+									<option  value="NM">New Mexico</option>
+									<option  value="NY">New York</option>
+									<option  value="NC">North Carolina</option>
+									<option  value="ND">North Dakota</option>
+									<option  value="OH">Ohio</option>
+									<option  value="OK">Oklahoma</option>
+									<option  value="OR">Oregon</option>
+									<option  value="PA">Pennsylvania</option>
+									<option  value="RI">Rhode Island</option>
+									<option  value="SC">South Carolina</option>
+									<option  value="SD">South Dakota</option>
+									<option  value="TN">Tennessee</option>
+									<option  value="TX">Texas</option>
+									<option  value="UT">Utah</option>
+									<option  value="VT">Vermont</option>
+									<option  value="WA">Washington</option>
+									<option  value="WV">West Virginia</option>
+									<option  value="WI">Wisconsin</option>
+									<option  value="WY">Wyoming</option>
+              </datalist>  
             </div>
             <div class="item">
               <label for="zip">Zip/Postal Code<span>*</span></label>
@@ -144,7 +197,6 @@ $customer = search_customer($search_input);
         </div> 
         <button type="button" class="custom-btn add-recipient-btn col-2">Add New Recipient</button>
         <div class="item hidden" id="recipient_form">
-          <!--<form action="./index.php" method="post">-->
             <div class="item">
               <label for="name">Người Nhận Mới - New Recipient</label>
               <input id="name" type="text" id="recipient_name" name="recipient_name"/>
@@ -157,10 +209,7 @@ $customer = search_customer($search_input);
               <label for="phone">SĐT - Phone (10 digits)</label>
               <input id="recipient_phone" type="text" id="recipient_phone"  name="recipient_phone" placeholder="XXXXXXXXXX"/>
             </div>
-           <!-- <button type="button" class="btn btn-primary btn-sm" onclick="addRecipient()">Save Recipient</button> -->
             <input type="hidden" id="cust_id" name="cust_id" value="<?=$customer[0]['customer_id']?> ">
-            <!--<input type="hidden" name="action" value="add_recipient">-->
-         <!-- </form>form-add-recipient-->
           </div><!--item-->
       </div><!--row-->  
       <div class="row">

@@ -1,0 +1,48 @@
+.navbar-global {
+  background-color: #0d6efd;
+}
+
+.navbar .brand {
+  display: block;
+  float: left;
+  padding: 10px 20px 10px;
+  margin-left: -20px;
+  font-size: 20px;
+  font-weight: 100;
+  color: #fff;
+  text-shadow: 0 0px 0 #ffffff;
+}
+
+.navbar .nav > li > a {
+  float: none;
+  padding: 10px 15px 10px;
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 0 0px 0 #ffffff;
+}
+
+.sidebar-nav {
+  padding: 50px 0px;
+}
+
+/*.well li {
+  line-height: 20px;
+  list-style: none;
+}*/
+
+.navbar-brand {
+  color: white;
+}
+
+.navbar-header {
+  padding-top: 5px;
+  padding-bottom: 3px;
+}
+
+.well li {
+  line-height: 20px;
+  list-style: none;
+}
+.nav-user li {
+  list-style: none;
+}

@@ -1,27 +1,11 @@
- <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#"><b>Point of Sales</b></a>
-          <div class="nav-collapse collapse">
-            <ul class="nav pull-right">
-              <li><a><i class="icon-user icon-large"></i> Welcome:<strong> <?php echo $_SESSION['SESS_LAST_NAME'];?></strong></a></li>
-			 <li><a> <i class="icon-calendar icon-large"></i>
-								<?php
-								$Today = date('y:m:d',mktime());
-								$new = date('l, F d, Y', strtotime($Today));
-								echo $new;
-								?>
-
-				</a></li>
-              <li><a href="../index.php"><font color="red"><i class="icon-off icon-large"></i></font> Log Out</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-	
+<nav class="navbar navbar-inverse navbar-global navbar-fixed-top top-sticky">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a  class="navbar-brand" href="#">Vietstar Shipping</a>
+			</div>
+			<ul class="nav nav-user pull-right"><!-- navbar-nav -->
+				<li><a href="#"><i class="icon-user icon-large"></i> Welcome <?=$position?>!</a></li>
+				<li><a href="../index.php"><i class="icon-off icon-large"></i> Log Out</a></li> 
+			</ul>
+		</div>
+	</nav><!--navbar navbar-inverse navbar-global navbar-fixed-top-->

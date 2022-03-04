@@ -1,3 +1,7 @@
+<?php 
+include('../connect.php');
+include('function.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,14 +12,9 @@ Inventory
     <link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
   
   <link rel="stylesheet" href="css/font-awesome.min.css">
-    <style type="text/css">
-    
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-    </style>
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
 <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="css/navbar.css" media="screen" rel="stylesheet" type="text/css" />
 <link href="src/facebox.css" media="screen" rel="stylesheet" type="text/css" />
 <script src="lib/jquery.js" type="text/javascript"></script>
 <script src="src/facebox.js" type="text/javascript"></script>
@@ -27,29 +26,18 @@ Inventory
     })
   })
 </script>
+<style type="text/css">
+		.well li {
+			line-height: 20px;
+			list-style: none;
+			padding-bottom: 10px;
+		}
+</style>
 <?php
 	require_once('auth.php');
 ?>
 <?php
-function createRandomPassword() {
-	$chars = "003232303232023232023456789";
-	srand((double)microtime()*1000000);
-	$i = 0;
-	$pass = '' ;
-	while ($i <= 7) {
-
-		$num = rand() % 33;
-
-		$tmp = substr($chars, $num, 1);
-
-		$pass = $pass . $tmp;
-
-		$i++;
-
-	}
-	return $pass;
-}
-$finalcode='RS-'.createRandomPassword();
+$finalcode=createRandomPassword();
 ?>
 
  <script language="javascript" type="text/javascript">
@@ -105,11 +93,10 @@ if($position=='admin') {
                      <ul class="nav nav-list">
        <li class="active"><a href="#"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
 			<li><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Sales</a>  </li>             
-			<li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Products</a></li>        
+			<li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Inventory</a></li>        
 			<li><a href="supplier.php"><i class="icon-group icon-2x"></i> Suppliers</a></li>
-			<li><a href="customer.php"><i class="icon-group icon-2x"></i> Customers</a></li>
+			<li><a href="purchase.php"><i class="icon-group icon-2x"></i> Purchase</a></li>
                                    </li>
-			<li><a href="salesreport.php?d1=0&d2=0"><i class="icon-bar-chart icon-2x"></i> Sales Report</a></li>
 			<br><br><br><br><br><br>		
 			<li>
 			 <div class="hero-unit-clock">
@@ -137,8 +124,7 @@ if($position=='admin') {
 <a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i><br> Sales</a>               
 <a href="products.php"><i class="icon-list-alt icon-2x"></i><br> Inventory</a>  
 <a href="supplier.php"><i class="icon-group icon-2x"></i><br> Suppliers</a>     
-<a href="customer.php"><i class="icon-group icon-2x"></i><br> Customers</a>         
-<a href="salesreport.php?d1=0&d2=0"><i class="icon-bar-chart icon-2x"></i><br> Sales Report</a>
+<a href="purchase.php"><i class="icon-group icon-2x"></i><br> Purchase</a>         
 <a href="../index.php"><font color="red"><i class="icon-off icon-2x"></i></font><br> Logout</a> 
 <?php
 }

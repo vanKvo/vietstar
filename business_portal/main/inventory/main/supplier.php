@@ -1,29 +1,24 @@
+<?php 
+include('../connect.php');
+include('function.php');
+$finalcode=createRandomPassword();
+?>
 <html>
 <head>
-<title>
-POS
-</title>
-<?php
-	require_once('auth.php');
-?>
- <link href="css/bootstrap.css" rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
-  
-  <link rel="stylesheet" href="css/font-awesome.min.css">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-    </style>
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
-
-
-<link href="../style.css" media="screen" rel="stylesheet" type="text/css" />
+<title>Vietstar_Shipping</title>
+<link href="css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="css/navbar.css" media="screen" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.well li {
+	line-height: 20px;
+	list-style: none;
+	padding-bottom: 10px;
+}
+</style>
 <!--sa poip up-->
 <script src="jeffartagame.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/application.js" type="text/javascript" charset="utf-8"></script>
@@ -38,35 +33,9 @@ POS
     })
   })
 </script>
-</head>
-<?php
-function createRandomPassword() {
-	$chars = "003232303232023232023456789";
-	srand((double)microtime()*1000000);
-	$i = 0;
-	$pass = '' ;
-	while ($i <= 7) {
-
-		$num = rand() % 33;
-
-		$tmp = substr($chars, $num, 1);
-
-		$pass = $pass . $tmp;
-
-		$i++;
-
-	}
-	return $pass;
-}
-$finalcode='RS-'.createRandomPassword();
-?>
-
-
-
- <script language="javascript" type="text/javascript">
+<script language="javascript" type="text/javascript">
 /* Visit http://www.yaldex.com/ for full source code
 and get more free JavaScript, CSS and DHTML scripts! */
-<!-- Begin
 var timerID = null;
 var timerRunning = false;
 function stopclock (){
@@ -93,8 +62,8 @@ stopclock();
 showtime();
 }
 window.onload=startclock;
-// End -->
-</SCRIPT>
+</script>	
+</head>
 <body>
 <?php include('navfixed.php');?>
 <div class="container-fluid">
@@ -104,10 +73,9 @@ window.onload=startclock;
               <ul class="nav nav-list">
               <li><a href="index.php"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
 			<li><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Sales</a>  </li>             
-			<li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Products</a>                                     </li>
-			<li><a href="customer.php"><i class="icon-group icon-2x"></i> Customers</a>                                    </li>
-			<li class="active"><a href="supplier.php"><i class="icon-group icon-2x"></i> Suppliers</a>                                    </li>
-			<li><a href="salesreport.php?d1=0&d2=0"><i class="icon-bar-chart icon-2x"></i> Sales Report</a>                </li>
+			<li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Inventory</a>                                     </li>
+			<li class="active"><a href="supplier.php"><i class="icon-group icon-2x"></i> Suppliers</a>
+			<li><a href="purchase.php"><i class="icon-group icon-2x"></i> Purchase</a>                                    </li                                   </li>               </li>
 
 			
 					<br><br><br><br><br><br>		

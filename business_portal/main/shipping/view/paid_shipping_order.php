@@ -106,8 +106,10 @@ $customer = search_customer($search_input);
                 <th>Pkg Tracking No</th>       
 								<th>Sender</th> 
                 <th>Sender Address</th> 
+                <th>Sender Phone No.</th> 
                 <th>Receiver</th> 
                 <th>Receiver Address</th> 
+                <th>Receiver Phone No.</th> 
                 <th>Total weight (lbs.)</th>
                 <th>No. packages</th>
                 <th>Send Date</th>
@@ -120,8 +122,10 @@ $customer = search_customer($search_input);
                 <td>MST {{ row.mst}}-{{ row.pkg_tracking_no}}</td>
 								<td>{{ row.cust_name}}</td>
                 <td>{{ row.cust_address}}, {{ row.cust_city}}, {{ row.cust_state}}, {{ row.cust_zipcode}}</td>
+                <td>{{ row.cust_phone}}</td>
                 <td>{{ row.recipient_name}}</td>
                 <td>{{ row.recipient_address}}</td>
+                <td>{{ row.recipient_phone}}</td>
                 <td>{{ row.total_weight}}</td>
                 <td>{{ row.num_of_packages}}</td> 
                 <td>{{ row.send_date}}</td>

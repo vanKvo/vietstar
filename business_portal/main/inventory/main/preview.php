@@ -1,41 +1,69 @@
-<!DOCTYPE html>
+<?php 
+include('../connect.php');
+include('function.php');
+$finalcode=createRandomPassword();
+?>
 <html>
 <head>
-<?php require_once ('auth.php');?>
-<title>
-POS
-</title>
- <link href="css/bootstrap.css" rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
-  
-  <link rel="stylesheet" href="css/font-awesome.min.css">
-    <style type="text/css">
-    
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-    </style>
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
-<link href="../style.css" media="screen" rel="stylesheet" type="text/css" />
+<title>Vietstar_Shipping</title>
+<link href="css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="css/navbar.css" media="screen" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.well li {
+	line-height: 20px;
+	list-style: none;
+	padding-bottom: 10px;
+}
+</style>
+<!--sa poip up-->
+<script src="jeffartagame.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/application.js" type="text/javascript" charset="utf-8"></script>
 <link href="src/facebox.css" media="screen" rel="stylesheet" type="text/css" />
 <script src="lib/jquery.js" type="text/javascript"></script>
 <script src="src/facebox.js" type="text/javascript"></script>
-<script language="javascript">
-function Clickheretoprint()
-{ 
-  var disp_setting="toolbar=yes,location=no,directories=yes,menubar=yes,"; 
-      disp_setting+="scrollbars=yes,width=800, height=400, left=100, top=25"; 
-  var content_vlue = document.getElementById("content").innerHTML; 
-  
-  var docprint=window.open("","",disp_setting); 
-   docprint.document.open(); 
-   docprint.document.write('</head><body onLoad="self.print()" style="width: 800px; font-size: 13px; font-family: arial;">');          
-   docprint.document.write(content_vlue); 
-   docprint.document.close(); 
-   docprint.focus(); 
-}
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $('a[rel*=facebox]').facebox({
+      loadingImage : 'src/loading.gif',
+      closeImage   : 'src/closelabel.png'
+    })
+  })
 </script>
+<script language="javascript" type="text/javascript">
+/* Visit http://www.yaldex.com/ for full source code
+and get more free JavaScript, CSS and DHTML scripts! */
+var timerID = null;
+var timerRunning = false;
+function stopclock (){
+if(timerRunning)
+clearTimeout(timerID);
+timerRunning = false;
+}
+function showtime () {
+var now = new Date();
+var hours = now.getHours();
+var minutes = now.getMinutes();
+var seconds = now.getSeconds()
+var timeValue = "" + ((hours >12) ? hours -12 :hours)
+if (timeValue == "0") timeValue = 12;
+timeValue += ((minutes < 10) ? ":0" : ":") + minutes
+timeValue += ((seconds < 10) ? ":0" : ":") + seconds
+timeValue += (hours >= 12) ? " P.M." : " A.M."
+document.clock.face.value = timeValue;
+timerID = setTimeout("showtime()",1000);
+timerRunning = true;
+}
+function startclock() {
+stopclock();
+showtime();
+}
+window.onload=startclock;
+</script>	
+</head>
 <?php
 $invoice=$_GET['invoice'];
 include('../connect.php');
@@ -50,48 +78,7 @@ $cashier=$sales[0]['cashier'];
 $pt=strtolower($sales[0]['sales_payment_method']);
 $sales_amount=$sales[0]['sales_amount']; 
 $cust_payment=$sales[0]['sales_cust_payment'];
-
-/*for($i=0; $row = $result->fetch(); $i++){
-$cname=$row['sales_custname'];
-$invoice=$row['invoice_number'];
-$date=$row['sales_date'];
-//$cash=$row['due_date'];
-$cashier=$row['cashier'];
-
-$pt=strtolower($row['sales_payment_method']);
-$sales_amount=$row['sales_amount'];
-$cust_payment=$row['cust_payment'];
-echo "Customer payment: $cust_payment";
-if($pt=='cash'){
-	$cash=$row['sales_total_payment'];
-	$amount=$cash-$sales_amount;
-}
-}*/
-
 ?>
-<?php
-function createRandomPassword() {
-	$chars = "003232303232023232023456789";
-	srand((double)microtime()*1000000);
-	$i = 0;
-	$pass = '' ;
-	while ($i <= 7) {
-
-		$num = rand() % 33;
-
-		$tmp = substr($chars, $num, 1);
-
-		$pass = $pass . $tmp;
-
-		$i++;
-
-	}
-	return $pass;
-}
-$finalcode='RS-'.createRandomPassword();
-?>
-
-
 
  <script language="javascript" type="text/javascript">
 /* Visit http://www.yaldex.com/ for full source code
@@ -135,12 +122,11 @@ window.onload=startclock;
              <div class="well sidebar-nav">
                  <ul class="nav nav-list">
               <li><a href="index.php"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
-			<li class="active"><a href="sales.php?id=cash&invoice"><i class="icon-shopping-cart icon-2x"></i> Sales</a>  </li>             
-			<li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Products</a>                                     </li>
-			<li><a href="customer.php"><i class="icon-group icon-2x"></i> Customers</a>                                    </li>
-			<li><a href="supplier.php"><i class="icon-group icon-2x"></i> Suppliers</a>                                    </li>
-			<li><a href="salesreport.php?d1=0&d2=0"><i class="icon-bar-chart icon-2x"></i> Sales Report</a>                </li>
-			<li><a href="sales_inventory.php"><i class="icon-table icon-2x"></i> Product Inventory</a>                </li>
+			  <li class="active"><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Sales</a>  </li>             
+			<li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Inventory</a>                                     </li>
+			<li><a href="supplier.php"><i class="icon-group icon-2x"></i> Suppliers</a>
+			<li><a href="purchase.php"><i class="icon-group icon-2x"></i> Purchase</a>                                  </li>
+			                </li>
 				<br><br><br><br><br><br>		
 			<li>
 			 <div class="hero-unit-clock">
@@ -163,18 +149,19 @@ window.onload=startclock;
 	<div style="width: 100%; height: 190px;" >
 	<div style="width: 900px; float: left;">
 	<center><div style="font:bold 25px 'Aleo';">Sales Receipt</div>
-	EREC`s Pharmacy	<br>
-	La Castellana, Negros Occidental	<br>	<br>
+	Vietstar Shipping<br>
+	6799 Wilson Blvd #26	<br>
+	Falls Church, Va 22044 	<br>  <br>
 	</center>
 	<div>
 	<?php
-	$resulta = $db->prepare("SELECT * FROM customer WHERE customer_name= :a");
+	/*$resulta = $db->prepare("SELECT * FROM customer WHERE customer_name= :a");
 	$resulta->bindParam(':a', $cname);
 	$resulta->execute();
 	for($i=0; $rowa = $resulta->fetch(); $i++){
 	$address=$rowa['address'];
 	$contact=$rowa['contact'];
-	}
+	}*/
 	?>
 	</div>
 	</div>
@@ -273,7 +260,7 @@ window.onload=startclock;
 				}
 				?>
 				<tr>
-				<td colspan="5" style=" text-align:right;"><strong style="font-size: 12px; color: #222222;">
+			<!--	<td colspan="5" style=" text-align:right;"><strong style="font-size: 12px; color: #222222;">
 						<font style="font-size:20px;">
 						<?php
 						if($pt=='cash'){
@@ -307,15 +294,9 @@ window.onload=startclock;
 						}
 						return $number;
 					}
-					/*if($pt=='credit'){
-					 	echo $cash;
-					}
-					if($pt=='cash'){
-						echo formatMoney($amount, true);
-					}*/
 					?>
 					</strong></td>
-				</tr>
+				</tr>-->
 			
 		</tbody>
 	</table>
@@ -329,5 +310,21 @@ window.onload=startclock;
 		</div>	
 </div>
 </div>
+<script language="javascript">
+function Clickheretoprint()
+{ 
+  var disp_setting="toolbar=yes,location=no,directories=yes,menubar=yes,"; 
+      disp_setting+="scrollbars=yes,width=800, height=400, left=100, top=25"; 
+  var content_vlue = document.getElementById("content").innerHTML; 
+  
+  var docprint=window.open("","",disp_setting); 
+   docprint.document.open(); 
+   docprint.document.write('</head><body onLoad="self.print()" style="width: 800px; font-size: 13px; font-family: arial;">');          
+   docprint.document.write(content_vlue); 
+   docprint.document.close(); 
+   docprint.focus(); 
+}
+</script>
+</html>
 
 

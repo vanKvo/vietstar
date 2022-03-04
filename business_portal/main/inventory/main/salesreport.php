@@ -165,8 +165,10 @@ Sales Report from&nbsp;<?php echo $_GET['d1'] ?>&nbsp;to&nbsp;<?php echo $_GET['
 				$d1=$_GET['d1'];
 				$d2=$_GET['d2'];
 				$result = $db->prepare("SELECT * FROM sales WHERE sales_date BETWEEN :a AND :b ORDER BY sales_id DESC");
-				$result->bindParam(':a', $d1); // date format in SQL, ex'2022-01-24'
-				$result->bindParam(':b', $d2);
+				/*$result->bindParam(':a', $d1);
+				$result->bindParam(':b', $d2);*/
+				$result->bindParam(':a', '2022-01-24');
+				$result->bindParam(':b', '2022-01-25');
 				$result->execute();
 				for($i=0; $row = $result->fetch(); $i++){
 			?>

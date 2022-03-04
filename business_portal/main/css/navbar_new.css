@@ -12,10 +12,16 @@
 
 .navbar-global .navbar-brand {
   color: white;
+  padding: 20px 10px;
 }
 
 .navbar-global .navbar-user > li > a {
   color: white;
+}
+
+.navbar-global .navbar-user > li  {
+  color: white;
+  padding-bottom:10px;
 }
 
 .navbar-primary {

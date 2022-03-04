@@ -1,33 +1,24 @@
-<?php
-	include('../connect.php');
-	include('../model/inventory.php');
+<?php 
+include('../connect.php');
+include('function.php');
+$finalcode=createRandomPassword();
 ?>
 <html>
 <head>
-<title>
-POS
-</title>
-
-<?php 
-require_once('auth.php');
-?>
- <link href="css/bootstrap.css" rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
-  
-  <link rel="stylesheet" href="css/font-awesome.min.css">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-    </style>
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
-
+<title>Vietstar_Shipping</title>
+<link href="css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
 <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="css/navbar.css" media="screen" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.well li {
+	line-height: 20px;
+	list-style: none;
+	padding-bottom: 10px;
+}
+</style>
 <!--sa poip up-->
 <script src="jeffartagame.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/application.js" type="text/javascript" charset="utf-8"></script>
@@ -42,15 +33,37 @@ require_once('auth.php');
     })
   })
 </script>
-</head>
-<?php
-function createRandomPassword() {
-	$last_sales_invoice =  getLastSalesInvoice();
-	$pass = $last_sales_invoice['invoice_number'] + 1;
-	return $pass;
+<script language="javascript" type="text/javascript">
+/* Visit http://www.yaldex.com/ for full source code
+and get more free JavaScript, CSS and DHTML scripts! */
+var timerID = null;
+var timerRunning = false;
+function stopclock (){
+if(timerRunning)
+clearTimeout(timerID);
+timerRunning = false;
 }
-$finalcode=createRandomPassword();
-?>
+function showtime () {
+var now = new Date();
+var hours = now.getHours();
+var minutes = now.getMinutes();
+var seconds = now.getSeconds()
+var timeValue = "" + ((hours >12) ? hours -12 :hours)
+if (timeValue == "0") timeValue = 12;
+timeValue += ((minutes < 10) ? ":0" : ":") + minutes
+timeValue += ((seconds < 10) ? ":0" : ":") + seconds
+timeValue += (hours >= 12) ? " P.M." : " A.M."
+document.clock.face.value = timeValue;
+timerID = setTimeout("showtime()",1000);
+timerRunning = true;
+}
+function startclock() {
+stopclock();
+showtime();
+}
+window.onload=startclock;
+</script>	
+</head>
 
 <script>
 function sum() {
@@ -128,10 +141,9 @@ window.onload=startclock;
               <ul class="nav nav-list">
               <li><a href="index.php"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
 			<li><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Sales</a>  </li>             
-			<li class="active"><a href="products.php"><i class="icon-list-alt icon-2x"></i> Products</a>                                     </li>                                 </li>
+			<li class="active"><a href="products.php"><i class="icon-list-alt icon-2x"></i> Inventory</a>                                     </li>                                 </li>
 			<li><a href="supplier.php"><i class="icon-group icon-2x"></i> Suppliers</a>                                    </li>
-			<li><a href="customer.php"><i class="icon-group icon-2x"></i> Customers</a>                                    </li>
-			<li><a href="salesreport.php?d1=0&d2=0"><i class="icon-bar-chart icon-2x"></i> Sales Report</a>                </li>
+			<li><a href="purchase.php"><i class="icon-group icon-2x"></i> Purchase</a>                                    </li>                </li>
 
 
 			<br><br><br><br><br><br>		
@@ -160,16 +172,15 @@ window.onload=startclock;
 <div style="margin-top: -19px; margin-bottom: 21px;">
 <a  href="index.php"><button class="btn btn-default btn-large" style="float: left;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
 			<?php 
-			include('../connect.php');
-				$result = $db->prepare("SELECT * FROM products ORDER BY qty_supplied DESC");
+				$result = $db->prepare("SELECT * FROM products");
 				$result->execute();
 				$rowcount = $result->rowcount();
 			?>
 			
 			<?php 
-			include('../connect.php');
 				$result = $db->prepare("SELECT * FROM products where qty_onhand < 10 ORDER BY product_id DESC");
 				$result->execute();
+
 				$rowcount123 = $result->rowcount();
 			?>
 				<div style="text-align:center;">
@@ -192,12 +203,8 @@ window.onload=startclock;
 			<th width="13%"> Category / Description </th>
 			<th width="13%"> Location </th>
 			<th width="7%"> Supplier </th>
-			<!--<th width="9%"> Date Received </th>-->
-			<!--<th width="10%"> Expiry Date </th>-->
-				<!--<th width="6%"> Unit Cost </th>-->
 			<th width="6%"> Unit Price </th>
 			<th width="6%"> Qty Onhand </th>
-			<th width="5%"> Qty Supplied</th>
 			<th width="8%"> Total Price</th>
 			<th width="8%"> Action </th>
 		</tr>
@@ -237,19 +244,11 @@ window.onload=startclock;
 			<td><?php echo $row['product_category']; ?></td>
 			<td><?php echo $row['product_location']; ?></td>
 			<td><?php echo $row['supplier']; ?></td>
-			<!--<td><?php //echo $row['date_arrival']; ?></td>-->
-			<!--<td><?php //echo $row['expiry_date']; ?></td>-->
-			<!--<td>
-			<?php
-			/*$oprice=$row['unit_cost'];
-			echo formatMoney($oprice, true);*/
-			?></td>-->
 			<td><?php
 			$pprice=$row['unit_price'];
 			echo formatMoney($pprice, true);
 			?></td>
 			<td><?php echo $row['qty_onhand']; ?></td>
-			<td><?php echo $row['qty_supplied']; ?></td>
 			<td>
 			<?php
 			$total=$row['total_price'];

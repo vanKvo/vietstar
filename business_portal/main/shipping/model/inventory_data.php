@@ -25,7 +25,7 @@ function get_product($product_id) {
 }
 
 function decrease_supply($qty_picked,$product_id) {
-  echo " <br>Begin decrease_supply(): $qty_picked,$product_id <br>";
+  echo " <br>Begin decrease_supply(): Prod_id: $product_id; Picked Qty - $qty_picked<br>";
   global $db; 
   $product = get_product($product_id);
   $qty_onhand = $product['qty_onhand'];
@@ -108,6 +108,23 @@ function getLastSalesInvoice() {
   $last_invoice_number = $sales['invoice_number'];
   $stmt->closeCursor(); 
   return $last_invoice_number;
+}
+
+function get_sales_order($sales_id) {
+  global $db;
+  //echo " <br>Start get_sales_order <br>";
+  $query = 'SELECT * FROM sales_order so
+  JOIN products p ON so.product_id = p.product_id
+  WHERE sales_id = :sales_id';
+  $stmt = $db->prepare($query);
+  $stmt->bindParam(':sales_id', $sales_id);
+  $res = $stmt->execute();
+  $sales_orders = $stmt->fetchAll();
+ /* if ($res) echo "<br>Success<br>";
+  else echo "<br>Fail<br>";*/
+  $stmt->closeCursor(); 
+  //echo " <br>End get_sales_order <br>";
+  return $sales_orders;
 }
 
 
