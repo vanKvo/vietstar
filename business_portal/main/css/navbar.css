@@ -12,16 +12,17 @@
 
 .navbar-global .navbar-brand {
   color: white;
-  padding: 20px 10px;
+  font-size: 18px;
+  padding-left: 20px;
 }
 
 .navbar-global .navbar-user > li > a {
   color: white;
 }
 
-.navbar-global .navbar-user > li  {
+.navbar-global .navbar-user > li {
   color: white;
-  padding-bottom:10px;
+  padding-bottom: 10px;
 }
 
 .navbar-primary {
@@ -38,37 +39,6 @@
   -moz-transition: all 0.1s ease-in-out;
   transition: all 0.1s ease-in-out;
 }
-
-/*.navbar-primary.collapsed {
-  width: 60px;
-}
-
-.navbar-primary.collapsed .glyphicon {
-  font-size: 22px;
-}
-
-.navbar-primary.collapsed .nav-label {
-  display: none;
-}*/
-
-/*.btn-expand-collapse {
-  position: absolute;
-  display: block;
-  left: 0px;
-  bottom: 0;
-  width: 100%;
-  padding: 8px 0;
-  border-top: solid 1px #666;
-  color: grey;
-  font-size: 20px;
-  text-align: center;
-}
-
-.btn-expand-collapse:hover,
-.btn-expand-collapse:focus {
-  background-color: #222;
-  color: white;
-}*/
 
 .navbar-primary-menu,
 .navbar-primary-menu li {
@@ -101,7 +71,7 @@
 
 .navbar-user li {
   padding-right: 20px;
-} 
+}
 .main-content {
   margin-top: 60px;
   margin-left: 200px;
@@ -110,6 +80,6 @@
 
 .collapsed + .main-content {
   margin-left: 60px;
-}*/
+}
 
 /* Source: https://codepen.io/makbash/pen/gZxxMW */

@@ -67,13 +67,14 @@ else  { // Check if customer info exists or not(Blank or Online Shipping Form)
 }
 
 /** Recipient */
-if (!empty($recipient_id) && empty($recipient_name) && empty($recipient_address) && empty($recipient_phone)) { // select an existing recipient
+if (!empty($recipient_id) && empty($recipient_name) && empty($recipient_address)) { // select an existing recipient
+// if (!empty($recipient_id) && empty($recipient_name) && empty($recipient_address)) {
   $recipient_id = clean_input($_GET['recipient_id']);
   echo "Recipient id is not empty<br>";
   echo "Recipient id: $recipient_id<br>";
 } 
 else { // Check if recipient info exists or not(Blank or Online Shipping Form)
-  if (valid_recipient($cust_id, $recipient_name)) { // new customer does not exist, add the new cust info into database
+  if (valid_recipient($cust_id, $recipient_name)) { // customer does not exist, add the new cust info into database
     add_recipient($recipient_name, $recipient_address, $recipient_phone, $cust_id);   
     echo "New recipient";
   } // otherwise, get existing recipient info from database
@@ -103,18 +104,20 @@ if ($num_of_items != -1) {  // Some instore items are purchased
     echo "<br>PROD_ID: ". $items[$j]['product_id']. "<br>";
     $items[$j]['picked_qty'] = clean_input($_GET['picked_qty'.$j]);
     echo "PICKED_QTY: ". $items[$j]['picked_qty']. "<br>";
-    if (empty($items[$j]['product_id']) && empty($items[$j]['picked_qty'])) { // skip if prod id or picked qty is blank
+    if (empty($items[$j]['product_id']) || empty($items[$j]['picked_qty'])) { // skip if prod id or picked qty is blank
       continue; 
     }
-    
-    add_sales_order($items[$j]['picked_qty'],$items[$j]['product_id'], $sales_id); // add a new sales order
+    $product = get_product($items[$j]['product_id']);
+    $unit_price = $product['unit_price'];
+    $sales_amount = $unit_price *  $items[$j]['picked_qty'];
+    echo "TEST ADD SALES ORD: sales amount: $$sales_amount, sales id: $sales_id,  mst: $mst";
+    add_sales_order($items[$j]['picked_qty'],$items[$j]['product_id'], $sales_id, $sales_amount, $mst); // add a new sales order
     decrease_supply($items[$j]['picked_qty'],  $items[$j]['product_id']); // decrease onhand qty of the product in inventory
   }
-} else { // None instore item is purchased
-  $sales_id = 0; 
-}
+} 
+
 echo "Items PURHCHASED: ";
-//print_r($items);
+print_r($items);
 
 // Add new shipping ord to the db
 if (valid_shipping_ord($mst)) {
@@ -124,6 +127,6 @@ if (valid_shipping_ord($mst)) {
   $shipping_order_id =  $shipping_order[0]['shipping_order_id']; // Get shipping order id of an mst package
   add_package($shipping_order_id, $packages);
 }
-//header('location:../view/shipping_form_online.php');
+header('location:../view/shipping_form_online.php');
 ?>
-<a href="../view/shipping_form_online.php">Back</a>
+<!--<a href="../view/shipping_form_online.php">Back</a>-->

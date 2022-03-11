@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../css/lib/bootstrap.css">
   <link rel="stylesheet" href="../css/lib/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="../css/styles.css">
-  <link rel="stylesheet" type="text/css" href="../css/navbar_new.css">
+  <link rel="stylesheet" type="text/css" href="../css/navbar.css">
   <link rel="stylesheet" type="text/css" href="../css/shipping_form.css">
   <script src="../js/lib/jquery.min.js"></script>
 	<script src="../js/scripts.js"></script>
@@ -18,12 +18,12 @@
   <?php include '../navfixed.php';?>
 	<nav class="navbar-primary">
 		<ul class="navbar-primary-menu">
-			<li> <a class="d-flex align-items-center pl-3 text-white text-decoration-none"><i class="icon-truck icon-2x icon-2x"></i><span class="fs-4">Gửi Hàng (Shipping)</span></a></li>        
-			<li><a href="../index.php" class="nav-link text-white"> > Dashboard </a></li>
-      <li><a href="view/shipping_form.php" class="nav-link text-white active"> > Tạo Đơn Gửi Hàng (Shipping Form)</a></li>
-      <li><a href="view/online_shipping_order.php" class="nav-link text-white"> > Đơn Gửi Hàng Online (Online Shipping Orders)</a></li>
-      <li><a href="view/paid_shipping_order.php" class="nav-link text-white"> > Đơn Gửi Hàng Đã Thanh Toán (Order has been paid)</a></li>		
-      <li><a href="../../logout.php"><i class="icon-off icon-large"></i> Log Out</a></li>
+      <li><a class="d-flex align-items-center pl-3 text-white text-decoration-none"><span class="fs-4">Shipping</span></a></li>     
+			<li><a href="../index.php" class="nav-link text-white"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
+      <li><a href="." class="nav-link text-white active"> Tìm Khách Hàng (Search Customer)</a></li>
+      <li><a href="view/shipping_form_online.php" class="nav-link text-white"> Tạo Đơn Gửi Hàng (Shipping Form)</a></li>
+      <li><a href="view/online_shipping_order.php" class="nav-link text-white"> Đơn Gửi Hàng Online (Online Shipping Orders)</a></li>
+      <li><a href="view/paid_shipping_order.php" class="nav-link text-white"> Đơn Gửi Hàng Đã Thanh Toán (Order has been paid)</a></li>		
     </ul>
 	</nav><!--/.navbar-primary-->
 	<div class="main-content">
@@ -53,5 +53,12 @@
 	</div><!--main-content-->
 
 </body>
+<script>
+  /** Toggle dashboard */
+  $(".toggle-navbar-btn").click(function(){
+    $(".navbar-primary").toggle();
+  });
+
+</script>
 
 </html>

@@ -28,9 +28,11 @@ $q->execute(array($qty_picked,$product_id));
 $sales_order_amount = $qty_picked * $unit_price;
 $total_profit = $qty_picked * $unit_profit;
 // query
-$sql = "INSERT INTO sales_order (invoice,product_id,qty_picked,sales_order_amount,sales_order_profit) VALUES (:v1,:v2,:v3,:v4,:v5)";
+$sql = "INSERT INTO sales_order (invoice,product_id,qty_picked,sales_order_amount,sales_unit_price) VALUES (:v1,:v2,:v3,:v4,:v5)";
 $q = $db->prepare($sql);
-$q->execute(array(':v1'=>$invoice,':v2'=>$product_id,':v3'=>$qty_picked,':v4'=>$sales_order_amount,':v5'=>$total_profit));
+$res = $q->execute(array(':v1'=>$invoice,':v2'=>$product_id,':v3'=>$qty_picked,':v4'=>$sales_order_amount,':v5'=>$unit_price));
+if ($res) echo 'Success';
+else echo 'Fail';
 header("location: sales.php?id=$payment_method&invoice=$invoice");
 
 

@@ -5,8 +5,8 @@
 .navbar .brand {
   display: block;
   float: left;
-  padding: 10px 20px 10px;
-  margin-left: -20px;
+  padding: 0px;
+  /*margin-left: -20px;*/
   font-size: 20px;
   font-weight: 100;
   color: #fff;
@@ -19,24 +19,21 @@
   color: #fff;
   text-decoration: none;
   text-shadow: 0 0px 0 #ffffff;
+  font-size: 16px;
 }
 
 .sidebar-nav {
   padding: 50px 0px;
 }
 
-/*.well li {
-  line-height: 20px;
-  list-style: none;
-}*/
-
 .navbar-brand {
   color: white;
 }
 
 .navbar-header {
-  padding-top: 5px;
-  padding-bottom: 3px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
 }
 
 .well li {

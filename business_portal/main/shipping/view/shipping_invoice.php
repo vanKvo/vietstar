@@ -24,7 +24,7 @@ if (!empty($sales_id)) { // Some instore items are purcahse
   <link rel="stylesheet" href="../../css/lib/bootstrap.css">
   <link rel="stylesheet" href="../../css/lib/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="../../css/styles.css">
-  <link rel="stylesheet" type="text/css" href="../../css/navbar_new.css">
+  <link rel="stylesheet" type="text/css" href="../../css/navbar.css">
   <link rel="stylesheet" type="text/css" href="../../css/shipping_invoice.css">
   <script src="../../js/lib/jquery.min.js"></script>
 	<script src="../../js/scripts.js"></script>
@@ -75,15 +75,15 @@ if (!empty($sales_id)) { // Some instore items are purcahse
 
 <body>
 <?php include '../../navfixed.php';?>
-	<nav class="navbar-primary sticky">
+  <nav class="navbar-primary sticky">
 		<a href="#" class="btn-expand-collapse"><span class="glyphicon glyphicon-menu-left"></span></a>
 		<div class="navbar-primary-menu" id="myTopnav"> 
-			<li> <a class="d-flex align-items-center pl-3 text-white text-decoration-none"><i class="icon-truck icon-2x icon-2x"></i><span class="fs-4">Gửi Hàng (Shipping)</span></a></li>        
-			<li><a href="../index.php" class="nav-link text-white"> > Trang Chủ (Home)</a></li>
-      <li><a href="shipping_form_online.php" class="nav-link text-white active"> > Tạo Đơn Gửi Hàng (Shipping Form)</a></li>
-      <li><a href="online_shipping_order.php" class="nav-link text-white"> > Đơn Gửi Hàng Online (Online Shipping Orders)</a></li>
-			<li><a href="paid_shipping_order.php" class="nav-link text-white"> > Đơn Gửi Hàng Đã Thanh Toán (Paid Shipping Orders)</a></li>		
-      <li><a href="#"><i class="icon-off icon-large"></i> Log Out</a></li>
+      <li><a class="d-flex align-items-center pl-3 text-white text-decoration-none"><span class="fs-4">Shipping</span></a></li>           
+			<li><a href="../../index.php" class="nav-link text-white"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
+      <li><a href="../index.php" class="nav-link text-white"> Tìm Khách Hàng (Search Customer)</a></li>
+      <li><a href="shipping_form_online.php" class="nav-link text-white"> Tạo Đơn Gửi Hàng (Shipping Form)</a></li>
+      <li><a href="online_shipping_order.php" class="nav-link text-white "> Đơn Gửi Hàng Online (Online Shipping Orders)</a></li>
+			<li><a href="paid_shipping_order.php" class="nav-link text-white active"> Đơn Gửi Hàng Đã Thanh Toán (Paid Shipping Orders)</a></li>		
     </div>
 	</nav><!--/.navbar-primary-->
 	<div class="main-content mt-10">
@@ -201,10 +201,6 @@ if (!empty($sales_id)) { // Some instore items are purcahse
             </table>
           </div><!--table-responsive -->
          <?php } ?><!--is shown if some instore items are purchased -->
-           <div class="row">
-                <div class="col-7"></div>
-                <div class="col-5"><strong>Total: </strong></div>
-            </div>
       <!-- end in-store-item-table-responsive -->    
       <!-- begin payment-table-responsive -->   
       <div class="graybox pt-2 pb-2">
@@ -214,7 +210,7 @@ if (!empty($sales_id)) { // Some instore items are purcahse
         <div class="col-12">
           <div class="row">
             <div class="col-6">
-              <label>Shipping fee</label>
+              <label>Phí Vận Chuyển - Shipping fee</label>
             </div><!--col-6-->
             <div class="item col-6">
               <?php
@@ -225,7 +221,7 @@ if (!empty($sales_id)) { // Some instore items are purcahse
           </div><!--row--> 
           <div class="row">
             <div class="col-6">
-              <label>Custom Fee</label>
+              <label>Phí Phụ Thu - Custom Fee</label>
             </div><!--col-6-->
             <div class="item col-6">
               <?=$shipord[0]['custom_fee'];?>
@@ -233,7 +229,7 @@ if (!empty($sales_id)) { // Some instore items are purcahse
           </div><!--row-->
           <div class="row">
             <div class="item col-6">
-              <label>Instore Item</label>
+              <label>Hàng Mua ở Tiệm - Instore Item</label>
             </div><!--col-6-->
             <div class="item col-6">
               <?=$total_instore;?>
@@ -241,7 +237,7 @@ if (!empty($sales_id)) { // Some instore items are purcahse
           </div><!--row--> 
           <div class="row">
             <div class="col-6">
-              <label>Insurance</label>
+              <label>Bảo Hiểm - Insurance</label>
             </div><!--col-6-->
             <div class="item col-6">
               <?=$shipord[0]['insurance'];?>
@@ -250,7 +246,7 @@ if (!empty($sales_id)) { // Some instore items are purcahse
           <hr>
           <div class="row">
             <div class="item col-6">
-              <label class="fw-bold invoice-price-left">Total Amount</label>
+              <label class="fw-bold invoice-price-left">Tổng Cộng - Total Amount</label>
             </div><!--col-6-->
             <div class="item col-6">
                     <strong><?=$shipord[0]['amount']?> </strong>
@@ -274,6 +270,11 @@ if (!empty($sales_id)) { // Some instore items are purcahse
 </body>
 
 <script>
+/** Toggle dashboard */
+$(".toggle-navbar-btn").click(function(){
+  $(".navbar-primary").toggle();
+});
+
 function Clickheretoprint()
 { 
   var disp_setting="toolbar=yes,location=no,directories=yes,menubar=yes,"; 

@@ -1,72 +1,155 @@
-<?php
-	//Start session
-	session_start();
-	
-	//Unset the variables stored in session
-	unset($_SESSION['SESS_MEMBER_ID']);
-	unset($_SESSION['SESS_FIRST_NAME']);
-	unset($_SESSION['SESS_LAST_NAME']);
+<?php 
+include('../connect.php');
+include('function.php');
+$finalcode=createRandomPassword();
 ?>
 <html>
 <head>
-<title>
-POS
-</title>
-    <link rel="shortcut icon" href="main/images/pos.jpg">
-
-  <link href="main/css/bootstrap.css" rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" href="main/css/DT_bootstrap.css">
-  
-  <link rel="stylesheet" href="main/css/font-awesome.min.css">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-    </style>
-    <link href="main/css/bootstrap-responsive.css" rel="stylesheet">
-
-<link href="style.css" media="screen" rel="stylesheet" type="text/css" />
-</head>
-<body>
-    <div class="container-fluid">
-      <div class="row-fluid">
-		<div class="span4">
-		</div>
-	
-</div>
-<div id="login">
-<?php
-if( isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) >0 ) {
-	foreach($_SESSION['ERRMSG_ARR'] as $msg) {
-		echo '<div style="color: red; text-align: center;">',$msg,'</div><br>'; 
-	}
-	unset($_SESSION['ERRMSG_ARR']);
+<title>Vietstar_Shipping</title>
+<link href="css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="css/navbar.css" media="screen" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.well li {
+	line-height: 20px;
+	list-style: none;
+	padding-bottom: 10px;
 }
-?>
-<form action="login.php" method="post">
 
-			<font style=" font:bold 44px 'Aleo'; text-shadow:1px 1px 15px #000; color:#fff;"><center>Vietstar Shipping</center></font>
-		<br>
+.navbar-header {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 18px;
+}
 
-		
-<div class="input-prepend">
-		<span style="height:30px; width:25px;" class="add-on"><i class="icon-user icon-2x"></i></span><input style="height:40px;" type="text" name="username" Placeholder="Username" required/><br>
+</style>
+<!--sa poip up-->
+<script src="jeffartagame.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/application.js" type="text/javascript" charset="utf-8"></script>
+<link href="src/facebox.css" media="screen" rel="stylesheet" type="text/css" />
+<script src="lib/jquery.js" type="text/javascript"></script>
+<script src="src/facebox.js" type="text/javascript"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $('a[rel*=facebox]').facebox({
+      loadingImage : 'src/loading.gif',
+      closeImage   : 'src/closelabel.png'
+    })
+  })
+</script>
+<script language="javascript" type="text/javascript">
+/* Visit http://www.yaldex.com/ for full source code
+and get more free JavaScript, CSS and DHTML scripts! */
+var timerID = null;
+var timerRunning = false;
+function stopclock (){
+if(timerRunning)
+clearTimeout(timerID);
+timerRunning = false;
+}
+function showtime () {
+var now = new Date();
+var hours = now.getHours();
+var minutes = now.getMinutes();
+var seconds = now.getSeconds()
+var timeValue = "" + ((hours >12) ? hours -12 :hours)
+if (timeValue == "0") timeValue = 12;
+timeValue += ((minutes < 10) ? ":0" : ":") + minutes
+timeValue += ((seconds < 10) ? ":0" : ":") + seconds
+timeValue += (hours >= 12) ? " P.M." : " A.M."
+document.clock.face.value = timeValue;
+timerID = setTimeout("showtime()",1000);
+timerRunning = true;
+}
+function startclock() {
+stopclock();
+showtime();
+}
+window.onload=startclock;
+</script>	
+</head>
+
+<script>
+function sum() {
+            var txtFirstNumberValue = document.getElementById('txt1').value;
+            var txtSecondNumberValue = document.getElementById('txt2').value;
+            var result = parseInt(txtFirstNumberValue) - parseInt(txtSecondNumberValue);
+            if (!isNaN(result)) {
+                document.getElementById('txt3').value = result;
+				
+            }
+			
+			 var txtFirstNumberValue = document.getElementById('txt11').value;
+            var result = parseInt(txtFirstNumberValue);
+            if (!isNaN(result)) {
+                document.getElementById('txt22').value = result;				
+            }
+			
+			 var txtFirstNumberValue = document.getElementById('txt11').value;
+            var txtSecondNumberValue = document.getElementById('txt33').value;
+            var result = parseInt(txtFirstNumberValue) + parseInt(txtSecondNumberValue);
+            if (!isNaN(result)) {
+                document.getElementById('txt55').value = result;
+				
+            }
+			
+			 var txtFirstNumberValue = document.getElementById('txt4').value;
+			 var result = parseInt(txtFirstNumberValue);
+            if (!isNaN(result)) {
+                document.getElementById('txt5').value = result;
+				}
+			
+        }
+</script>
+
+<body>
+<?php include('navfixed.php');?>
+<div class="container-fluid">
+      <div class="row-fluid">
+	<div class="span2">
+     <div class="well sidebar-nav">
+     <ul class="nav nav-list">
+        <h4>Inventory</span></h4>  
+        <hr>
+        <li class="active"><a href="index.php"><i class="icon-dashboard icon-2x"></i> Dashboard  </a></li> 
+				<li><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Sales </a></li>             
+				<li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Inventory</a></li>      
+				<li><a href="supplier.php"><i class="icon-group icon-2x"></i> Suppliers</a></li> 
+				<li><a href="purchase.php"><i class="icon-group icon-2x"></i> Purchase </a> </li>  
+			</ul>             
+    </div><!--/.well -->
+   </div><!--/span-->
+	<div class="span10">
+	<div class="contentheader">
+			<i class="icon-dashboard"></i> Dashboard
+			</div>
+			<ul class="breadcrumb">
+			<li><a href="index.php">Dashboard</a></li> 
+			</ul>
+
+
+<div style="margin-top: -19px; margin-bottom: 21px;">	
+	<a  href="../index.php"><button class="btn btn-default btn-large" style="float: left;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
+</div><br><br><br>
+
+<div id="mainmain">
+<a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i><br> Sales</a>               
+<a href="products.php"><i class="icon-list-alt icon-2x"></i><br> Inventory</a>  
+<a href="supplier.php"><i class="icon-group icon-2x"></i><br> Suppliers</a>     
+<a href="purchase.php"><i class="icon-group icon-2x"></i><br> Purchase</a>         
+<a href="../index.php"><i class="icon-off icon-2x"></i><br> Logout</a> 
+
+<div class="clearfix"></div>
 </div>
-<div class="input-prepend">
-	<span style="height:30px; width:25px;" class="add-on"><i class="icon-lock icon-2x"></i></span><input type="password" style="height:40px;" name="password" Placeholder="Password" required/><br>
-		</div>
-		<div class="qwe">
-		 <button class="btn btn-large btn-primary btn-block pull-right" href="dashboard.html" type="submit"><i class="icon-signin icon-large"></i> Login</button>
-</div>
-		 </form>
-</div>
+
+<div class="clearfix"></div>
 </div>
 </div>
 </div>
 </body>
+<?php include('footer.php');?>
+
 </html>

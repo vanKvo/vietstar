@@ -177,7 +177,7 @@ a:hover {
 }
 
 .active {
-  color: #999999;
+  background-color: #d3d3d3;
 }
 
 .breadcrumb .active {

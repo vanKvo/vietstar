@@ -64,19 +64,23 @@ function add_sales($v1,$v2,$v3,$v4,$v5,$v6) {
   echo " <br>End add_sales() <br>";
 }
 
-function add_sales_order($v1,$v2,$v3) {
+function add_sales_order($v1,$v2,$v3,$v5,$mst) {
   global $db;
   echo " <br>Start add_sales_order() <br>";
   $product = get_product($v2); 
+  $sales = get_sales($mst);
   $v4 = $product['unit_price']; // get current unit price of the product
-  echo $v2;
-  $query = 'INSERT INTO `sales_order`(`qty_picked`,`product_id`, `sales_id`, `sales_unit_price`) VALUES (:v1,:v2,:v3,:v4)';
+  $v6 = $sales['invoice_number'];
+  //echo $v2;
+  $query = 'INSERT INTO `sales_order`(`qty_picked`,`product_id`, `sales_id`, `sales_unit_price`, `sales_order_amount`, `invoice`) VALUES (:v1,:v2,:v3,:v4,:v5,:v6)';
   $stmt = $db->prepare($query);
   $res = $stmt->execute(array(
      ':v1' => $v1,
      ':v2' => $v2,
      ':v3' => $v3,
-     ':v4' => $v4
+     ':v4' => $v4,
+     ':v5' => $v5,
+     ':v6' => $v6
   ));
   if ($res) echo "<br>Success<br>";
   else echo "<br>Fail<br>";

@@ -112,10 +112,7 @@
   text-shadow: 0 0px 0 #ffffff;
 }
 
-/* Small & Medium devices (phones, landscape tablets 991px and below) */
-/** Source: https://www.w3schools.com/css/tryit.asp?filename=tryresponsive_mediaquery_breakpoints */
 @media only screen and (max-width: 991px) {
   .navbar-primary {
-    background-color: blue;
-  }
+    background: #505251;
 }

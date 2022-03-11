@@ -21,7 +21,7 @@ $customer = search_customer($search_input);
   <link rel="stylesheet" href="../../css/lib/bootstrap.css">
   <link rel="stylesheet" href="../../css/lib/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="../../css/styles.css">
-  <link rel="stylesheet" type="text/css" href="../../css/navbar_new.css">
+  <link rel="stylesheet" type="text/css" href="../../css/navbar.css">
   <script src="../../js/lib/jquery.min.js"></script>
 	<script src="../../js/scripts.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -56,9 +56,9 @@ $customer = search_customer($search_input);
      vertical-align: middle;
    }
 
-  @media only screen and (max-width: 991px) {
+   @media only screen and (max-width: 991px) {
   .navbar-primary {
-    background: blue;
+    background: #505251;
   }
   
 }
@@ -70,12 +70,12 @@ $customer = search_customer($search_input);
 	<nav class="navbar-primary sticky">
 		<a href="#" class="btn-expand-collapse"><span class="glyphicon glyphicon-menu-left"></span></a>
 		<div class="navbar-primary-menu" id="myTopnav"> 
-			<li> <a class="d-flex align-items-center pl-3 text-white text-decoration-none"><i class="icon-truck icon-2x icon-2x"></i><span class="fs-4">Gửi Hàng (Shipping)</span></a></li>        
-			<li><a href="../index.php" class="nav-link text-white"> > Trang Chủ (Home)</a></li>
-      <li><a href="shipping_form_online.php" class="nav-link text-white"> > Tạo Đơn Gửi Hàng (Shipping Form)</a></li>
-      <li><a href="online_shipping_order.php" class="nav-link text-white"> > Đơn Gửi Hàng Online (Online Shipping Orders)</a></li>
-      <li><a href="#" class="nav-link text-white active"> > Đơn Gửi Hàng Đã Thanh Toán (Paid Shipping Orders)</a></li>		
-      <li><a href="#"><i class="icon-off icon-large"></i> Log Out</a></li>
+    <li><a class="d-flex align-items-center pl-3 text-white text-decoration-none"><span class="fs-4">Shipping</span></a></li>           
+			<li><a href="../../index.php" class="nav-link text-white"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
+      <li><a href="../index.php" class="nav-link text-white"> Tìm Khách Hàng (Search Customer)</a></li>
+      <li><a href="shipping_form_online.php" class="nav-link text-white"> Tạo Đơn Gửi Hàng (Shipping Form)</a></li>
+      <li><a href="online_shipping_order.php" class="nav-link text-white "> Đơn Gửi Hàng Online (Online Shipping Orders)</a></li>
+			<li><a href="paid_shipping_order.php" class="nav-link text-white active"> Đơn Gửi Hàng Đã Thanh Toán (Paid Shipping Orders)</a></li>		
     </div>
 	</nav><!--/.navbar-primary-->
 	<div class="main-content mt-10">
@@ -114,8 +114,6 @@ $customer = search_customer($search_input);
                 <th>No. packages</th>
                 <th>Send Date</th>
                 <th>Pkg Description</th>
-                <th></th>
-                <th></th>
 							</tr>
 							<tr v-for="row in allData">
 								<td><a v-bind:href="'shipping_invoice.php?mst='+row.mst">{{ row.mst}}</a></td>
@@ -130,7 +128,7 @@ $customer = search_customer($search_input);
                 <td>{{ row.num_of_packages}}</td> 
                 <td>{{ row.send_date}}</td>
                 <td>{{ row.package_desc}}</td>
-                <td><button type="button" name="edit" class="btn btn-primary btn-xs edit" @click="fetchShippingOrd(row.shipping_order_id)">Edit</button></td>
+               <!-- <td><button type="button" name="edit" class="btn btn-primary btn-xs edit" @click="fetchShippingOrd(row.shipping_order_id)">Edit</button></td>-->
               
                 <!-- <td><button type="button" name="delete" class="btn btn-danger btn-xs delete" @click="deleteData(row.id)">Delete</button></td>-->
 							</tr>
@@ -199,13 +197,18 @@ $customer = search_customer($search_input);
 </html>
 
 <script>
+/** Toggle dashboard */
+  $(".toggle-navbar-btn").click(function(){
+  $(".navbar-primary").toggle();
+});
+
 var application = new Vue({
 	el:'#searchApp',
 	data:{
 		allData:'',
 		query:'',
 		nodata:false,
-    date1: new Date((new Date()).valueOf() - 1000*60*60*72).toJSON().slice(0,10), // 30 days before the current date
+    date1: new Date((new Date()).valueOf() - 1000*60*60*720).toJSON().slice(0,10), // 30 days before the current date
     date2: new Date().toJSON().slice(0,10), // current date
     myModel: false,
     actionButton:'Insert',

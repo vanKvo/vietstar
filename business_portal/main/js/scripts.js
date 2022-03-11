@@ -1,4 +1,4 @@
-/** Start Searchable dropdown list **/
+/** Searchable dropdown list **/
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
 function toggleFunction() {
@@ -20,7 +20,12 @@ function filterFunction() {
     }
   }
 }
-/** End Searchable dropdown list **/
+
+  /** Toggle dashboard */
+  $(".toggle-navbar-btn").click(function(){
+    $(".navbar-primary").toggle();
+  });
+
 
 /** Toggle the vertical navbar-primary menu */
 $(document).ready(function(){

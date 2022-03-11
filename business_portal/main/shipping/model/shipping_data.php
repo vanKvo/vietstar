@@ -1,5 +1,4 @@
 <?php 
-//echo "<br>Hello shipping_data.php<br>";
 
 /** Customers */
 function get_customers() {
@@ -63,17 +62,15 @@ function search_customer($search_input) {
     //echo "<br>Do st with valid email<br>";
     $email = strtolower(trim($search_input));
     //$phone = '%';
-  } else if (is_numeric($search_input)) {
-    $cust_id = trim($search_input);
-  } 
+  }
+  
   $query = 'SELECT * FROM customer c LEFT JOIN recipient r
   ON c.customer_id = r.customer_id
-  WHERE cust_phone = :phone_number OR LOWER(cust_email) = :email OR c.customer_id = :cust_id;';
+  WHERE cust_phone = :phone_number OR LOWER(cust_email) = :email';
   $stmt = $db->prepare($query);
   $res = $stmt->execute(array(
     ':phone_number' => $phone_number,
-    ':email' => $email,
-    ':cust_id' => $cust_id
+    ':email' => $email
    ));
   $customer = $stmt->fetchAll();
   $count =  $stmt->rowCount(); // number of row may be equal or more than one because one customer can more than one recipients
