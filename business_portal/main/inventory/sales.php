@@ -93,12 +93,7 @@ function sum() {
 			<li><a href="../index.php">Dashboard</a></li> /
 			<li class="active">Sales</li>
 			</ul>
-
-
-<div style="margin-top: -19px; margin-bottom: 21px;">	
-	<a  href="index.php"><button class="btn btn-default btn-large" style="float: left;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
-</div><br><br><br>
-
+			
 <form action="incoming.php" method="post" >								
 	<input type="hidden" name="pmt_method" value="<?php echo $_GET['pmt_method']; ?>" />
 	<input type="hidden" name="invoice" value="<?php echo $_GET['invoice']; ?>" />

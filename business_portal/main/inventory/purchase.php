@@ -23,7 +23,6 @@ $finalcode=createRandomPassword();
 <script src="jeffartagame.js" type="text/javascript" charset="utf-8"></script>
 <script src="js/application.js" type="text/javascript" charset="utf-8"></script>
 <link href="src/facebox.css" media="screen" rel="stylesheet" type="text/css" />
-<!--<script src="lib/jquery.js" type="text/javascript"></script>-->
 <script src="js/jquery.js"></script>
 <script src="src/facebox.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -63,7 +62,6 @@ $finalcode=createRandomPassword();
 			</ul>
 
 <div style="margin-top: -19px; margin-bottom: 21px;">
-<a  href="index.php"><button class="btn btn-default btn-large" style="float: left;"><i class="icon icon-circle-arrow-left icon-large"></i> Back</button></a>
 			<?php 
 				$result = $db->prepare("SELECT * FROM purchase");
 				$result->execute();
