@@ -74,15 +74,15 @@ function sum() {
       <div class="row-fluid">
 	<div class="span2">
 	<div class="well sidebar-nav">
-			 <ul class="nav nav-list">
-				<h4>Inventory</span></h4>  
-				<hr>	
-			 	<li><a href="index.php"><i class="icon-dashboard icon-2x"></i> Dashboard  </a></li> 
-				<li class="active"><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Sales </a></li>             
-				<li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Inventory</a></li>      
-				<li><a href="supplier.php"><i class="icon-group icon-2x"></i> Suppliers</a></li> 
-				<li><a href="purchase.php"><i class="icon-group icon-2x"></i> Purchase </a> </li>   
-			 </ul>             
+				<ul class="nav nav-list">
+					<h4>Inventory</span></h4>  
+					<hr>
+					<li><a href="../index.php"><i class="icon-dashboard icon-2x"></i> Dashboard  </a></li> 
+					<li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Inventory</a></li>    
+					<li><a href="purchase.php"><i class="icon-group icon-2x"></i> Purchase </a> </li>     
+					<li class="active"><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Sales </a></li>             
+					<li><a href="supplier.php"><i class="icon-group icon-2x"></i> Suppliers</a></li> 
+				</ul>             
 			</div><!--/.well -->
 		</div><!--/span-->
 	<div class="span10">
@@ -90,7 +90,7 @@ function sum() {
 			<i class="icon-table"></i> Sales
 			</div>
 			<ul class="breadcrumb">
-			<li><a href="index.php">Dashboard</a></li> /
+			<li><a href="../index.php">Dashboard</a></li> /
 			<li class="active">Sales</li>
 			</ul>
 
@@ -111,7 +111,7 @@ function sum() {
 			$result->execute();
 			for($i=0; $row = $result->fetch(); $i++){
 		?>
-			<option value="<?php echo $row['product_id'];?>"><?php echo $row['product_code']; ?> | <?php echo $row['product_name']; ?> | Qty Onhand: <?php echo $row['qty_onhand']; ?></option>
+			<option value="<?php echo $row['product_id'];?>"><?php echo $row['product_code']; ?> | <?php echo $row['product_name']; ?> | Quantity Onhand: <?php echo $row['qty_onhand']; ?></option>
 		<?php
 					}
 		?>
@@ -129,7 +129,7 @@ function sum() {
 			<th> Product Name </th>
 			<th> Category / Description </th>
 			<th> Unit Price </th>
-			<th> Qty </th>
+			<th> Quantity </th>
 			<th> Amount </th>
 			<th> Action </th>
 		</tr>
@@ -213,7 +213,7 @@ function sum() {
 	</tbody>
 </table>
 <br>
-<a rel="facebox" href="checkout.php?payment_method=<?php echo $_GET['pmt_method']?>&invoice=<?php echo $_GET['invoice']?>&total_amount=<?php echo $total_amount ?>&total_profit=<?php echo $total_profit ?>&cashier=<?php echo $_SESSION['SESS_FIRST_NAME']?>"><button class="btn btn-success btn-large btn-block"><i class="icon icon-save icon-large"></i> SAVE</button></a>
+<a rel="facebox" href="checkout.php?payment_method=<?php echo $_GET['pmt_method']?>&invoice=<?php echo $_GET['invoice']?>&total_amount=<?php echo $total_amount ?>&total_profit=<?php echo $total_profit ?>&cashier=<?php echo $_SESSION['SESS_FIRST_NAME']?>"><button class="btn btn-success btn-large btn-block">SUBMIT</button></a>
 
 <div class="clearfix"></div>
 </div>

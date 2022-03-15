@@ -1,27 +1,23 @@
 <?php
 session_start();
 include('../connect.php');
-$a = $_POST['product_code'];
-$b = $_POST['product_name'];
-$c = $_POST['exdate'];
-$d = $_POST['unit_price'];
-$e = $_POST['supplier'];
-$f = $_POST['qty_onhand'];
-$g = $_POST['unit_cost'];
-$h = $_POST['profit'];
-$i = $_POST['product_category'];
-$j = $_POST['date_arrival'];
-$k = $_POST['qty_supplied'];
-echo 'Hello 2';
+$v1 = $_POST['product_code'];
+$v2 = $_POST['product_category'];
+$v3 = $_POST['product_name'];
+$v4 = $_POST['unit_price'];
+$v5 = $_POST['supplier'];
+$v6 = $_POST['qty_onhand'];
+$v7 = $_POST['product_location'];
+
 // query
-$sql = "INSERT INTO products (product_code,product_name,expiry_date,unit_price,supplier,qty_onhand,unit_cost,profit,product_category,date_arrival,qty_supplied) VALUES (:a,:b,:c,:d,:e,:f,:g,:h,:i,:j,:k)";
+$sql = "INSERT INTO `products`(`product_code`, `product_category`, `product_name`, `unit_price`, `supplier`, `qty_onhand`, `product_location`) VALUES (:v1,:v2,:v3,:v4,:v5,:v6,:v7)";
 $q = $db->prepare($sql);
-$res=$q->execute(array(':a'=>$a,':b'=>$b,':c'=>$c,':d'=>$d,':e'=>$e,':f'=>$f,':g'=>$g,':h'=>$h,':i'=>$i,':j'=>$j,':k'=>$k));
+$res=$q->execute(array(':v1'=>$v1,':v2'=>$v2,':v3'=>$v3,':v4'=>$v4,':v5'=>$v5,':v6'=>$v6,':v7'=>$v7));
 header("location: products.php");
-/*if ($q) {
+if ($q) {
   echo'Success';
 } else {
   echo 'Fails';
-}*/
+}
 
 ?>

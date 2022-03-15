@@ -111,22 +111,22 @@ window.onload=startclock;
        <ul class="nav nav-list">
 					<h4>Inventory</span></h4>  
 					<hr>
-					<li><a href="index.php"><i class="icon-dashboard icon-2x"></i> Dashboard  </a></li> 
+					<li><a href="../index.php"><i class="icon-dashboard icon-2x"></i> Dashboard  </a></li> 
+					<li class="active"><a href="products.php"><i class="icon-list-alt icon-2x"></i> Inventory</a></li>    
+					<li><a href="purchase.php"><i class="icon-group icon-2x"></i> Purchase </a> </li>     
 					<li><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Sales </a></li>             
-					<li class="active"><a href="products.php"><i class="icon-list-alt icon-2x"></i> Inventory</a></li>      
 					<li><a href="supplier.php"><i class="icon-group icon-2x"></i> Suppliers</a></li> 
-					<li><a href="purchase.php"><i class="icon-group icon-2x"></i> Purchase </a> </li>   
 				</ul>             
           </div><!--/.well -->
-        </div><!--/span-->
+  </div><!--/span-->
 	<div class="span10">
 	<div class="contentheader">
 			<i class="icon-table"></i> Products
-			</div>
-			<ul class="breadcrumb">
-			<li><a href="index.php">Dashboard</a></li> /
-			<li class="active">Products</li>
-			</ul>
+	</div>
+	<ul class="breadcrumb">
+	<li><a href="../index.php">Dashboard</a></li> /
+	<li class="active">Products</li>
+	</ul>
 
 
 <div style="margin-top: -19px; margin-bottom: 21px;">
@@ -158,13 +158,13 @@ window.onload=startclock;
 <table class="hoverTable" id="resultTable" data-responsive="table" style="text-align: left;">
 	<thead>
 		<tr>
-			<th width="12%"> Product Code </th>
+			<th width="12%"> UPC </th>
 			<th width="14%"> Product Name </th>
 			<th width="13%"> Category / Description </th>
-			<th width="13%"> Location </th>
+			<th width="13%"> Position</th>
 			<th width="7%"> Supplier </th>
 			<th width="6%"> Unit Price </th>
-			<th width="6%"> Qty Onhand </th>
+			<th width="6%">Quantity Onhand </th>
 			<th width="8%"> Total Price</th>
 			<th width="8%"> Action </th>
 		</tr>

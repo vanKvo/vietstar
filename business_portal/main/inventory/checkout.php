@@ -87,10 +87,10 @@ background-repeat:no-repeat;
         <div class="suggestionList" id="suggestionsList"> &nbsp; </div>
       </div>	
 	  <label> Payment method </label>
-<input type="text" size="25" value="" name="ptype" class="greybox" onblur="fill();" class="" autocomplete="off" placeholder="Cash or Credit" style="width: 268px; height:30px;" required/>
+<input type="text" size="25" value="" name="ptype" class="greybox" onblur="fill();" class="" autocomplete="off" placeholder="Cash or Credit Card" style="width: 268px; height:30px;" required/>
 <label> Customer payment ($)</label>
 <input type="text" size="25" value="" name="cust_payment" id="cust_payment" onblur="fill();" placeholder="0.00" style="width: 268px; height:30px;"/>
-<button class="btn btn-success btn-block btn-large" style="width:267px;"><i class="icon icon-save icon-large"></i> Save</button>
+<button class="btn btn-success btn-block btn-large" style="width:267px;">Submit</button>
 </center>
 </div>
 </form>
@@ -119,8 +119,6 @@ function suggest(inputString){
 		var $amount = parseFloat($("#amount").val());
 		var $cust_given_amount = parseFloat($(this).val());
 		var $discount = parseFloat($("#discount").val());
-		//alert($discount);
-		//var $discount = parseFloat(trim($('#discount').val()));
 		$("#total_payment").val($amount - $discount);
 		var $change = $cust_given_amount - $amount - $discount;
 		if ($change < 0) $change = 0;

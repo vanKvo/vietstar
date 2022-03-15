@@ -12,8 +12,8 @@
 <hr>
 <div id="ac">
 <input type="hidden" name="purchase_id" value="<?php echo $id; ?>" />
-<span>Cost of Product : </span><input type="text" style="width:265px; height:30px;" name="cost" value="<?php echo $row['purchase_cost']; ?>" /><br>
-<span>Quantity of Product : </span><input type="text" style="width:265px; height:30px;" name="qty" value="<?php echo $row['purchase_qty']; ?>" /><br>
+<span>Unit Cost: </span><input type="text" style="width:265px; height:30px;" name="cost" value="<?php echo $row['purchase_cost']; ?>" /><br>
+<span>Quantity: </span><input type="text" style="width:265px; height:30px;" name="qty" value="<?php echo $row['purchase_qty']; ?>" /><br>
 
 <div style="float:right; margin-right:10px;">
 

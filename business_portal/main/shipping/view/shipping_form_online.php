@@ -400,10 +400,10 @@ $tmp = get_temp_shipping_order($shipping_order_id);
             </div><!--col-6-->
           </div><!--row--> 
           <div class="row mt-3">
-            <div class="col-6">
+            <div class="col-3">
               <label class="fw-bold">Payment Method</label>
             </div><!--col-6-->
-            <div class="col-6">
+            <div class="col-9">
               <input type="radio" name="pmt" value="cash" required>
               <span> Cash |</span>        
               <input type="radio" name="pmt" value="credit" required>

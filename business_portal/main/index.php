@@ -42,7 +42,7 @@ $position=$_SESSION['SESS_POSITION'];
 				<li> <a class="d-flex align-items-center pl-3 text-white text-decoration-none"><span class="fs-4">Dashboard</span></a></li>
 				<li class="active"><a href="#" class="nav-link text-white"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li>             
 				<li><a href="shipping/index.php" class="nav-link text-white"><i class="icon-truck icon-2x icon-2x"></i> Shipping</a></li>
-				<li><a href="inventory/index.php" class="nav-link text-white"><i class="icon-list-alt icon-2x"></i> Inventory</a></li>
+				<li><a href="inventory/products.php" class="nav-link text-white"><i class="icon-list-alt icon-2x"></i> Inventory</a></li>
 				<li><a href="#" class="nav-link text-white"><i class="icon-group icon-2x"></i>Customers</a></li>
 				<li><a href="#" class="nav-link text-white"><i class="icon-bar-chart icon-2x"></i> Sales Report</a></li>		
 			</ul>
@@ -51,10 +51,10 @@ $position=$_SESSION['SESS_POSITION'];
 			<div class="center" style=" font:bold 44px 'Aleo'; text-shadow:1px 1px 25px #000; color:white;">Vietstar Shipping</div>
 			<div id="maindashboard">             
 				<a href="shipping/index.php"><i class="icon-truck icon-2x"></i><br> Shipping</a>      
-				<a href="inventory/index.php"><i class="icon-list-alt icon-2x"></i><br> Inventory</a>       
+				<a href="inventory/products.php"><i class="icon-list-alt icon-2x"></i><br> Inventory</a>       
 				<a href="#"><i class="icon-bar-chart icon-2x"></i><br> Sales Report</a>
 				<a href="#"><i class="icon-group icon-2x"></i><br> Customers</a>   
-				<a href="../logout.php"><i class="icon-off icon-2x"></i><br> Logout</a> 
+				<a href="#"><i class="icon-off icon-2x"></i><br> Logout</a> 
 			</div><!--maindashboard--> 
 		</div>
 <?php// } else { ?>	 
@@ -64,7 +64,7 @@ $position=$_SESSION['SESS_POSITION'];
 				<li> <a class="d-flex align-items-center pl-3 text-white text-decoration-none"><span class="fs-4">Dashboard</span></a></li>
 				<li class="active"><a href="#" class="nav-link text-white"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li>             
 				<li><a href="shipping/index.php" class="nav-link text-white"><i class="icon-truck icon-2x icon-2x"></i> Shipping</a></li>
-				<li><a href="inventory/index.php" class="nav-link text-white"><i class="icon-list-alt icon-2x"></i> Inventory</a></li>
+				<li><a href="inventory/products.php" class="nav-link text-white"><i class="icon-list-alt icon-2x"></i> Inventory</a></li>
 				<li><a href="#" class="nav-link text-white"><i class="icon-group icon-2x"></i>Customers</a></li>
 			</ul>-->
 		</nav><!--/.navbar-primary-->
@@ -72,7 +72,7 @@ $position=$_SESSION['SESS_POSITION'];
 			<div class="center" style=" font:bold 44px 'Aleo'; text-shadow:1px 1px 25px #000; color:white;">Vietstar Shipping</div>
 			<div id="maindashboard">             
 				<a href="shipping/index.php"><i class="icon-truck icon-2x"></i><br> Shipping</a>      
-				<a href="inventory/index.php"><i class="icon-list-alt icon-2x"></i><br> Inventory</a>       
+				<a href="inventory/products.php"><i class="icon-list-alt icon-2x"></i><br> Inventory</a>       
 				<a href="#"><i class="icon-group icon-2x"></i><br> Customers</a>   
 				<a href="../logout.php"><i class="icon-off icon-2x"></i><br> Logout</a> 
 			</div><!--maindashboard
