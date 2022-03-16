@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 16, 2022 at 03:42 PM
+
 -- Server version: 5.7.34
 -- PHP Version: 7.4.21
 
@@ -231,8 +231,9 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+
 -- Dumping data for table `user`
---
+
 
 INSERT INTO `user` (`id`, `username`, `name`, `password`, `position`) VALUES
 (1, 'admin', 'Admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin'),
@@ -240,7 +241,8 @@ INSERT INTO `user` (`id`, `username`, `name`, `password`, `position`) VALUES
 (3, 'employee1', 'Employee 1', '73b6475fd5fe4c0750e094f547cd94abfb624351', 'employee'),
 (4, 'employee2', 'Employee 2', '3207b110d19a0663da1b30eb96851edec739f736', 'employee');
 
---
+
+
 -- Indexes for dumped tables
 --
 
