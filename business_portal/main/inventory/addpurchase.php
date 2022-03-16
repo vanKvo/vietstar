@@ -71,7 +71,7 @@ $finalcode=createRandomPassword();
 							$result->execute();
 							for($i=0; $row = $result->fetch(); $i++){
 						?>
-							<option value="<?php echo $row['product_id'];?>"><?php echo $row['product_code']; ?> | <?php echo $row['product_name']; ?> | Qty Onhand: <?php echo $row['qty_onhand']; ?></option>
+							<option value="<?php echo $row['product_id'];?>"><?php echo $row['product_code']; ?> | <?php echo $row['product_name']; ?> | Quantity Onhand: <?php echo $row['qty_onhand']; ?></option>
 						<?php
 									}
 						?>
@@ -89,12 +89,12 @@ $finalcode=createRandomPassword();
 								}
 					?>
 				</select>
-				<label>Cost of Product ($):</label>
-				<input type="text" style="width:265px; height:30px;" name="Cost_Product" placeholder="0.00"/><br>
-				<label>Quantity of Product: </label>
-				<input type="number" style="width:265px; height:30px;" name="Quantity_Product" placeholder="0"/><br>
+				<label>Unit Cost ($):</label>
+				<input type="text" style="width:265px; height:30px;" name="Cost_Product" placeholder="0.00" required/><br>
+				<label>Quantity: </label>
+				<input type="number" style="width:265px; height:30px;" name="Quantity_Product" placeholder="0" required/><br>
 				<button class="btn btn-success btn-block btn-large" style="width:267px;"><i class="icon icon-save icon-large"></i> Save</button>
-			</form>
+		</form>
 </div>
 </div><!--row-fluid-->
 </div><!--container-fluid-->

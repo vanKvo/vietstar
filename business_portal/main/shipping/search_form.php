@@ -15,7 +15,7 @@
   <title>Shipping</title>
 </head>
 <body>
-  <?php include '../navfixed.php';?>
+  <?php include 'navfixed.php';?>
 	<nav class="navbar-primary">
 		<ul class="navbar-primary-menu">
       <li><a class="d-flex align-items-center pl-3 text-white text-decoration-none"><span class="fs-4">Shipping</span></a></li>     

@@ -1,6 +1,9 @@
 <?php 
 include('../connect.php');
 include('function.php');
+require_once('auth.php');
+$position=$_SESSION['SESS_POSITION'];
+$name=$_SESSION['SESS_NAME'];
 $finalcode=createRandomPassword();
 ?>
 <html>
@@ -78,17 +81,17 @@ $cust_name=$sales[0]['sales_custname'];
 	</div>
 	</div>
 	<div style="width: 136px; float: left; height: 70px;">
-	<table cellpadding="3" cellspacing="0" style="font-family: arial; font-size: 12px;text-align:left;width : 100%;">
+	<table cellpadding="2" cellspacing="0" style="font-family: arial; font-size: 12px;text-align:left;width : 100%;">
 		<tr>
-			<td>Customer :</td>
+			<td>Customer:</td>
 			<td><?php echo $cust_name ?></td>
 		</tr>
 		<tr>
-			<td>OR No. :</td>
+			<td>Invoice No: </td>
 			<td><?php echo $invoice ?></td>
 		</tr>
 		<tr>
-			<td>Date :</td>
+			<td>Date:</td>
 			<td><?php echo $date ?></td>
 		</tr>
 	</table>

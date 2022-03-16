@@ -2,8 +2,11 @@
 require_once '../../connect.php';
 require_once '../model/shipping_data.php';
 require_once '../model/inventory_data.php';
+require_once('../../../auth.php');
 
-$user_id = '1'; // admin
+// User
+$user_id = $_SESSION['SESS_MEMBER_ID']; 
+
 // Sender
 $cust_name = clean_input($_GET['cust_name']);
 $cust_phone = clean_input($_GET['cust_phone']);
@@ -47,7 +50,7 @@ if (empty($sales_amount)) $sales_amount = 0;
 if (empty($pkg_val)) $pkg_val = 0;
 if (empty($airport_dt)) $airport_dt = $send_dt;
 if (empty($amount)) $amount = 0;
-if (empty($custom_fee_taxed_item)) $custom_fee_taxed_item = 'NONE';
+if (empty($custom_fee_taxed_item)) $custom_fee_taxed_item = 'NA';
 
 /** Sender */
 // The form is populated with existing customer info (Search Form)

@@ -203,6 +203,18 @@ function get_shipping_invoice_info($mst) {
 
 function get_temp_shipping_order($shipping_order_id) {
   global $db;
+  $query = 'SELECT * FROM temp_shipping_order
+  WHERE shipping_order_id =  :shipping_order_id';
+  $stmt = $db->prepare($query);
+  $stmt ->bindValue(':shipping_order_id', $shipping_order_id);
+  $stmt->execute();
+  $shipping_order = $stmt->fetchAll();
+  $stmt->closeCursor(); 
+  return $shipping_order;
+}
+
+function get_temp_shipping_order_temp_package($shipping_order_id) {
+  global $db;
   $query = 'SELECT * FROM temp_shipping_order tso
   JOIN temp_package tp ON tso.shipping_order_id =  tp.shipping_order_id
   WHERE tso.shipping_order_id =  :shipping_order_id';

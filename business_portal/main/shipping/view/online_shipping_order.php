@@ -3,6 +3,7 @@ require_once '../../connect.php';
 require_once '../model/shipping_data.php';
 require_once('../../../auth.php');
 $position=$_SESSION['SESS_POSITION'];
+$name=$_SESSION['SESS_NAME'];
 $search_input = trim(filter_input(INPUT_GET, 'search_input', FILTER_SANITIZE_STRING));
 $customer = search_customer($search_input);
 //print_r($customer);
@@ -67,7 +68,7 @@ $customer = search_customer($search_input);
 </head>
 
 <body>
-<?php include '../../navfixed.php';?>
+<?php include 'navfixed.php';?>
 	<nav class="navbar-primary sticky">
 		<a href="#" class="btn-expand-collapse"><span class="glyphicon glyphicon-menu-left"></span></a>
 		<div class="navbar-primary-menu" id="myTopnav"> 
@@ -107,7 +108,6 @@ $customer = search_customer($search_input);
                 <th>Sender</th>
                 <th>Sender's address</th>
 								<th>Receiver</th> 
-                <th>Total weight (lbs.)</th>
                 <th>No. packages</th>
                 <th>Order Submitted</th>
 							</tr>
@@ -122,7 +122,6 @@ $customer = search_customer($search_input);
                 <td>{{ row.cust_name}}</td>
 								<td>{{ row.cust_address}}, {{ row.cust_city}}, {{ row.cust_state}}, {{ row.cust_zip}}</td>
                 <td>{{ row.recipient_name}}</td>
-                <td>{{ row.total_weight}}</td>
                 <td>{{ row.num_of_package}}</td>
                 <td>{{ row.submitted_date}}</td>
                 

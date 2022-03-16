@@ -1,6 +1,10 @@
 <?php
-session_start();
+require_once('auth.php');
+$position=$_SESSION['SESS_POSITION'];
+$name=$_SESSION['SESS_NAME'];
+
 include('../connect.php');
+
 $invoice = $_POST['invoice'];
 $product_id = $_POST['product_id'];
 $qty_picked = $_POST['qty_picked'];

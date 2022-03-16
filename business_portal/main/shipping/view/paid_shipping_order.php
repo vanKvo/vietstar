@@ -3,6 +3,7 @@ require_once '../../connect.php';
 require_once '../model/shipping_data.php';
 require_once('../../../auth.php');
 $position=$_SESSION['SESS_POSITION'];
+$name=$_SESSION['SESS_NAME'];
 $search_input = trim(filter_input(INPUT_GET, 'search_input', FILTER_SANITIZE_STRING));
 $customer = search_customer($search_input);
 //print_r($customer);
@@ -66,7 +67,7 @@ $customer = search_customer($search_input);
 </head>
 
 <body>
-<?php include '../../navfixed.php';?>
+<?php include 'navfixed.php';?>
 	<nav class="navbar-primary sticky">
 		<a href="#" class="btn-expand-collapse"><span class="glyphicon glyphicon-menu-left"></span></a>
 		<div class="navbar-primary-menu" id="myTopnav"> 

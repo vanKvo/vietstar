@@ -2,6 +2,9 @@
 require_once '../../connect.php';
 require_once '../model/shipping_data.php';
 require_once '../model/inventory_data.php';
+$position=$_SESSION['SESS_POSITION'];
+$name=$_SESSION['SESS_NAME'];
+
 $mst = trim(filter_input(INPUT_GET, 'mst', FILTER_SANITIZE_STRING));
 $shipord = get_shipping_invoice_info($mst);
 $sales_id = $shipord[0]['sales_id'];
@@ -74,7 +77,7 @@ if (!empty($sales_id)) { // Some instore items are purcahse
 </head>
 
 <body>
-<?php include '../../navfixed.php';?>
+<?php include 'navfixed.php';?>
   <nav class="navbar-primary sticky">
 		<a href="#" class="btn-expand-collapse"><span class="glyphicon glyphicon-menu-left"></span></a>
 		<div class="navbar-primary-menu" id="myTopnav"> 

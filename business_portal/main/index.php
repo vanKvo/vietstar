@@ -1,6 +1,8 @@
 <?php
 require_once('../auth.php');
 $position=$_SESSION['SESS_POSITION'];
+$name=$_SESSION['SESS_NAME'];
+
 ?>
 <!DOCTYPE>
 <html>
@@ -35,7 +37,7 @@ $position=$_SESSION['SESS_POSITION'];
 </head>
 <body>
   <?php include 'navfixed.php';?>
-	<?php// if ((strcmp(strtolower($position), 'admin') == 0) || (strcmp(strtolower($position), 'owner') == 0)) { ?>
+	<?php if ((strcmp(strtolower($position), 'admin') == 0) || (strcmp(strtolower($position), 'owner') == 0)) { ?>
 		<nav class="navbar-primary sticky">
 			<a href="#" class="btn-expand-collapse"><span class="glyphicon glyphicon-menu-left"></span></a>
 			<ul class="navbar-primary-menu">
@@ -54,11 +56,11 @@ $position=$_SESSION['SESS_POSITION'];
 				<a href="inventory/products.php"><i class="icon-list-alt icon-2x"></i><br> Inventory</a>       
 				<a href="#"><i class="icon-bar-chart icon-2x"></i><br> Sales Report</a>
 				<a href="#"><i class="icon-group icon-2x"></i><br> Customers</a>   
-				<a href="#"><i class="icon-off icon-2x"></i><br> Logout</a> 
+				<a href="../logout.php"><i class="icon-off icon-2x"></i><br> Logout</a> 
 			</div><!--maindashboard--> 
 		</div>
-<?php// } else { ?>	 
-	<!--<nav class="navbar-primary sticky">
+<?php } else { ?>	 
+   <nav class="navbar-primary sticky">
 			<a href="#" class="btn-expand-collapse"><span class="glyphicon glyphicon-menu-left"></span></a>
 			<ul class="navbar-primary-menu">
 				<li> <a class="d-flex align-items-center pl-3 text-white text-decoration-none"><span class="fs-4">Dashboard</span></a></li>
@@ -66,18 +68,18 @@ $position=$_SESSION['SESS_POSITION'];
 				<li><a href="shipping/index.php" class="nav-link text-white"><i class="icon-truck icon-2x icon-2x"></i> Shipping</a></li>
 				<li><a href="inventory/products.php" class="nav-link text-white"><i class="icon-list-alt icon-2x"></i> Inventory</a></li>
 				<li><a href="#" class="nav-link text-white"><i class="icon-group icon-2x"></i>Customers</a></li>
-			</ul>-->
+			</ul>
 		</nav><!--/.navbar-primary-->
-		<!--<div class="main-content">
+		<div class="main-content">
 			<div class="center" style=" font:bold 44px 'Aleo'; text-shadow:1px 1px 25px #000; color:white;">Vietstar Shipping</div>
 			<div id="maindashboard">             
 				<a href="shipping/index.php"><i class="icon-truck icon-2x"></i><br> Shipping</a>      
 				<a href="inventory/products.php"><i class="icon-list-alt icon-2x"></i><br> Inventory</a>       
 				<a href="#"><i class="icon-group icon-2x"></i><br> Customers</a>   
 				<a href="../logout.php"><i class="icon-off icon-2x"></i><br> Logout</a> 
-			</div><!--maindashboard
-		</div>-->
-<?php //} ?>
+			</div><!--maindashboard-->
+		</div>
+<?php } ?>
 
 </body>
 </html>

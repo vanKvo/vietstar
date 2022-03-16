@@ -4,8 +4,8 @@ require_once 'model/shipping_data.php';
 require_once 'model/inventory_data.php';
 require_once('../../auth.php');
 $position=$_SESSION['SESS_POSITION'];
+$name=$_SESSION['SESS_NAME'];
 
-//echo "shipping index.php";
 /** Get action */
 $action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING);
 //echo "action in index.php: " . $action ."<br>";
@@ -30,11 +30,9 @@ switch($action) {
 			//echo"isset($search_input)";
 			$customer = search_customer($search_input);
 			if ($customer[1] >= 1) {// the number of result row customer[1] may be equal or more than one because one customer can have more than one recipient
-				//include 'view/populated_shipping_form.php';	
 				header("location: view/shipping_form_online.php?search_input=$search_input");
 			} else {
 			  include 'search_form.php';	
-				//header("location: view/search_form.php");
 			  echo '<div class="text-center">The customer profile does not exist!</div>';
 			}	
 		}	

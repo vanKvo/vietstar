@@ -62,10 +62,10 @@
 							</div>
 
 							<!-- Checkbox -->
-							<div class="form-check d-flex justify-content-start mb-4">
+							<!--<div class="form-check d-flex justify-content-start mb-4">
 								<a href="reset_password.php">
 								<label class="form-check-label" for="form1Example3">Forgot password?</label>
-							</div>
+							</div>-->
 
 							<button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
 						</form>	

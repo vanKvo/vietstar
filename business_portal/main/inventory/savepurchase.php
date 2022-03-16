@@ -1,9 +1,13 @@
 <?php
-session_start();
 include('../connect.php');
+/*require_once('auth.php');
+$user_id=$_SESSION['SESS_MEMBER_ID'];
+$position=$_SESSION['SESS_POSITION'];
+$name=$_SESSION['SESS_NAME'];
+$b = $user_id;*/
 
 $a = $_POST['supplier_id'];
-$b = '1';
+$b = '3';
 //$c = '2022-02-03';
 $c = date("Y-m-d");
 $d = $_POST['Cost_Product'];

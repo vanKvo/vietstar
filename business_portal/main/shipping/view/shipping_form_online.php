@@ -4,6 +4,7 @@ require_once '../model/shipping_data.php';
 require_once '../model/inventory_data.php';
 require_once('../../../auth.php');
 $position=$_SESSION['SESS_POSITION'];
+$name=$_SESSION['SESS_NAME'];
 // Populate the form with existing customer data 
 $search_input = trim(filter_input(INPUT_GET, 'search_input', FILTER_SANITIZE_STRING));
 $customer = search_customer($search_input);
@@ -78,7 +79,7 @@ $tmp = get_temp_shipping_order($shipping_order_id);
 </head>
 
 <body>
-<?php include '../../navfixed.php';?>
+<?php include 'navfixed.php';?>
 	<nav class="navbar-primary sticky">
 		<a href="#" class="btn-expand-collapse"><span class="glyphicon glyphicon-menu-left"></span></a>
 		<div class="navbar-primary-menu" id="myTopnav"> 
@@ -324,8 +325,8 @@ $tmp = get_temp_shipping_order($shipping_order_id);
                 </div>  
             <?php } ?>    
           </div><!--item package_div-->
-          <button type="button" id="add-package-btn" class="custom-btn col-1"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
-          <button type="button" id="remove-package-btn" class="custom-btn col-1"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>
+          <button type="button" id="add-package-btn" class="custom-btn col-1"><i class="fa fa-plus-circle" aria-hidden="true"></i>Thêm Thùng</button>
+          <button type="button" id="remove-package-btn" class="custom-btn col-1"><i class="fa fa-minus-circle" aria-hidden="true"></i>Bớt Thùng</button>
       </div><!--row-->  
       <div class="row">
         <div class="subheader mt-3"> Hàng Mua ở Tiệm - In-store items </div>
@@ -426,7 +427,7 @@ $tmp = get_temp_shipping_order($shipping_order_id);
               <input type="hidden" id="next_mst" name="next_mst" value="<?=$mst+1?>"> 
             </div><!--col-6-->
             <div class="col-6">
-              <input type="text" id="mst" name="mst" required> 
+              <input type="text" id="mst" name="mst" value="<?=$mst+1?>" required> 
             </div><!--col-6-->
           </div><!--row--> 
           <div >
