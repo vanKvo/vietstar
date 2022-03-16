@@ -27,6 +27,7 @@
 	//Sanitize the POST values
 	$login = ($_POST['username']);
 	$password = ($_POST['password']);
+	$hash = hash('sha1', $password);
 	
 	//Input Validations
 	if($login == '') {
@@ -47,7 +48,7 @@
 	}
 	
 	//Create query
-	$qry="SELECT * FROM user WHERE username='$login' AND password='$password'";
+	$qry="SELECT * FROM user WHERE username='$login' AND password='$hash'";
 	$result=mysqli_query($conn,$qry);
 	
 	//Check whether the query was successful or not

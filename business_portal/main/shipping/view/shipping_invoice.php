@@ -69,7 +69,7 @@ if (!empty($sales_id)) { // Some instore items are purcahse
 
   @media only screen and (max-width: 991px) {
   .navbar-primary {
-    background: blue;
+    background: #505251;
   }
   
 }
