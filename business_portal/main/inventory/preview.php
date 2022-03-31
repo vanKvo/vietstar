@@ -1,11 +1,18 @@
 <?php 
+ini_set('display_errors',1);
+error_reporting(E_ALL);
+echo "preview.php";
+
 include('../connect.php');
-include('function.php');
+include('function.php'); 
 require_once('auth.php');
+
 $position=$_SESSION['SESS_POSITION'];
 $name=$_SESSION['SESS_NAME'];
+
 $finalcode=createRandomPassword();
 ?>
+
 <html>
 <head>
 <title>Vietstar_Shipping</title>
@@ -31,7 +38,7 @@ $finalcode=createRandomPassword();
 </head>
 <?php
 $invoice=$_GET['invoice'];
-include('../connect.php');
+
 $result = $db->prepare("SELECT * FROM sales WHERE invoice_number= :invoice");
 $result->bindParam(':invoice', $invoice);
 $result->execute();
@@ -39,7 +46,7 @@ $sales = $result->fetchAll();
 $cname=$sales[0]['sales_custname'];
 $invoice=$sales[0]['invoice_number'];
 $date=$sales[0]['sales_date'];
-$cashier=$sales[0]['cashier'];
+//$cashier=$sales[0]['cashier'];
 $pt=strtolower($sales[0]['sales_payment_method']);
 $sales_amount=$sales[0]['sales_amount']; 
 $cust_payment=$sales[0]['sales_cust_payment'];
@@ -134,12 +141,6 @@ $cust_name=$sales[0]['sales_custname'];
 				</td>
 				<td>
 				<?php
-				$ddd=$row['discount'];
-				echo formatMoney($ddd, true);
-				?>
-				</td>
-				<td>
-				<?php
 				$dfdf=$row['sales_order_amount'];
 				echo formatMoney($dfdf, true);
 				?>
@@ -198,7 +199,7 @@ $cust_name=$sales[0]['sales_custname'];
 				</td>
 
 					<?php
-					function formatMoney($number, $fractional=false) {
+					/*function formatMoney($number, $fractional=false) {
 						if ($fractional) {
 							$number = sprintf('%.2f', $number);
 						}
@@ -211,7 +212,7 @@ $cust_name=$sales[0]['sales_custname'];
 							}
 						}
 						return $number;
-					}
+					}*/
 					?>
 					</strong></td>
 				</tr>

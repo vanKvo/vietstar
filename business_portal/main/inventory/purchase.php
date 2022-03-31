@@ -49,7 +49,7 @@ $finalcode=createRandomPassword();
 					<hr>
 					<li><a href="../index.php"><i class="icon-dashboard icon-2x"></i> Dashboard  </a></li> 
 					<li><a href="products.php"><i class="icon-list-alt icon-2x"></i> Inventory</a></li>    
-					<li class="active"><a href="purchase.php"><i class="icon-group icon-2x"></i> Purchase </a> </li>     
+					<li class="active"><a href="purchase.php"><i class="icon-group icon-2x"></i> Store Orders</a> </li>     
 					<li><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Sales </a></li>             
 					<li><a href="supplier.php"><i class="icon-group icon-2x"></i> Suppliers</a></li> 
 				</ul>              
@@ -57,11 +57,11 @@ $finalcode=createRandomPassword();
 	</div><!--/span-->
 	<div class="span10">
 	<div class="contentheader">
-			<i class="icon-group"></i> Purchase
+			<i class="icon-group"></i> Store Orders
 			</div>
 			<ul class="breadcrumb">
 			<li><a href="../index.php">Dashboard</a></li> /
-			<li class="active">Purchase</li>
+			<li class="active">Store Orders</li>
 			</ul>
 
 <div style="margin-top: -19px; margin-bottom: 21px;">
@@ -71,22 +71,24 @@ $finalcode=createRandomPassword();
 				$rowcount = $result->rowcount();
 			?>
 			<div style="text-align:center;">
-			Total Number of Purchase: <font color="green" style="font:bold 22px 'Aleo';"><?php echo $rowcount;?></font>
+			Total Number of Store Orders: <font color="green" style="font:bold 22px 'Aleo';"><?php echo $rowcount;?></font>
 			</div>
 </div>
-<input type="text" name="filter" style="padding:15px;" id="filter" placeholder="Search Purchase..." autocomplete="off" />
-<a href="addpurchase.php"><Button type="submit" class="btn btn-info" style="float:right; width:230px; height:35px;" /><i class="icon-plus-sign icon-large"></i> Add Purchase</button></a><br><br>
+<input type="text" name="filter" style="padding:15px;" id="filter" placeholder="Search Order..." autocomplete="off" />
+<a href="addpurchase.php"><Button type="submit" class="btn btn-info" style="float:right; width:230px; height:35px;" /><i class="icon-plus-sign icon-large"></i> Add Store Order</button></a><br><br>
 
 <table class="table table-bordered" id="resultTable" data-responsive="table" style="text-align: left;">
 	<thead>
 		<tr>
-			<th width="14%"> UPC </th>
-			<th width="14%"> Product Name </th>
-			<th width="14%"> Supplier's Name</th>
-			<th width="14%"> Unit Cost</th>
-			<th width="14%"> Quantity</th>
-			<th width="14%"> Arrival Date</th>
-			<th width="14%"> Action </th>
+			<th width="10%">Invoice No.</th>
+			<th width="18%">UPC</th>
+			<th width="14%">Product</th>
+			<th width="14%">Supplier</th>
+			<th width="14%">Unit Cost</th>
+			<th width="14%">Quantity</th>
+			<th width="14%">Total Cost</th>
+			<th width="14%">Arrival Date</th>
+			<th width="14%">Action</th>
 			<div id="ac">
 		</tr>
 	</thead>
@@ -100,13 +102,16 @@ $finalcode=createRandomPassword();
 				ORDER BY purchase_id DESC");
 				$result->execute();
 				for($i=0; $row = $result->fetch(); $i++){
+					$total_cost = $row['purchase_cost']*$row['purchase_qty'];
 			?>
 			<tr class="record">
-			<td><?php echo $row['product_id']; ?></td>
+			<td><?php echo $row['purchase_id']; ?></td>
+			<td><?php echo $row['product_code']; ?></td>
 			<td><?php echo $row['product_name']; ?></td>
 			<td><?php echo $row['suplier_name']; ?></td>
 			<td><?php echo $row['purchase_cost']; ?></td>
 			<td><?php echo $row['purchase_qty']; ?></td>
+			<td><?php echo formatMoney($total_cost); ?></td>
 			<td><?php echo $row['purchase_date']; ?></td>
 
 			<td><a  title="Click To Edit Purchase" rel="facebox" href="editpurchase.php?id=<?php echo $row['purchase_id']; ?>"><button class="btn btn-warning btn-mini"><i class="icon-edit"></i> Edit </button></a> 

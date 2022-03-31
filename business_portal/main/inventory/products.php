@@ -82,7 +82,7 @@ function sum() {
 					<hr>
 					<li><a href="../index.php"><i class="icon-dashboard icon-2x"></i> Dashboard  </a></li> 
 					<li class="active"><a href="products.php"><i class="icon-list-alt icon-2x"></i> Inventory</a></li>    
-					<li><a href="purchase.php"><i class="icon-group icon-2x"></i> Purchase </a> </li>     
+					<li><a href="purchase.php"><i class="icon-group icon-2x"></i> Store Orders </a> </li>     
 					<li><a href="sales.php?id=cash&invoice=<?php echo $finalcode ?>"><i class="icon-shopping-cart icon-2x"></i> Sales </a></li>             
 					<li><a href="supplier.php"><i class="icon-group icon-2x"></i> Suppliers</a></li> 
 				</ul>             
@@ -128,10 +128,10 @@ function sum() {
 		<tr>
 			<th width="15%"> UPC </th>
 			<th width="14%"> Product Name </th>
-			<th width="13%"> Category / Description </th>
-			<th width="12%"> Position</th>
-			<th width="7%"> Supplier </th>
-			<th width="6%"> Unit Price </th>
+			<th width="15%"> Category / Description </th>
+			<th width="7%"> Position</th>
+		<!--	<th width="10%"> Supplier </th>-->
+			<th width="6%"> Selling Price </th>
 			<th width="6%">Quantity Onhand </th>
 			<th width="8%"> Total Price</th>
 			<th width="10%"> Action </th>
@@ -140,23 +140,12 @@ function sum() {
 	<tbody>
 		
 			<?php
-			function formatMoney($number, $fractional=false) {
-					if ($fractional) {
-						$number = sprintf('%.2f', $number);
-					}
-					while (true) {
-						$replaced = preg_replace('/(-?\d+)(\d\d\d)/', '$1,$2', $number);
-						if ($replaced != $number) {
-							$number = $replaced;
-						} else {
-							break;
-						}
-					}
-					return $number;
-				}
-				include('../connect.php');
-				$result = $db->prepare("SELECT *, unit_price * qty_onhand as total_price FROM products ORDER BY product_id DESC");
-				$result->execute();
+				/*$result = $db->prepare("SELECT *, unit_price * qty_onhand as total_price FROM products p 
+				LEFT JOIN supliers s ON p.supplier_id = s.suplier_id
+				ORDER BY product_id DESC");*/
+				$result = $db->prepare("SELECT *, unit_price * qty_onhand as total_price FROM products p 
+				ORDER BY product_id DESC");
+				$result->execute(); 
 				for($i=0; $row = $result->fetch(); $i++){
 				$total=$row['total_price'];
 				$availableqty=$row['qty_onhand'];
@@ -171,7 +160,7 @@ function sum() {
 			<td><?php echo $row['product_name']; ?></td>
 			<td><?php echo $row['product_category']; ?></td>
 			<td><?php echo $row['product_location']; ?></td>
-			<td><?php echo $row['supplier']; ?></td>
+			<!--<td><?php //echo $row['suplier_name']; ?></td>-->
 			<td><?php
 			$pprice=$row['unit_price'];
 			echo formatMoney($pprice, true);

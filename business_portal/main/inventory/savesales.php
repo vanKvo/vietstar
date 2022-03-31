@@ -6,7 +6,7 @@ $name=$_SESSION['SESS_NAME'];
 
 include('../connect.php');
 $v1 = $_POST['invoice'];
-$v2 = $_POST['ptype'];
+$v2 = strtolower($_POST['ptype']);
 if (empty($_POST['cname'])) $v3 = 'NA';
 else $v3 = $_POST['cname'];
 
@@ -36,6 +36,8 @@ $stmt2->bindParam(':invoice', $v1);
 $res2 = $stmt2->execute();
 $sales = $stmt2->fetchAll();
 $sales_id = $sales[0]['sales_id'];
+echo "<br>Sales id: $sales_id<br>";
+echo "<br>End get sales id<br>";
 
 // Update sales id for line items in sales order table
 echo "<br>Start update sales orders<br>";

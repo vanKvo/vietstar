@@ -8,6 +8,8 @@
   $username = 'dbmasteruser';
   $password = '~P1>?0d3_}#KaAen&*w;$fh=$x4D$T-[';*/
 
+  $con = mysqli_connect("localhost","root","root","vietstar_shipping"); // $con is used for php webpages in customers and sales_reports folder
+
   /**  Create DB Connection **/
   try {
     //$db = new PDO($dsn, $username);

@@ -20,6 +20,7 @@ $recipient_id = clean_input($_GET['recipient_id']);
 $recipient_name = clean_input($_GET['recipient_name']);
 $recipient_address = clean_input($_GET['recipient_address']);
 $recipient_phone = clean_input($_GET['recipient_phone']);
+$recipient_email = clean_input($_GET['recipient_email']);
 
 // Payment
 $custom_fee_taxed_item = clean_input($_GET['custom_fee_taxed_item']);
@@ -78,7 +79,7 @@ if (!empty($recipient_id) && empty($recipient_name) && empty($recipient_address)
 } 
 else { // Check if recipient info exists or not(Blank or Online Shipping Form)
   if (valid_recipient($cust_id, $recipient_name)) { // customer does not exist, add the new cust info into database
-    add_recipient($recipient_name, $recipient_address, $recipient_phone, $cust_id);   
+    add_recipient($recipient_name, $recipient_address, $recipient_phone, $cust_id, $recipient_email);   
     echo "New recipient";
   } // otherwise, get existing recipient info from database
   $recipient = get_recipient($cust_id, $recipient_name, $recipient_phone);  
@@ -94,6 +95,7 @@ for ($i=0; $i < $num_pkg; $i++) {
   $packages[$i]['mst'] = $mst;
   $packages[$i]['pkg_tracking_no'] = $i+1;
 }
+print_r($packages);
 
 /** Get in-store items if applicable */
 echo '<br>Num of ITEMS:'. ($num_of_items+1);

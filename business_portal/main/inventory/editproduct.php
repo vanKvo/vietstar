@@ -1,5 +1,6 @@
 <?php
 	include('../connect.php');
+	include('function.php');
 	//$id=$_GET['id'];
 	$product_id=$_GET['product_id'];
 	$result = $db->prepare("SELECT * FROM products WHERE product_id= :product_id");
@@ -17,21 +18,7 @@
 <span>Product Name: </span><input type="text" style="width:265px; height:30px;"  name="product_name" value="<?php echo $row['product_name']; ?>" /><br>
 <span>Category / Description: </span><input type="text" style="width:265px; height:30px;"  name="product_category" value="<?php echo $row['product_category']; ?>" /><br>
 <span>Position: </span><input type="text" style="width:265px; height:30px;"  name="product_location" value="<?php echo $row['product_location']; ?>" /><br>
-<span>Unit Price : </span><input type="text" style="width:265px; height:30px;" id="txt1" name="unit_price" value="<?php echo $row['unit_price']; ?>" onkeyup="sum();" Required/><br>
-<span>Supplier : </span>
-<select name="supplier" style="width:265px; height:30px; margin-left:-5px;" >
-	<option><?php echo $row['supplier']; ?></option>
-	<?php
-	$results = $db->prepare("SELECT * FROM supliers");
-		$results->bindParam(':userid', $res);
-		$results->execute();
-		for($i=0; $rows = $results->fetch(); $i++){
-	?>
-		<option><?php echo $rows['suplier_name']; ?></option>
-	<?php
-	}
-	?>
-</select><br>
+<span>Selling Price : </span><input type="text" style="width:265px; height:30px;" id="txt1" name="unit_price" value="<?php echo $row['unit_price']; ?>" onkeyup="sum();" Required/><br>
 <span>Quantity Onhand: </span><input type="number" style="width:265px; height:30px;" min="0" name="qty_onhand" value="<?php echo $row['qty_onhand']; ?>" /><br>
 
 <div style="float:right; margin-right:10px;">

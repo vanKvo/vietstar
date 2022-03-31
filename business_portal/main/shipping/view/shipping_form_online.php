@@ -69,6 +69,10 @@ $tmp = get_temp_shipping_order($shipping_order_id);
   width: 100%;
 }
 
+.required {
+  color:red;
+}
+
   @media only screen and (max-width: 991px) {
   .navbar-primary {
     background: #505251;
@@ -83,7 +87,7 @@ $tmp = get_temp_shipping_order($shipping_order_id);
 	<nav class="navbar-primary sticky">
 		<a href="#" class="btn-expand-collapse"><span class="glyphicon glyphicon-menu-left"></span></a>
 		<div class="navbar-primary-menu" id="myTopnav"> 
-		  <li><a class="d-flex align-items-center pl-3 text-white text-decoration-none"><span class="fs-4">Shipping</span></a></li>           
+		  <li><a class="d-flex align-items-center pl-3 text-white text-decoration-none"><h4>Shipping</h4></a></li>           
 			<li><a href="../../index.php" class="nav-link text-white"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
       <li><a href="../index.php" class="nav-link text-white"> Tìm Khách Hàng (Search Customer)</a></li>
       <li><a href="shipping_form_online.php" class="nav-link text-white active"> Tạo Đơn Gửi Hàng (Shipping Form)</a></li>
@@ -102,7 +106,7 @@ $tmp = get_temp_shipping_order($shipping_order_id);
         <div class="subheader"> Người Gửi - Sender</div>
         <div class="col-6">
           <div class="item">
-            <label for="name"> Họ & Tên - Full Name<span>*</span></label>
+            <label for="name"> Họ & Tên - Full Name<span class="required">*</span></label>
             <?php  if ($customer[0] == 0) { ?>
               <input id="name" type="text" name="cust_name" value="<?=$tmp[0]['cust_name']?>" required/>
             <?php } else { ?>
@@ -110,7 +114,7 @@ $tmp = get_temp_shipping_order($shipping_order_id);
             <?php  } ?>
           </div>
           <div class="item">
-              <label for="phone">SĐT - Phone (10 digits)<span>*</span></label>
+              <label for="phone">SĐT - Phone (10 digits)<span class="required">*</span></label>
               <?php  if ($customer[0] == 0) { ?>
                 <input id="cust_phone" type="tel"  name="cust_phone" value="<?=$tmp[0]['cust_phone']?>" placeholder="XXXXXXXXXX" required/>
               <?php } else { ?>
@@ -118,7 +122,7 @@ $tmp = get_temp_shipping_order($shipping_order_id);
               <?php  } ?>
             </div>
             <div class="item">
-              <label for="email">Email</label>
+              <label for="email">Email (optional)</label>
               <?php  if ($customer[0] == 0) { ?>
                 <input id="email" type="text"   name="cust_email" value="<?=$tmp[0]['cust_email']?>">
               <?php } else { ?>
@@ -126,7 +130,7 @@ $tmp = get_temp_shipping_order($shipping_order_id);
               <?php  } ?>
             </div>
           <div class="item">
-            <label for="address1">Địa Chỉ - Address<span>*</span></label>
+            <label for="address1">Địa Chỉ - Address<span class="required">*</span></label>
             <?php  if ($customer[0] == 0) { ?>
               <input id="address1" type="text"   name="cust_address" value="<?=$tmp[0]['cust_address']?>" required>
             <?php } else { ?>
@@ -136,7 +140,7 @@ $tmp = get_temp_shipping_order($shipping_order_id);
         </div><!--col-6-->
           <div class="col-6">   
           <div class="item">
-              <label for="city">Thành Phố - City<span>*</span></label>
+              <label for="city">Thành Phố - City<span class="required">*</span></label>
               <?php  if ($customer[0] == 0) { ?>
                 <input id="city" type="text"   name="cust_city" value="<?=$tmp[0]['cust_city']?>" required>
               <?php } else { ?>
@@ -144,7 +148,7 @@ $tmp = get_temp_shipping_order($shipping_order_id);
               <?php  } ?>
             </div>
             <div class="item">
-              <label for="state">Tiểu Bang - State<span>*</span></label>
+              <label for="state">Tiểu Bang - State<span class="required">*</span></label>
               <?php  if ($customer[0] == 0) { ?>
                 <input  type="text"   name="cust_state" list="state" value="<?=$tmp[0]['cust_state']?>" required>
               <?php } else { ?>
@@ -205,7 +209,7 @@ $tmp = get_temp_shipping_order($shipping_order_id);
               </datalist>  
             </div>
             <div class="item">
-              <label for="zip">Zip/Postal Code<span>*</span></label>
+              <label for="zip">Zip/Postal Code<span class="required">*</span></label>
               <?php  if ($customer[0] == 0) { ?>
                 <input id="zip" type="text" name="cust_zip" value="<?=$tmp[0]['cust_zip']?>" required>
               <?php } else { ?>
@@ -219,16 +223,20 @@ $tmp = get_temp_shipping_order($shipping_order_id);
         <div class="subheader"> Người Nhận - Recipient</div>
         <div class="item" id="recipient_form">
             <div class="item">
-              <label for="name">Người Nhận Mới - New Recipient<span>*</span></label>
+              <label for="name">Người Nhận Mới - New Recipient<span class="required">*</span></label>
               <input id="name" type="text" id="recipient_name" name="recipient_name" value="<?=$tmp[0]['recipient_name']?>" required/>
             </div>
             <div class="item">
-              <label for="address">Địa Chỉ - Address<span>*</span></label>
+              <label for="address">Địa Chỉ - Address<span class="required">*</span></label>
               <input id="address" type="text"  id="recipient_address"  name="recipient_address" value="<?=$tmp[0]['recipient_address']?>" required/>
             </div>
             <div class="item">
-              <label for="phone">SĐT - Phone (10 digits)<span>*</span></label>
+              <label for="phone">SĐT - Phone (10 digits only)<span class="required">*</span></label>
               <input id="recipient_phone" type="text"  name="recipient_phone" placeholder="XXXXXXXXXX" value="<?=$tmp[0]['recipient_phone']?>" required/>
+            </div>
+            <div class="item">
+              <label for="email">Email (optional)</label>
+              <input id="recipient_email" type="text" name="recipient_email"/>
             </div>
           </div><!--item-->
         </div><!--row-->  
@@ -254,8 +262,12 @@ $tmp = get_temp_shipping_order($shipping_order_id);
                 <input id="address" type="text"  id="recipient_address"  name="recipient_address"/>
               </div>
               <div class="item">
-                <label for="phone">SĐT - Phone (10 digits)</label>
+                <label for="phone">SĐT - Phone (10 digits only)</label>
                 <input id="recipient_phone" type="text" name="recipient_phone" placeholder="XXXXXXXXXX" value="0000000000"/>
+              </div>
+              <div class="item">
+                <label for="email">Email (optional)</label>
+                <input id="recipient_email" type="text" name="recipient_email"/>
               </div>
               <input type="hidden" id="cust_id" name="cust_id" value="<?=$customer[0]['customer_id']?> ">
             </div><!--item-->
@@ -272,15 +284,15 @@ $tmp = get_temp_shipping_order($shipping_order_id);
           <div class="item col-12">
           <div class="row">
               <div class="col-4">
-                <label>Số Lượng Thùng - No. of Packages</label>
+                <label>Số Lượng Thùng - No. of Packages<span class="required">*</span></label>
                 <input type="number"  id="num_pkg" name="num_pkg" value="<?=$tmp[0]['num_of_package']?>" required/>
-                <label>Gửi Về - Send To</label>
+                <label>Gửi Về - Send To<span class="required">*</span></label>
                 <input type="text"  name="location" list="location" value="<?=$tmp[0]['location']?>" required/>
                 <datalist id="location">
                   <option value="Sài Gòn" name="SG">Sài Gòn</option>
                   <option value="Tỉnh (Province)" name="province">Tỉnh</option>
                 </datalist>
-                <label>Giá/lb - Price/lb ($)</label>
+                <label>Giá/lb - Price/lb ($)<span class="required">*</span></label>
                 <input type="text" id="price_per_lb"  name="price_per_lb" list="price_per_lb_list" placeholder="0.00" required/>
                 <datalist id="price_per_lb_list">
                   <option value="3.25" name="SG">3.25</option>
@@ -289,14 +301,14 @@ $tmp = get_temp_shipping_order($shipping_order_id);
                 </datalist>
               </div><!--col-4-->
               <div class="col-4">
-                <label>Ngày Gửi - Send Date:</label>
+                <label>Ngày Gửi - Send Date<span class="required">*</span></label>
                 <input type="date" name="send_dt" required/>
                 <label>Ngày Chuyển - Departure Date:</label>
                 <input type="date" name="airport_dt">
               </div><!--col-4-->
               <div class="col-4">
                 <div class="item">
-                  <label>Trị Giá Hàng - Total Package Value ($)</label>
+                  <label>Trị Giá Hàng - Total Package Value ($) (optional)</label>
                   <input type="text" name="pkg_val"value="<?=$tmp[0]['package_value']?>" placeholder="0.00"/>
                 </div> 
               </div><!--col-4-->      
@@ -402,7 +414,7 @@ $tmp = get_temp_shipping_order($shipping_order_id);
           </div><!--row--> 
           <div class="row mt-3">
             <div class="col-3">
-              <label class="fw-bold">Payment Method</label>
+              <label class="fw-bold">Payment Method<span class="required">*</span></label>
             </div><!--col-6-->
             <div class="col-9">
               <input type="radio" name="pmt" value="cash" required>
@@ -494,7 +506,7 @@ $(document).ready(function(){
   }
   $('#add-package-btn').on('click', function() {
     i = i+1;// start with pkg1 i = 1, because pkg0 is displayed above already
-    var field = '<div id="pkg'+i+'" class="item"><label style="font-weight: bold">Pkg #'+(i+1)+' Kê Khai Hàng Hoá - Description of Goods</label><textarea class="form-control" name="pkg_desc'+i+'" rows="3"></textarea><label>Cân Nặng - Weight (lbs)</label><input type="text" placeholder="0.00" class="pkg_weight" name="pkg_wt'+i+'"/></div>';
+    var field = '<div id="pkg'+i+'" class="item"><label style="font-weight: bold">Pkg #'+(i+1)+' Kê Khai Hàng Hoá - Description of Goods</label><textarea class="form-control" name="pkg_desc'+i+'" rows="3" required></textarea><label>Cân Nặng - Weight (lbs)</label><input type="text" placeholder="0.00" class="pkg_weight" name="pkg_wt'+i+'" required/></div>';
     $('.package_div').append(field);
   })
 
@@ -556,7 +568,7 @@ $('#cal-item-btn').on('click', function() {
     total_instore = total_instore + qty*unit_price;
     console.log('Item_idx: '+k + ' Total: '+ total_instore);
   }
-  $('#instore').val(total_instore);
+  $('#instore').val(total_instore.toFixed(2));
 });
 
 // Automatically calculate total package weight

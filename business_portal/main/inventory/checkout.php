@@ -87,7 +87,7 @@ background-repeat:no-repeat;
         <div class="suggestionList" id="suggestionsList"> &nbsp; </div>
       </div>	
 	  <label> Payment method </label>
-<input type="text" size="25" value="" name="ptype" class="greybox" onblur="fill();" class="" autocomplete="off" placeholder="cash or credit" style="width: 268px; height:30px;" required/>
+<input type="text" size="25" value="" name="ptype" class="greybox" onblur="fill();" class="" autocomplete="off" placeholder="cash, credit, zelle, or venmo" style="width: 268px; height:30px;" required/>
 <label> Customer payment ($)</label>
 <input type="text" size="25" value="<?php echo $_GET['total_amount']; ?>" name="cust_payment" id="cust_payment" onblur="fill();" placeholder="0.00" style="width: 268px; height:30px;"/>
 <button class="btn btn-success btn-block btn-large" style="width:267px;">Submit</button>

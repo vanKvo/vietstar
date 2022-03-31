@@ -45,8 +45,8 @@ $name=$_SESSION['SESS_NAME'];
 				<li class="active"><a href="#" class="nav-link text-white"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li>             
 				<li><a href="shipping/index.php" class="nav-link text-white"><i class="icon-truck icon-2x icon-2x"></i> Shipping</a></li>
 				<li><a href="inventory/products.php" class="nav-link text-white"><i class="icon-list-alt icon-2x"></i> Inventory</a></li>
-				<li><a href="#" class="nav-link text-white"><i class="icon-group icon-2x"></i>Customers</a></li>
-				<li><a href="#" class="nav-link text-white"><i class="icon-bar-chart icon-2x"></i> Sales Report</a></li>		
+				<li><a href="customers/customer.php" class="nav-link text-white"><i class="icon-group icon-2x"></i>Customers</a></li>
+				<li><a href="sales_report/salereport.php" class="nav-link text-white"><i class="icon-bar-chart icon-2x"></i> Sales Report</a></li>		
 			</ul>
 		</nav><!--/.navbar-primary-->
 		<div class="main-content">
@@ -54,8 +54,8 @@ $name=$_SESSION['SESS_NAME'];
 			<div id="maindashboard">             
 				<a href="shipping/index.php"><i class="icon-truck icon-2x"></i><br> Shipping</a>      
 				<a href="inventory/products.php"><i class="icon-list-alt icon-2x"></i><br> Inventory</a>       
-				<a href="#"><i class="icon-bar-chart icon-2x"></i><br> Sales Report</a>
-				<a href="#"><i class="icon-group icon-2x"></i><br> Customers</a>   
+				<a href="sales_report/salereport.php"><i class="icon-bar-chart icon-2x"></i><br> Sales Report</a>
+				<a href="customers/customer.php"><i class="icon-group icon-2x"></i><br> Customers</a>   
 				<a href="../logout.php"><i class="icon-off icon-2x"></i><br> Logout</a> 
 			</div><!--maindashboard--> 
 		</div>
@@ -67,7 +67,7 @@ $name=$_SESSION['SESS_NAME'];
 				<li class="active"><a href="#" class="nav-link text-white"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li>             
 				<li><a href="shipping/index.php" class="nav-link text-white"><i class="icon-truck icon-2x icon-2x"></i> Shipping</a></li>
 				<li><a href="inventory/products.php" class="nav-link text-white"><i class="icon-list-alt icon-2x"></i> Inventory</a></li>
-				<li><a href="#" class="nav-link text-white"><i class="icon-group icon-2x"></i>Customers</a></li>
+				<li><a href="customers/customer.php" class="nav-link text-white"><i class="icon-group icon-2x"></i>Customers</a></li>
 			</ul>
 		</nav><!--/.navbar-primary-->
 		<div class="main-content">
@@ -75,7 +75,7 @@ $name=$_SESSION['SESS_NAME'];
 			<div id="maindashboard">             
 				<a href="shipping/index.php"><i class="icon-truck icon-2x"></i><br> Shipping</a>      
 				<a href="inventory/products.php"><i class="icon-list-alt icon-2x"></i><br> Inventory</a>       
-				<a href="#"><i class="icon-group icon-2x"></i><br> Customers</a>   
+				<a href="customers/customer.php"><i class="icon-group icon-2x"></i><br> Customers</a>   
 				<a href="../logout.php"><i class="icon-off icon-2x"></i><br> Logout</a> 
 			</div><!--maindashboard-->
 		</div>

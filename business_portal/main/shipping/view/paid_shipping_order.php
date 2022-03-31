@@ -57,6 +57,10 @@ $customer = search_customer($search_input);
      vertical-align: middle;
    }
 
+   html {
+    scroll-padding-top: 2px; /* your overlapping header/div height */
+   }
+
    @media only screen and (max-width: 991px) {
   .navbar-primary {
     background: #505251;
@@ -111,10 +115,12 @@ $customer = search_customer($search_input);
                 <th>Receiver</th> 
                 <th>Receiver Address</th> 
                 <th>Receiver Phone No.</th> 
+                <th>Send To</th>
                 <th>Total weight (lbs.)</th>
                 <th>No. packages</th>
                 <th>Send Date</th>
                 <th>Pkg Description</th>
+                <!--<th>Note</th>-->
 							</tr>
 							<tr v-for="row in allData">
 								<td><a v-bind:href="'shipping_invoice.php?mst='+row.mst">{{ row.mst}}</a></td>
@@ -125,11 +131,13 @@ $customer = search_customer($search_input);
                 <td>{{ row.recipient_name}}</td>
                 <td>{{ row.recipient_address}}</td>
                 <td>{{ row.recipient_phone}}</td>
+                <td>{{ row.location}}</td>
                 <td>{{ row.total_weight}}</td>
                 <td>{{ row.num_of_packages}}</td> 
                 <td>{{ row.send_date}}</td>
                 <td>{{ row.package_desc}}</td>
-               <!-- <td><button type="button" name="edit" class="btn btn-primary btn-xs edit" @click="fetchShippingOrd(row.shipping_order_id)">Edit</button></td>-->
+                <!--<td>{{ row.note}}</td>-->
+                <!--<td><button type="button" name="edit" class="btn btn-primary btn-xs edit" @click="fetchShippingOrd(row.shipping_order_id)">Edit</button></td>-->
               
                 <!-- <td><button type="button" name="delete" class="btn btn-danger btn-xs delete" @click="deleteData(row.id)">Delete</button></td>-->
 							</tr>
@@ -140,7 +148,7 @@ $customer = search_customer($search_input);
 					</div>
 				</div><!--panel-body-->
 			</div>
-      <div v-if="myModel">
+      <!--<div v-if="myModel">
         <transition name="model">
         <div class="modal-mask">
           <div class="modal-wrapper">
@@ -155,29 +163,25 @@ $customer = search_customer($search_input);
                   <label>MST</label>
                   <input type="text" class="form-control" v-model="mst" disabled/>
                 </div>
-                <div class="form-group">
+               <div class="form-group">
                   <label>Sender</label>
-                  <input type="text" class="form-control" v-model="cust_name" />
+                  <input type="text" class="form-control" v-model="cust_name" disabled/>
                 </div>
                 <div class="form-group">
                   <label>Recipient</label>
-                  <input type="text" class="form-control" v-model="recipient_name" />
+                  <input type="text" class="form-control" v-model="recipient_name" disabled/>
                 </div>
                 <div class="form-group">
                   <label>Send Date</label>
                   <input type="date" class="form-control" v-model="send_date" />
-                </div>
+                </div> 
                 <div class="form-group">
                   <label>Departure Date</label>
-                  <input type="date" class="form-control" v-model="airport_date" />
+                  <input type="date" class="form-control" v-model="departure_date" />
                 </div>
                 <div class="form-group">
-                  <label>Total weight</label>
-                  <input type="text" class="form-control" v-model="total_wt" />
-                </div>
-                <div class="form-group">
-                  <label>Total payment</label>
-                  <input type="text" class="form-control" v-model="total_pmt" />
+                  <label>Note</label>
+                  <input type="text" class="form-control" v-model="note" />
                 </div>
                 <br />
                 <div align="center">
@@ -187,10 +191,10 @@ $customer = search_customer($search_input);
               </div>
               </div>
             </div>
-          </div><!--modal-wrapper-->
-        </div><!--modal-mask-->
+          </div>modal-wrapper-
+        </div>modal-mask
         </transition>
-      </div><!--myModel-->
+      </div>myModel-->
 		</div><!--searchApp-->
   <!--</div>-->
 	</div><!--main-content-->  
@@ -247,8 +251,8 @@ var application = new Vue({
         application.cust_name = response.data[0].cust_name;
         application.recipient_name = response.data[0].recipient_name;
         application.send_date = response.data[0].send_date;
-        application.total_wt = response.data[0].total_weight;
-        application.total_pmt = response.data[0].total_pmt;
+        application.departure_date = response.data[0].departure_date;
+        application.note = response.data[0].note;
         application.hiddenId = response.data[0].shipping_order_id;
         application.myModel = true;
         application.actionButton = 'Update';
@@ -256,8 +260,8 @@ var application = new Vue({
       });
     },
     submitData:function(){
-      if(application.mst = '')
-      {
+      /*if(application.mst = '')
+      {*/
         if(application.actionButton == 'Insert')
         {
         axios.post('action.php', {
@@ -276,8 +280,9 @@ var application = new Vue({
         {
         axios.post('../logic/action.php', {
           action:'update',
-          firstName : application.first_name,
-          lastName : application.last_name,
+          send_date : application.send_date,
+          departure_date : application.departure_date,
+          note : application.note,
           hiddenId : application.hiddenId
         }).then(function(response){
           application.myModel = false;
@@ -288,11 +293,11 @@ var application = new Vue({
           alert(response.data.message);
         });
         }
-      }
+      /*}
       else
       {
-        alert("Fill All Field");
-      }
+        alert("Fill All Field" + application.actionButton);
+      }*/
     } 
 	},
 	created:function(){
