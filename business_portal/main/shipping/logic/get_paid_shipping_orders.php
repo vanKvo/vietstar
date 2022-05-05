@@ -21,7 +21,7 @@ if($received_data->query != '')
 	AND (so.mst LIKE '%".$received_data->query."%' 
 	OR cust_name LIKE '%".$received_data->query."%' 
 	OR cust_phone LIKE '%".$received_data->query."%') 
-	ORDER BY so.mst DESC
+	ORDER BY so.shipping_order_id DESC
 	";
 }
 else
@@ -32,7 +32,7 @@ else
 	JOIN recipient r ON so.recipient_id = r.recipient_id
 	JOIN package p ON so.shipping_order_id = p.shipping_order_id
 	WHERE send_date BETWEEN '".$received_data->date1."' AND '".$received_data->date2."'
-	ORDER BY so.mst DESC
+	ORDER BY so.shipping_order_id DESC
 	";
 }
 

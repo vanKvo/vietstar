@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>VietStar Shipping Website</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <link href="./testcase.css" rel="stylesheet" type="text/css">
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet"> 
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <script src="js/datatables.js"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <nav class="navbar1  p-md-1 navbar-style navbar-topbar navbar-expand-lg  navbar-dark text-light">
+        <div class="container">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    
+                </li>
+               
+            </ul>
+            <h6 style="text-align: center;"> Shipping service to vietnam</h6>
+        </div>
+    </nav>
+    <!--Navbar starts here-->
+    
+    <div id="header" class="p-md-4">
+        
+        
+        <h1>VIETSTAR SHIPPING & TRAVEL</h1>
+    </div>
+
+    <!--Navigation Bar Starts-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-0 rounded sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="./Assets/redLogo.PNG" alt="Avatar Logo"
+                        style="width:40px;" class="rounded-pill">
+            </a>
+            <a class="navbar-brand" href="./index.html">
+                <img src="./Assets/logo/VIETSTAR.png" width="150" height="40" class="d-inline-block align-top" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Shipping
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="./shipping.php">Shipping Form</a></li>
+                            <li><a class="dropdown-item" href="./customFees.html">Pricing & Fees</a></li>
+                            <li><a class="dropdown-item" href="./trackPage.html">Track Shipment</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            About Us
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="./aboutus.html">Our Mission</a></li>
+                            <li><a class="dropdown-item" href="./faq.html">FAQ</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="./hotItems.html">Hot Items</a></li>
+                        </ul>
+                    </li> 
+                </ul>
+                <ul class="navbar-nav">
+                <li class="nav-item justify-content-end">
+                    <a class="nav-link" href="./contactUs.html">Contact us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!--Navigation Bar ends-->
+ <!-- Carousel start-->
+ <div id="carousel" class="carousel slide py-3" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="./Assets/customfees-unsplash.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h1 id="center-text">Pricing & Fees</h1>
+          <h3 > Shipping and Customs</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--Carousal ends-->
+    <!-- Begin Custom Fees Table -->
+<section>
+</br></br>
+    
+<h1 style="text-align:center">Shipping Fees</h1>
+</br>
+<p class="center-text"><b>**Attention!</b> Please check with the store for the latest updates on shipping fees.</p>
+
+</br></br>
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <ul class="price">
+            <li class="header" style="background-color:#FFCD00">Saigon</li>
+            <li class="grey" contentEditable="true">$ 2.99 / lbs</li>
+        </ul>
+    </div>
+
+    <div class="col-md-1">
+        
+    </div>
+
+    <div class="col-md-4">
+        <ul class="price">
+            <li class="header2" style="background-color:#DA251D">Tinh</li>
+            <li class="grey" contentEditable="true">$ 3.85 / lbs</li>
+        </ul>
+    </div>
+</div>
+
+<hr class="shipping_customs_line" style="height:3px; border-width:0; color:#282828; background-color:#282828">
+
+<h1 class="services">Customs Fees</h1>
+</br>
+<p class="center-text"><b>**Attention!</b> Please check with the store for the latest updates on customs fees or for items not listed.</p>
+<p class="center-text">For the store's contact information & location, please visit our <a href="./contactUs.html">Contact Us</a> page.</p>
+<p class="center-text">Thank You!</p>
+</br>
+
+<div class="custom-fees-table" style="overflow-x:auto;">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Items.." title="Type in a name">
+    <table class="table table-striped" id="myTable"> 
+        <thead>
+            <tr>
+                <th scope="col">Product Name</th>
+                <th scope="col">Unit</th>
+                <th scope="col">Customs Fee</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>IPhone 12 Pro Max / 12 Pro / 12 / Samsung (New Models)</td>
+                <td>Per Unit/Item</td>
+                <td>$150</td>
+            </tr>
+            <tr>
+                <td>IPhone 11 Pro Max / 11 Pro / 11 / XS Max (New/Old)</td>
+                <td>Per Unit/Item</td>
+                <td>$110 (New) | $90 (Old)</td>
+            </tr>
+            <tr>
+                <td>IPhone XS / X / XR</td>
+                <td>Per Unit/Item</td>
+                <td>$75</td>
+            </tr>
+            <tr>
+                <td>IPhone 8 / 7 (Or Older) / Samsung (Old Models)</td>
+                <td>Per Unit/Item</td>
+                <td>$65</td>
+            </tr>
+            <tr>
+                <td>IPad / IPad Pro / New Models (under $1,000)</td>
+                <td>Per Unit/Item</td>
+                <td>$65 | $90 (Pro) | $100 (New Models)</td>
+            </tr>
+            <tr>
+                <td>AirPods / AirPods Pro</td>
+                <td>Per Unit/Item</td>
+                <td>$15 | $18 (Pro)</td>
+            </tr>
+            <tr>
+                <td>Apple Watch</td>
+                <td>Per Unit/Item</td>
+                <td>$20</td>
+            </tr>
+            <tr>
+                <td>MacBook / MacBook Pro</td>
+                <td>Per Unit/Item</td>
+                <td>$90 | $110 (Pro)</td>
+            </tr>
+            <tr>
+                <td>Tablet (Under $100) / Tablet ($100 - $250)</td>
+                <td>Per Unit/Item</td>
+                <td>$15 (Under $100) | $25</td>
+            </tr>
+            <tr>
+                <td>Laptop (Under $800) (Dell, HP, Asus, Lenovo, etc.)</td>
+                <td>Per Unit/Item</td>
+                <td>$75 (New) | $65 (Old)</td>
+            </tr> 
+            <tr>
+                <td>Desktop Computers / Monitors</td>
+                <td>Per Unit/Item</td>
+                <td>$30</td>
+            </tr>
+            <tr>
+                <td>Hard Drives / Memory Cards / Flash Drives / etc.</td>
+                <td>Per Unit/Item</td>
+                <td>$15</td>
+            </tr>
+            <tr>
+                <td>Gaming Consoles (Wii, Xbox, PS4, etc.)</td>
+                <td>Per Unit/Item</td>
+                <td>$15</td>
+            </tr>
+            <tr>
+                <td>Camcorder / Camera</td>
+                <td>Per Unit/Item</td>
+                <td>$25 (Under $300) | $35 (Over $300)</td>
+            </tr>
+            <tr>
+                <td>Electronics (Other)</td>
+                <td>Per Unit/Item</td>
+                <td>$5</td>
+            </tr>
+            <tr>
+                <td>Hand Drills / Saws / Sewing Machines</td>
+                <td>Per Unit/Item</td>
+                <td>$10</td>
+            </tr>
+            <tr>
+                <td>Breast Pumps, Baby Bottle/Milk Warmers</td>
+                <td>Per Unit/Item</td>
+                <td>$5</td>
+            </tr>
+            <tr>
+                <td>Nursing/Medical Machines (Blood Sugar, Blood Pressure)</td>
+                <td>Per Unit/Item</td>
+                <td>$5</td>
+            </tr>
+            <tr>
+                <td>Watch & Timepieces</td>
+                <td>Per Unit/Item</td>
+                <td>5% of item value (Over $200) | $5 (Under $200)</td>
+            </tr>
+            <tr>
+                <td>Zippo Lighter (First 2 lighters are Free)</td>
+                <td>Per Unit/Item</td>
+                <td>$2</td>
+            </tr>
+            <tr>
+                <td>Sunglasses (First Pair are Free)</td>
+                <td>Per Unit/Item</td>
+                <td>7% of item value (Over $150) | $3 (Under $150)</td>
+            </tr>
+            <tr>
+                <td>Lipstick (Under $30) (First 2 Lipsticks are Free)</td>
+                <td>Per Unit/Item</td>
+                <td>$1 (Under $30) | $2 (Over $30)</td>
+            </tr>
+            <tr>
+                <td>Women's Cosmetics</td>
+                <td>Per lbs</td>
+                <td>$2/lbs</td>
+            </tr>
+            <tr>
+                <td>Nail Polish/Paint & Other Nail Accessories (First 10 Items are Free)</td>
+                <td>Per Bottle/Item</td>
+                <td>$0.50</td>
+            </tr>
+            <tr>
+                <td>Nail Machines, Massagers, Electric Razors</td>
+                <td>Per Unit/Item</td>
+                <td>$5</td>
+            </tr>
+            <tr>
+                <td>Lotion / Body Wash / Shampoo (First 6 Bottles are Free)</td>
+                <td>Per Bottle</td>
+                <td>$0.50</td>
+            </tr>
+            <tr>
+                <td>Brand Name/Generic Perfume</td>
+                <td>Per Bottle</td>
+                <td>$0.50</td>
+            </tr>
+            <tr>
+                <td>Handbags (First 2 bags are Free)</td>
+                <td>Per Unit/Item</td>
+                <td>$5 (Over $100) | $3 (Under $100)</td>
+            </tr>
+            <tr>
+                <td>Sandles / Shoes (First 2 Pairs are Free)</td>
+                <td>Per Pair</td>
+                <td>$3</td>
+            </tr>
+            <tr>
+                <td>Ensure & Entrust Milk (First 12 Cans are Free)</td>
+                <td>Per Can/Unit</td>
+                <td>$0.50</td>
+            </tr>
+            <tr>
+                <td>Vitamin Supplements (First 6 Bottles are Free)</td>
+                <td>Per Bottle</td>
+                <td>$1</td>
+            </tr>
+            <tr>
+                <td>Medicine / Vitamin Supplements</td>
+                <td>Per Bottle</td>
+                <td>$15 (Medicines) | $5</td>
+            </tr>
+            <tr>
+                <td>Golf Clubs</td>
+                <td>Per Club</td>
+                <td>$25 (New) | $15 (Old)</td>
+            </tr>
+            <tr>
+                <td>Tennis Racket / Fishing Rods</td>
+                <td>Per Unit/Item</td>
+                <td>$10 (Over $200) | $5 (Under $200)</td>
+            </tr>
+            <tr>
+                <td>Small Amplifiers / Small DVD Players / Bluetooth Speakers</td>
+                <td>Per Unit/Item</td>
+                <td>$10 (Over $100) | $5 (Under $100)</td>
+            </tr>
+            <tr>
+                <td>Large Amplifiers / Large DVD Players</td>
+                <td>Per Unit/Item</td>
+                <td>$25</td>
+            </tr>
+            <tr>
+                <td>Car Parts (Depends on Item)</td>
+                <td>Per Unit/Item & Per lbs</td>
+                <td>7% of item value</td>
+            </tr>
+            <tr>
+                <td>Alcohol</td>
+                <td>Per Bottle</td>
+                <td>10% of item value (Over $200) | $20 (Under $200)</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</br>
+    <p class="services"><a href="./customFees.html">Back to Top</a></p>
+</section>
+
+    <script>
+        function myFunction() {
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("myTable");
+          tr = table.getElementsByTagName("tr");
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }       
+          }
+        }
+    </script>
+
+
+
+
+    <!-- Footer -->
+
+ 
+    <div id="google-element"></div>
+        <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"
+            style="color: #474747;"></script>
+        <script>
+            function loadGoogleTranslate() {
+                new google.translate.TranslateElement("google_element");
+            }
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <Script>
+        $("#click-me").click(function () {
+            $("#show").toggle("slow", function () {
+            });
+        });
+
+        $(".x").click(function () {
+            $(".container").toggle("slow", function () {
+                // Animation complete.  
+            });
+        });
+    </Script>
+<footer class="footer-long">
+    <div class="mt-5 p-lg-5 text-black-50 text-center container-fluid">
+    <div class="row">
+            
+        <!--end of col-->
+        <div class="col-12 col-lg-3">
+            <img src="./Assets/logo/VIETSTAR.png" alt="logo">
+            <hr class="light">
+
+        </div>
+        <div class="col-12 col-md-9">
+            <div class="row no-gutters">
+                <div class="col-6 col-lg-3">
+                    <h6>Navigate</h6>
+                    <hr class="light">
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="./index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="./shipping.php">Shipping form</a>
+                        </li>
+                        <li>
+                            <a href="./customFees.html">Customs fees</a>
+                        </li>
+                        <li>
+                            <a href="./Assets/Reimbersement.pdf">Reimbursement Policy</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--end of col-->
+
+                <!--end of col-->
+                <div class="col-6 col-lg-3">
+                    <h6>Need help?</h6>
+                    <hr class="light">
+                    <ul class="list-unstyled">
+                        
+                        <li>
+                            <a href="./trackPage.html">Track Shipment</a>
+                        </li>
+                        <li>
+                            <a href="./faq.html">FAQ</a>
+                        </li>
+                        <li>
+                            <a href="./contactUs.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--end of col-->
+                <div class="col-6 col-lg-3">
+                    <h6>Company</h6>
+                    <hr class="light">
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="./aboutus.html">About company</a>
+                        </li>
+                        <li>
+                            <a href="./aboutus.html">History</a>
+                        </li>
+                        <li>
+                            <a href="./aboutus.html">Team</a>
+                        </li>
+                        <li>
+                            <a href="./contactUs.html">Location</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--end of col-->
+                <div class="col-6 col-lg-3">
+                    <ul class="list-unstyled social">
+                        <li>
+                            <a href="https://www.facebook.com/Vietstar-Shipping-Eden-Center-100594958786649/"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+                              </svg></a>
+                            
+                              <br>
+                        </li>
+                    </ul>  
+                    <hr class="light">
+                    <h6>Translate</h6>
+                    <hr class="light">
+                    <ul class="list-unstyled">
+                        <li>
+                            <div style="position: relative;">
+                                <div id="google_element" style="position: relative; opacity: 100; color: black;"></div>
+                               <!--<button id="translate" class="btn btn-secondary dropdown-toggle"
+                                    style="position: absolute; left: 0; top: 0; z-index: -1; color: black;"></button>--> 
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--end of row-->
+        </div>
+        <!--end of col-->
+        <hr class="my-4">
+    </div>
+   
+        <div class="row">
+            
+            <div id="Register" class="col-md-6">
+                <p>Copyright &copy; 2022 VIETSTAR SHIPPING</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <a href="./Assets/Reimbersement.pdf" class="text-light">Reimbursement Process</a>
+                <span class="text-muted mx-2">|</span>
+                <a href="./Assets/shippingpolicy.pdf" class="text-light">Shipping
+                    Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

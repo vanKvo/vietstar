@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>VietStar Shipping Website</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <link href="./testcase.css" rel="stylesheet" type="text/css">
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet"> 
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <script src="js/datatables.js"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <nav class="navbar1  p-md-1 navbar-style navbar-topbar navbar-expand-lg  navbar-dark text-light">
+        <div class="container">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    
+                </li>
+               
+            </ul>
+            <h6 style="text-align: center;"> Shipping service to Vietnam</h6>
+        </div>
+    </nav>
+    <!--Navbar starts here-->
+    
+    <div id="header" class="p-md-4">
+        
+        
+        <h1>VIETSTAR SHIPPING & TRAVEL</h1>
+    </div>
+
+    <!--Navigation Bar Starts-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-0 rounded sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="./Assets/redLogo.PNG" alt="Avatar Logo"
+                        style="width:40px;" class="rounded-pill">
+            </a>
+            <a class="navbar-brand" href="./index.html">
+                <img src="./Assets/logo/VIETSTAR.png" width="150" height="40" class="d-inline-block align-top" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Shipping
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="./shipping.php">Shipping Form</a></li>
+                            <li><a class="dropdown-item" href="./customFees.html">Pricing & Fees</a></li>
+                            <li><a class="dropdown-item" href="./trackPage.html">Track Shipment</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            About Us
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="./aboutus.html">Our Mission</a></li>
+                            <li><a class="dropdown-item" href="./faq.html">FAQ</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="./hotItems.html">Hot Items</a></li>
+                        </ul>
+                    </li> 
+                </ul>
+                <ul class="navbar-nav">
+                <li class="nav-item justify-content-end">
+                    <a class="nav-link" href="./contactUs.html">Contact us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!--Navigation Bar ends-->
+
+
+
+     <!--FAQ Accordion starts-->
+     <div class="w-md-75 w-lg-50 text-center mx-md-auto">
+        <h1>FAQ</h1>
+        <p>Search our FAQ for answers to anything you might ask.</p>
+      </div>
+     
+      <div class="container content-space-2 content-space-b-lg-3">
+        <div class="w-lg-75 mx-lg-auto">
+          <div class="d-grid gap-10">
+            <div class="d-grid gap-3">
+              <h2 class="colors">Basics</h2>
+  
+              <!-- Accordion -->
+              <div class="accordion accordion-flush accordion-lg" id="accordionFAQBasics">
+                <!-- Accordion Item -->
+                <div class="accordion-item">
+                  <div class="accordion-header" id="headingBasicsOne">
+                    <a class="accordion-button" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsOne" aria-expanded="true" aria-controls="collapseBasicsOne">
+                      How can I track my shipment?
+                    </a>
+                  </div>
+                  <div id="collapseBasicsOne" class="accordion-collapse collapse show" aria-labelledby="headingBasicsOne" data-bs-parent="#accordionFAQBasics">
+                    <div class="accordion-body">
+                      You can track your shipment using our website under shipping. Navigate to <a href="./trackPage.html">Track Shipment</a> menu which can take your to our tracking portal.
+                    </div>
+                  </div>
+                </div>
+                <!-- End Accordion Item -->
+  
+                <!-- Accordion Item -->
+                <div class="accordion-item">
+                  <div class="accordion-header" id="headingBasicsTwo">
+                    <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsTwo" aria-expanded="false" aria-controls="collapseBasicsTwo">
+                      What is the weight limit for my shipment?
+                    </a>
+                  </div>
+                  <div id="collapseBasicsTwo" class="accordion-collapse collapse" aria-labelledby="headingBasicsTwo" data-bs-parent="#accordionFAQBasics">
+                    <div class="accordion-body">
+                      The minimum weight for the packages has to be 5 lbs(pounds). There is no limit for the amount of boxes to send.
+                    </div>
+                  </div>
+                </div>
+                <!-- End Accordion Item -->
+  
+                <!-- Accordion Item -->
+                <div class="accordion-item">
+                  <div class="accordion-header" id="headingBasicsThree">
+                    <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsThree" aria-expanded="false" aria-controls="collapseBasicsThree">
+                      What items are we not allowed to send?
+                    </a>
+                  </div>
+                  <div id="collapseBasicsThree" class="accordion-collapse collapse" aria-labelledby="headingBasicsThree" data-bs-parent="#accordionFAQBasics">
+                    <div class="accordion-body">
+                        The list of items not allowed include:
+    
+                        <ul>
+                          <li>Batteries</li>
+                          <li>Weapons</li>
+                          <li>Knives</li>
+                          <li>Military Clothing</li>
+                          <li>Cigars</li>
+                          <li>Hazardous material</li>
+                          <li>Flamable material</li>
+                        </ul>
+                      </div>
+                  </div>
+                </div>
+                <!-- End Accordion Item -->
+  
+                <!-- Accordion Item -->
+                <div class="accordion-item">
+                  <div class="accordion-header" id="headingBasicsFour">
+                    <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsFour" aria-expanded="false" aria-controls="collapseBasicsFour">
+                      Who is in charge of delivering my packages?
+                    </a>
+                  </div>
+                  <div id="collapseBasicsFour" class="accordion-collapse collapse" aria-labelledby="headingBasicsFour" data-bs-parent="#accordionFAQBasics">
+                    <div class="accordion-body">
+                      Our Partner, Ems local service team will be handling the delivery service directly to the house.
+                    </div>
+                  </div>
+                </div>
+                <!-- End Accordion Item -->
+  
+                <!-- Accordion Item -->
+                <div class="accordion-item">
+                  <div class="accordion-header" id="headingBasicsFive">
+                    <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsFive" aria-expanded="false" aria-controls="collapseBasicsFive">
+                      My shipment is damaged, what can I do?
+                    </a>
+                  </div>
+                  <div id="collapseBasicsFive" class="accordion-collapse collapse" aria-labelledby="headingBasicsFive" data-bs-parent="#accordionFAQBasics">
+                    <div class="accordion-body">
+                      If you have a breakable items, we are not responsible of covering the damages unless the items are insured.
+                    </div>
+                  </div>
+                </div>
+                <!-- End Accordion Item -->
+  
+                <!-- Accordion Item -->
+                <div class="accordion-item">
+                  <div class="accordion-header" id="headingBasicsSix">
+                    <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseBasicsSix" aria-expanded="false" aria-controls="collapseBasicsSix">
+                      Do I have to pay taxes on the items sent?
+                    </a>
+                  </div>
+                  <div id="collapseBasicsSix" class="accordion-collapse collapse" aria-labelledby="headingBasicsSix" data-bs-parent="#accordionFAQBasics">
+                    <div class="accordion-body">
+                      Your items are subject to custom fees and duties.
+                    </div>
+                  </div>
+                </div>
+                <!-- End Accordion Item -->
+              </div>
+              <!-- End Accordion -->
+            </div>
+  
+            <div class="d-grid gap-3">
+              <h2 class="colors">Support</h2>
+  
+              <!-- Accordion -->
+              <div class="accordion accordion-flush accordion-lg" id="accordionFAQSupport">
+                <!-- Accordion Item -->
+                <div class="accordion-item">
+                  <div class="accordion-header" id="headingSupportOne">
+                    <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseSupportOne" aria-expanded="false" aria-controls="collapseSupportOne">
+                      I have lost my items, what do I do?
+                    </a>
+                  </div>
+                  <div id="collapseSupportOne" class="accordion-collapse collapse" aria-labelledby="headingSupportOne" data-bs-parent="#accordionFAQSupport">
+                    <div class="accordion-body">
+                      For lost items, you have to call the local branch located in Vietnam. We have the hotline phone number at:
+  
+                      <ul>
+                        <li>Local Branch: 0931-939-768</li>
+                        <li>File a lost item claim&gt; Get Support</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!-- End Accordion Item -->
+  
+                <!-- Accordion Item -->
+                <div class="accordion-item">
+                  <div class="accordion-header" id="headingSupportTwo">
+                    <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseSupportTwo" aria-expanded="false" aria-controls="collapseSupportTwo">
+                      Where can I get MST number?
+                    </a>
+                  </div>
+                  <div id="collapseSupportTwo" class="accordion-collapse collapse" aria-labelledby="headingSupportTwo" data-bs-parent="#accordionFAQSupport">
+                    <div class="accordion-body">
+                      The MST number should be at the top of your receipt that you get from the store. 
+                    </div>
+                  </div>
+                </div>
+                <!-- End Accordion Item -->
+  
+                <!-- Accordion Item -->
+                <div class="accordion-item">
+                  <div class="accordion-header" id="headingSupportThree">
+                    <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseSupportThree" aria-expanded="false" aria-controls="collapseSupportThree">
+                      What if I have a question that isn't answered here?
+                    </a>
+                  </div>
+                  <div id="collapseSupportThree" class="accordion-collapse collapse" aria-labelledby="headingSupportThree" data-bs-parent="#accordionFAQSupport">
+                    <div class="accordion-body">
+                      For anything we haven't covered feel free to reach out to our <a href="./contactUs.html">Contact Us</a> you can call our phone. We're here to help.
+                    </div>
+                  </div>
+                </div>
+                <!-- End Accordion Item -->
+  
+                <!-- Accordion Item -->
+                <div class="accordion-item">
+                  <div class="accordion-header" id="headingSupportFour">
+                    <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapseSupportFour" aria-expanded="false" aria-controls="collapseSupportFour">
+                      Would I get different MST number per every package?
+                    </a>
+                  </div>
+                  <div id="collapseSupportFour" class="accordion-collapse collapse" aria-labelledby="headingSupportFour" data-bs-parent="#accordionFAQSupport">
+                    <div class="accordion-body">
+                      No, you would get one MST per shipment you want to send.
+                    </div>
+                  </div>
+                </div>
+                <!-- End Accordion Item -->
+              </div>
+              <!-- End Accordion -->
+            </div>
+  
+            <div class="d-grid gap-3">
+              <h2 class="colors">Payments</h2>
+  
+              <!-- Accordion -->
+              <div class="accordion accordion-flush accordion-lg" id="accordionFAQPayments">
+                <!-- Accordion Item -->
+                <div class="accordion-item">
+                  <div class="accordion-header" id="headingPaymentsOne">
+                    <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapsePaymentsOne" aria-expanded="false" aria-controls="collapsePaymentsOne">
+                      What methods of payments are supported?
+                    </a>
+                  </div>
+                  <div id="collapsePaymentsOne" class="accordion-collapse collapse" aria-labelledby="headingPaymentsOne" data-bs-parent="#accordionFAQPayments">
+                    <div class="accordion-body">
+                      We accept credit cards, cash, check, zelle or venmo.
+                    </div>
+                  </div>
+                </div>
+                <!-- End Accordion Item -->
+  
+                <!-- Accordion Item -->
+                <div class="accordion-item">
+                  <div class="accordion-header" id="headingPaymentsTwo">
+                    <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapsePaymentsTwo" aria-expanded="false" aria-controls="collapsePaymentsTwo">
+                      How do I get a receipt for my purchase?
+                    </a>
+                  </div>
+                  <div id="collapsePaymentsTwo" class="accordion-collapse collapse" aria-labelledby="headingPaymentsTwo" data-bs-parent="#accordionFAQPayments">
+                    <div class="accordion-body">
+                      You'll receive your receipt in store after your payment has been confirmed.
+                    </div>
+                  </div>
+                </div>
+                <!-- End Accordion Item -->
+  
+                <!-- Accordion Item -->
+                <div class="accordion-item">
+                  <div class="accordion-header" id="headingPaymentsThree">
+                    <a class="accordion-button collapsed" role="button" data-bs-toggle="collapse" data-bs-target="#collapsePaymentsThree" aria-expanded="false" aria-controls="collapsePaymentsThree">
+                      How can I get a refund?
+                    </a>
+                  </div>
+                  <div id="collapsePaymentsThree" class="accordion-collapse collapse" aria-labelledby="headingPaymentsThree" data-bs-parent="#accordionFAQPayments">
+                    <div class="accordion-body">
+                      We don't give out refunds for shipments.
+                    </div>
+                  </div>
+                </div>
+                <!-- End Accordion Item -->
+              </div>
+              <!-- End Accordion -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--FAQ Accordion ends-->
+       
+      <div id="google-element"></div>
+      <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"
+          style="color: #474747;"></script>
+      <script>
+          function loadGoogleTranslate() {
+              new google.translate.TranslateElement("google_element");
+          }
+      </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <Script>
+      $("#click-me").click(function () {
+          $("#show").toggle("slow", function () {
+          });
+      });
+
+      $(".x").click(function () {
+          $(".container").toggle("slow", function () {
+              // Animation complete.  
+          });
+      });
+  </Script>
+<footer class="footer-long">
+  <div class="mt-5 p-lg-5 text-black-50 text-center container-fluid">
+  <div class="row">
+          
+      <!--end of col-->
+      <div class="col-12 col-lg-3">
+          <img src="./Assets/logo/VIETSTAR.png" alt="logo">
+          <hr class="light">
+
+      </div>
+      <div class="col-12 col-md-9">
+          <div class="row no-gutters">
+              <div class="col-6 col-lg-3">
+                  <h6>Navigate</h6>
+                  <hr class="light">
+                  <ul class="list-unstyled">
+                      <li>
+                          <a href="./index.html">Home</a>
+                      </li>
+                      <li>
+                          <a href="./shipping.php">Shipping form</a>
+                      </li>
+                      <li>
+                          <a href="./customFees.html">Customs fees</a>
+                      </li>
+                      <li>
+                          <a href="./Assets/Reimbersement.pdf">Reimbursement Policy</a>
+                      </li>
+                  </ul>
+              </div>
+              <!--end of col-->
+
+              <!--end of col-->
+              <div class="col-6 col-lg-3">
+                  <h6>Need help?</h6>
+                  <hr class="light">
+                  <ul class="list-unstyled">
+                      
+                      <li>
+                          <a href="./trackPage.html">Track Shipment</a>
+                      </li>
+                      <li>
+                          <a href="./faq.html">FAQ</a>
+                      </li>
+                      <li>
+                          <a href="./contactUs.html">Contact</a>
+                      </li>
+                  </ul>
+              </div>
+              <!--end of col-->
+              <div class="col-6 col-lg-3">
+                  <h6>Company</h6>
+                  <hr class="light">
+                  <ul class="list-unstyled">
+                      <li>
+                          <a href="./aboutus.html">About company</a>
+                      </li>
+                      <li>
+                          <a href="./aboutus.html">History</a>
+                      </li>
+                      <li>
+                          <a href="./aboutus.html">Team</a>
+                      </li>
+                      <li>
+                          <a href="./contactUs.html">Location</a>
+                      </li>
+                  </ul>
+              </div>
+              <!--end of col-->
+              <div class="col-6 col-lg-3">
+                  <ul class="list-unstyled social">
+                      <li>
+                          <a href="https://www.facebook.com/Vietstar-Shipping-Eden-Center-100594958786649/"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                              <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+                            </svg></a>
+                          
+                            <br>
+                      </li>
+                  </ul>  
+                  <hr class="light">
+                  <h6>Translate</h6>
+                  <hr class="light">
+                  <ul class="list-unstyled">
+                      <li>
+                          <div style="position: relative;">
+                              <div id="google_element" style="position: relative; opacity: 100; color: black;"></div>
+                             <!--<button id="translate" class="btn btn-secondary dropdown-toggle"
+                                  style="position: absolute; left: 0; top: 0; z-index: -1; color: black;"></button>--> 
+                          </div>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+          <!--end of row-->
+      </div>
+      <!--end of col-->
+      <hr class="my-4">
+  </div>
+ 
+      <div class="row">
+          
+          <div id="Register" class="col-md-6">
+              <p>Copyright &copy; 2022 VIETSTAR SHIPPING</p>
+          </div>
+          <div class="col-md-6 text-md-end">
+              <a href="./Assets/Reimbersement.pdf" class="text-light">Reimbursement Process</a>
+              <span class="text-muted mx-2">|</span>
+              <a href="./Assets/shippingpolicy.pdf" class="text-light">Shipping
+                  Policy</a>
+          </div>
+      </div>
+  </div>
+</footer>
+</body>
+</html>

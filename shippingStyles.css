@@ -1,0 +1,117 @@
+/* Shipping Form CSS Document */
+
+.logo_tl {
+    position: left;
+    margin: 20px;
+}
+
+.top_exit_button {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    margin: 20px;
+}
+
+.heading {
+    font-size: large;
+    text-align: center;
+}
+/*
+.container1-1 {
+    float: left;
+    border-right: 2px solid black;
+    padding: 50px;
+    margin-left: 100px;
+    width: 43.4%;
+}
+
+.container1-2 {
+    float: right;
+    border: 2px solid black;
+    padding: 50px;
+    margin-right: 100px;
+    width: 43.4%;
+}
+
+.container1-3 {
+    float: bottom;
+    top: 100px;
+    border-top: 3px solid black;
+    margin: 100px;
+}
+*/
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin-top: 0px;
+    margin-bottom: 24px;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+/*
+input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin-top: 0px;
+    margin-bottom: 24px;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+*/
+select {
+    width: 6%;
+    padding: 12px 20px;
+    margin-top: 0px;
+    margin-bottom: 24px;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#sender_border {
+    border-right: 3px solid black;
+}
+
+h3 {
+    text-align: center;
+}
+
+#item_desc_area {
+    border-top: 3px solid black;
+    margin-bottom: 100px;
+}
+
+#state {
+    width: 100%;
+    padding: 12px 20px;
+    margin-top: 0px;
+    margin-bottom: 24px; 
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#address_r1 {
+    margin-top: 0px;
+    margin-bottom: 22px; 
+}
+
+.form_buttons {
+    float: right;
+    margin-top: 8px;
+}
+
+.item_desc {
+    margin-top: 0px;
+    margin-bottom: 24px; 
+}
+
+#num_boxes {
+    margin-top: 8px;
+}

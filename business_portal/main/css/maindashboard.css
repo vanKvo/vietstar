@@ -164,10 +164,10 @@ a:hover {
   border-radius: 10px;
   margin: 10px;
   box-shadow: 0 5px 5px 2px #484848;
-  -moz-box-shadow: 0 5px 5px 2px #484848;
-  -webkit-box-shadow: 0 5px 5px 2px #484848;
+   /*-moz-box-shadow: 0 5px 5px 2px #484848;
+  -webkit-box-shadow: 0 5px 5px 2px #484848;*/
   border: 1px solid #000;
-  background: #fff;
+  background: #e49c0e;
   color: #222222;
   font-size: 20px;
   display: inline-block;
@@ -176,4 +176,10 @@ a:hover {
   text-align: center;
   margin-bottom: 5px;
 }
+
+#maindashboard a:hover {
+  color: #ffffffd0;
+   
+   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+ }
 /** End Dashboard **/
