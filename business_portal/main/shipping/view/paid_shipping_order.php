@@ -203,7 +203,7 @@ $customer = search_customer($search_input);
 
 <script>
 /** Toggle dashboard */
-  $(".toggle-navbar-btn").click(function(){
+$(".toggle-navbar-btn").click(function(){
   $(".navbar-primary").toggle();
 });
 
@@ -213,7 +213,7 @@ var application = new Vue({
 		allData:'',
 		query:'',
 		nodata:false,
-    date1: new Date((new Date()).valueOf() - 1000*60*60*720).toJSON().slice(0,10), // 30 days before the current date
+    date1: new Date((new Date()).valueOf() - 1000*60*60*72).toJSON().slice(0,10), // 3 days before the current date
     date2: new Date().toJSON().slice(0,10), // current date
     myModel: false,
     actionButton:'Insert',

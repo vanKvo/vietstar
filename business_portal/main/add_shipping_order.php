@@ -133,7 +133,7 @@ print_r($items);
 
 // Add new shipping ord to the db
 //if (valid_shipping_ord($mst)) {
-    echo "Add new shipping ord to the db";
+    echo "Get inside";
     add_shipping_order($mst, $send_dt, $airport_dt, $pkg_weight, $num_pkg, $pkg_val, $custom_fee, $insurance, $pmt_method, $user_id, $location, $cust_id, $recipient_id, $price_per_lb, $amount, $custom_fee_taxed_item, $sales_id); 
     $shipping_order = get_shipping_order($mst);
     $shipping_order_id =  $shipping_order[0]['shipping_order_id']; // Get shipping order id of an mst package

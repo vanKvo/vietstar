@@ -1,14 +1,15 @@
 <?php
 //echo 'connect.php file';
-  $dsn = 'mysql:host=localhost;dbname=vietstar_shipping';
-  $username = 'root';
-  $password = 'root';
+/*$dsn = 'mysql:host=localhost;dbname=vietstar_shipping';
+$username = 'root';
+$password = 'root';*/
 
-  /*$dsn = 'mysql:host=ls-02dbcb8e5a15402493c2737ee2f3e1cfcc129082.c16ul9zk1azh.us-east-1.rds.amazonaws.com;dbname=vietstar_shipping';
-  $username = 'dbmasteruser';
-  $password = '~P1>?0d3_}#KaAen&*w;$fh=$x4D$T-[';*/
+$dsn = 'mysql:host=ls-a9bf68472683f6dbeaf64fcf64ce7c81bf5fa6d6.cv9qb4mlh1sf.us-east-1.rds.amazonaws.com;dbname=vietstar_shipping';  
+$username = 'dbmasteruser';  
+$password = 'P2TtK([idwq^vMLbU=$dE4l,p0)$=3O=';
 
-  $con = mysqli_connect("localhost","root","root","vietstar_shipping"); // $con is used for php webpages in customers and sales_reports folder
+//$con = mysqli_connect("localhost","root","root","vietstar_shipping"); // $con is used for php webpages in customers and sales_reports folder  
+$con = mysqli_connect("ls-a9bf68472683f6dbeaf64fcf64ce7c81bf5fa6d6.cv9qb4mlh1sf.us-east-1.rds.amazonaws.com","dbmasteruser","P2TtK([idwq^vMLbU=".'$dE4l'.",p0)$=3O=","vietstar_shipping");
 
   /**  Create DB Connection **/
   try {
@@ -19,6 +20,4 @@
     $error .= $e->getMessage();
     exit();
 }
-
-  
 ?>	

@@ -108,7 +108,6 @@ $name=$_SESSION['SESS_NAME'];
 									<th>Taxed Items</th>
 									<th>Send To</th>
 									<th>Send Date</th>
-                                    <th>User</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -125,9 +124,7 @@ $name=$_SESSION['SESS_NAME'];
                                     $from_date = $_GET['from_date'];
                                     $to_date = $_GET['to_date'];
 
-                                    $query = "SELECT * FROM shipping_order so
-                                    JOIN user u ON so.user_id = u.id
-                                    WHERE send_date BETWEEN '$from_date' AND '$to_date' ";
+                                    $query = "SELECT * FROM shipping_order WHERE send_date BETWEEN '$from_date' AND '$to_date' ";
                                     $query_run = mysqli_query($con, $query);
 
                                     if(mysqli_num_rows($query_run) > 0)
@@ -149,7 +146,6 @@ $name=$_SESSION['SESS_NAME'];
 												<td><?= $row['custom_fee_taxed_item']; ?></td>
 												<td><?= $row['location']; ?></td>
 												<td><?= $row['send_date']; ?></td>
-                                                <td><?= $row['name']; ?></td>
                                             </tr>
                                             <?php
                                         }

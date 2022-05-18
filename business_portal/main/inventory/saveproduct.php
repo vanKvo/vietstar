@@ -5,13 +5,13 @@ include('function.php');
 require_once('auth.php');
 
 $v1 = strtoupper(trim($_POST['product_code']));
-$v2 = $_POST['product_category'];
-$v3 = $_POST['product_name'];
-$v4 = $_POST['unit_price'];
+$v2 = clean_input($_POST['product_category']);
+$v3 = clean_input($_POST['product_name']);
+$v4 = clean_input($_POST['unit_price']);
 //$v5 = $_POST['supplier'];
 if (!empty($v6)) $v6 = $_POST['qty_onhand'];
 else $v6 = 0;
-$v7 = $_POST['product_location'];
+$v7 = clean_input($_POST['product_location']);
 
 echo "$v1, $v2, $v3, $v4, $v6, $v7";
 

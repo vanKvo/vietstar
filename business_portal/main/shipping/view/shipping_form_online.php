@@ -440,7 +440,7 @@ $current_date = date();
             </div><!--col-6-->
             <div class="col-6">
               <input type="text" id="mst" name="mst" required>  
-              <!--<button type="button" id="next-mst-btn" class="custom-btn col-1"><i class="fa fa-check-circle"></i>Next MST</button>-->
+             <!-- <button type="button" id="next-mst-btn" class="custom-btn col-1"><i class="fa fa-check-circle"></i>Next MST</button>-->
             </div><!--col-6-->
           </div><!--row--> 
           <div >
@@ -471,7 +471,7 @@ function returnToPreviousPage() {
 function formValidation() {
 
   var mst = document.getElementById('mst');
-  var next_mst = document.getElementById('next_mst');
+  //var next_mst = document.getElementById('next_mst');
   var cust_phone = document.getElementById('cust_phone');
   var recipient_phone = document.getElementById('recipient_phone');
 
@@ -492,7 +492,7 @@ function formValidation() {
     return false;
   }
 
-  // checking if  mst is valid
+  // checking if valid mst 
   /*if ($('#mst').val()  !== $('#next_mst').text()) {
     alert("Xin vui lòng điền đúng số MST tiếp theo - Please enter a correct next MST: " + $('#next_mst').text());
     return false;
@@ -563,7 +563,7 @@ $(document).ready(function(){
                        $products = get_products();
                       for($i=0; $i < count($products); $i++){
                     ?>
-                + '   <option value="<?php echo $products[$i]['product_id'];?>" data-value='+"'"+'{"product_id":"<?php echo $products[$i]['product_id'];?>", "unit_price":"<?php echo $products[$i]['unit_price'];?>"}'+"'"+'><?php echo $products[$i]['product_name']; ?> | Quantity: <?php echo $products[$i]['qty_onhand']; ?> | Code: <?php echo $products[$i]['product_code']; ?>| Unit Price: <?php echo $products[$i]['unit_price']; ?></option>' 
+                + '   <option value="<?php echo clean_input($products[$i]['product_id']);?>" data-value='+"'"+'{"product_id":"<?php echo clean_input($products[$i]['product_id']);?>", "unit_price":"<?php echo $products[$i]['unit_price'];?>"}'+"'"+'><?php echo clean_input($products[$i]['product_name']); ?> | Quantity: <?php echo $products[$i]['qty_onhand']; ?> | Code: <?php echo $products[$i]['product_code']; ?>| Unit Price: <?php echo $products[$i]['unit_price']; ?></option>' 
                     <?php } ?>
                 + ' </select>'
                 + '</div>'
@@ -609,14 +609,14 @@ $('#cal-item-btn').on('click', function() {
     $('#total_wt').text(' ' + sum.toFixed(2) + ' lb(s)');
     $('#total_weight').val(sum.toFixed(2)); // Pass total weight to the server
      // get latest next mst
-     $.ajax({
+   /*  $.ajax({
         type: 'GET',
         url: '../logic/next_mst.php',
         dataType: 'json',
         success: function(response){
           $('#next_mst').html(response.next_mst);
         }
-    });
+    });*/
   });
 
 // Automatically calculate total payment
@@ -631,14 +631,14 @@ $('#cal-item-btn').on('click', function() {
     $('#total_pmt').text(' $' + sum.toFixed(2));
     $('#amount').val(sum.toFixed(2));
     // get latest next mst
-    $.ajax({
+   /* $.ajax({
         type: 'GET',
         url: '../logic/next_mst.php',
         dataType: 'json',
         success: function(response){
           $('#next_mst').html(response.next_mst);
         }
-    });
+    });*/
   });
 
 // Automatically calculate Shipping Fee 
@@ -660,7 +660,7 @@ $('#cal-item-btn').on('click', function() {
     $('#shipping_fee').val((wt*price_per_lb).toFixed(2));
   });
 
-  $("#next-mst-btn").on('click', function(){
+  /*$("#next-mst-btn").on('click', function(){
       $.ajax({
         type: 'GET',
         url: '../logic/next_mst.php',
@@ -670,7 +670,7 @@ $('#cal-item-btn').on('click', function() {
         }
       });
 
-  });
+  });*/
 
 });
  

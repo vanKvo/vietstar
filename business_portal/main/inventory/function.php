@@ -57,4 +57,11 @@ function formatMoney($number, $fractional=false) {
     return $number;
 }
 
+function clean_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
 ?>

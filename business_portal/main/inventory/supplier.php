@@ -84,9 +84,9 @@ $finalcode=createRandomPassword();
 	<thead>
 		<tr>
 			<th> Supplier </th>
-			<th> Contact Person Name</th>
 			<th> Address </th>
 			<th> Phone Number</th>
+			<th> Contact Person</th>
 			<th> Note</th>
 			<th width="120"> Action </th>
 		</tr>
@@ -101,9 +101,9 @@ $finalcode=createRandomPassword();
 			?>
 			<tr class="record">
 			<td><?php echo $row['suplier_name']; ?></td>
-			<td><?php echo $row['contact_person']; ?></td>
 			<td><?php echo $row['suplier_address']; ?></td>
 			<td><?php echo $row['suplier_contact']; ?></td>
+			<td><?php echo $row['contact_person']; ?></td>
 			<td><?php echo $row['note']; ?></td>
 			<td><a rel="facebox" href="editsupplier.php?id=<?php echo $row['suplier_id']; ?>"><button class="btn btn-warning btn-mini"><i class="icon-edit"></i> Edit </button></a>
 			<a href="#" id="<?php echo $row['suplier_id']; ?>" class="delbutton" title="Click To Delete"><button class="btn btn-danger btn-mini"><i class="icon-trash"></i> Delete</button></a></td>

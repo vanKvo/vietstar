@@ -106,7 +106,7 @@ if (!empty($sales_id)) { // Some instore items are purcahse
                 <span class="m-r-10"><i class="fa fa-fw fa-lg fa-address-card"></i> Address: 6799 Wilson Blvd #26, 
                 <br>Falls Church, VA 22044</span><br>
                 <span class="m-r-10"><i class="fa fa-fw fa-lg fa-phone"></i> Tel: (703) 536-8888</span><br>
-                <span class="m-r-10"><i class="fa fa-fw fa-lg fa-globe"></i>Website: vietstarshippingec.com</span><br>
+                <span class="m-r-10"><i class="fa fa-fw fa-lg fa-globe"></i>Website: www.vietstarshippingec.com</span><br>
               </p>
           </div>
         </div>

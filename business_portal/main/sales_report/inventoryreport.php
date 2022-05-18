@@ -54,7 +54,7 @@ $name=$_SESSION['SESS_NAME'];
 			<li><a href="../index.php" class="nav-link text-white"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li> 
             <li><a href="salereport.php" class="nav-link text-white"> Shipping Sales Report</a></li>    
             <li><a href="inventoryreport.php" class="nav-link text-white active"> Inventory Sales Report</a></li>  	
-		</ul>
+        </ul>
 	</nav><!--/.navbar-primary-->
 	<div id="print_content" class="main-content">
 	<div class="col-md-12">
@@ -103,7 +103,7 @@ $name=$_SESSION['SESS_NAME'];
                                     <th>Payment Method</th>
 									<th>MST</th>
 									<th>Sales Date</th>
-									<!--<th>Discount</th>-->
+									<th>User</th>
 
                                 </tr>
                             </thead>
@@ -118,7 +118,9 @@ $name=$_SESSION['SESS_NAME'];
                                     $from_date = $_GET['from_date'];
                                     $to_date = $_GET['to_date'];
 
-                                    $query = "SELECT * FROM sales WHERE sales_date BETWEEN '$from_date' AND '$to_date' ";
+                                    $query = "SELECT * FROM sales s 
+                                    JOIN user u ON s.user_id = u.id
+                                    WHERE sales_date BETWEEN '$from_date' AND '$to_date'";
                                     $query_run = mysqli_query($con, $query);
 
                                     if(mysqli_num_rows($query_run) > 0)
@@ -133,8 +135,7 @@ $name=$_SESSION['SESS_NAME'];
                                                 <td><?= $row['sales_payment_method']; ?></td>
                                                 <td><?= $row['mst']; ?></td>
 												<td><?= $row['sales_date']; ?></td>
-                                                <!--<td><?= $row['sales_discount']; ?></td>-->
-
+                                                <td><?= $row['name']; ?></td>
                                             </tr>
                                             <?php
                                         }

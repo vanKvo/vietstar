@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include('./connect.php');
+    include('business_portal/main/connect.php');
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
 ?>
@@ -63,7 +63,7 @@
            ':v15' =>$send_date,
            ':v16' =>$pkg1
            ));
-        //header("location: shipping.php");
+        header("location: shipping.php");
 
         if ($res) echo '<br>Success<br>';
         else echo '<br>Fail<br>';

@@ -1,4 +1,5 @@
 <?php
+  include('main/connect.php');
 	//Start session
 	session_start();
 	
@@ -7,13 +8,10 @@
 	
 	//Validation error flag
 	$errflag = false;
-	
-	//Connect to mysql server
-	$conn = mysqli_connect('localhost','root','root','vietstar_shipping');
-	if(!$conn) {
+
+	if(!$con) {
 		die('Failed to connect to server: ' . mysqli_error());
 	}
-	
 	
 	//Function to sanitize values received from the form. Prevents SQL injection
 	function clean($str) {
@@ -49,7 +47,7 @@
 	
 	//Create query
 	$qry="SELECT * FROM user WHERE username='$login' AND password='$hash'";
-	$result=mysqli_query($conn,$qry);
+	$result=mysqli_query($con,$qry);
 	
 	//Check whether the query was successful or not
 	if($result) {

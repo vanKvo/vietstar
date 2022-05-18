@@ -56,6 +56,17 @@ $(document).ready(function(){
  		});
   });
 
+	$("input").keypress(function(event) {
+		//let regex = new RegExp("[a-zA-Z0-9]");
+		let regex = /[a-zA-Z0-9+._ -]/; // regex for valid characters, ex: alphabets & numbers only
+		let charCode = event.charCode; // Unicode number of a character
+		let charStr = String.fromCharCode(charCode);
+		if (!regex.test(charStr)) { // test if user input matches the regexp
+			alert('Only letters, numbers and these special characters are allowed: . _ + -') ;		
+			event.preventDefault();
+
+		}
+	});
 
 });
 </script>
