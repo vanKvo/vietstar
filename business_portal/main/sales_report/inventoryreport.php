@@ -1,6 +1,5 @@
 <?php 
 include('../connect.php');
-include('../function.php');
 require_once('../../auth.php');
 $position=$_SESSION['SESS_POSITION'];
 $name=$_SESSION['SESS_NAME'];
@@ -19,30 +18,16 @@ $name=$_SESSION['SESS_NAME'];
 <link rel="stylesheet" type="text/css" href="../css/navbar.css">
 <script src="js/scripts.js"></script>
 <style>
-	table{
-		border-collapse: collapse;
-		width: 100%;
-		color: #588c7e;
-		font-family: monospace;
-		font-size : 16px;
-		text-align: left;
-	}
-	th{
-		background-color: #588c7e;
-		color:black;
-	}
-	tr:nth-child(even) {background-color: #f2f2f2
-	}
 	.sticky {
 		position: fixed;
-		top: 53 px;
+		top: 53px;
 	}
 
 	.top-sticky {
 		position: fixed;
 		top: 0;
 		width: 100%;
-}
+	}
 </style>	
 </head>
 <body>
@@ -95,7 +80,7 @@ $name=$_SESSION['SESS_NAME'];
 
                 <div class="card mt-4">
                     <div class="card-body">
-                        <table class="table table-borderd">
+                        <table class="table table-bordered table-striped table-hover bg-white">
                             <thead>
                                 <tr>
                                     <th>Invoice number</th>
@@ -113,7 +98,7 @@ $name=$_SESSION['SESS_NAME'];
                                 //$con = mysqli_connect("localhost","root","root", "vietstar_shipping");
                                 $total = 0; // total amount
 
-                                if(isset($_GET['from_date']) && isset($_GET['to_date']))
+                                if(isset($_GET['from_date']) && isset($_GET['to_date']) && $_GET['from_date'] != '' && $_GET['to_date'] != '')
                                 {
                                     $from_date = $_GET['from_date'];
                                     $to_date = $_GET['to_date'];

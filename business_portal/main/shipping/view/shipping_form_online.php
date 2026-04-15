@@ -6,10 +6,12 @@ require_once('../../../auth.php');
 $position=$_SESSION['SESS_POSITION'];
 $name=$_SESSION['SESS_NAME'];
 // Populate the form with existing customer data 
-$search_input = trim(filter_input(INPUT_GET, 'search_input', FILTER_SANITIZE_STRING));
+$search_input_raw = isset($_GET['search_input']) ? $_GET['search_input'] : '';
+$search_input = trim(htmlspecialchars($search_input_raw));
 $customer = search_customer($search_input);
 // Populate the form with new customer data or customer data submitted via Customer Portal
-$shipping_order_id = trim(filter_input(INPUT_POST, 'shipping_order_id', FILTER_SANITIZE_STRING));
+$shipping_order_id_raw = isset($_POST['shipping_order_id']) ? $_POST['shipping_order_id'] : '';
+$shipping_order_id = trim(htmlspecialchars($shipping_order_id_raw));
 $tmp = get_temp_shipping_order($shipping_order_id);
 ?>
 <!DOCTYPE html>

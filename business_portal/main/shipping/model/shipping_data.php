@@ -53,6 +53,9 @@ function get_customer($v1, $v2) {
 function search_customer($search_input) {
   //echo "<br> Start search_customer() <br> $search_input";
   global $db;
+  $phone_number = '';
+  $email = '';
+  
   if (valid_phone($search_input)) {
    // echo "<br>Do st with valid phone<br>";
     $phone_number = preg_replace('/[^0-9]/', '', $search_input); // keep numbers only
@@ -75,7 +78,7 @@ function search_customer($search_input) {
   $customer = $stmt->fetchAll();
   $count =  $stmt->rowCount(); // number of row may be equal or more than one because one customer can more than one recipients
   array_push($customer, $count); 
-  $stmt->closeCursor;
+  $stmt->closeCursor();
   //print_r($customer);
   //echo "End search_customer() <br>";
   return $customer;

@@ -5,7 +5,8 @@ require_once '../model/inventory_data.php';
 $position=$_SESSION['SESS_POSITION'];
 $name=$_SESSION['SESS_NAME'];
 
-$mst = trim(filter_input(INPUT_GET, 'mst', FILTER_SANITIZE_STRING));
+$mst_raw = isset($_GET['mst']) ? $_GET['mst'] : '';
+$mst = trim(htmlspecialchars($mst_raw));
 $shipord = get_shipping_invoice_info($mst);
 $sales_id = $shipord[0]['sales_id'];
 if (!empty($sales_id)) { // Some instore items are purcahse

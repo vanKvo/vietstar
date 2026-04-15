@@ -4,7 +4,8 @@ require_once '../model/shipping_data.php';
 require_once('../../../auth.php');
 $position=$_SESSION['SESS_POSITION'];
 $name=$_SESSION['SESS_NAME'];
-$search_input = trim(filter_input(INPUT_GET, 'search_input', FILTER_SANITIZE_STRING));
+$search_input_raw = isset($_GET['search_input']) ? $_GET['search_input'] : '';
+$search_input = trim(htmlspecialchars($search_input_raw));
 $customer = search_customer($search_input);
 //print_r($customer);
 ?>

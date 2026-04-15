@@ -17,34 +17,16 @@ $name=$_SESSION['SESS_NAME'];
 <link rel="stylesheet" type="text/css" href="../css/navbar.css">
 <script src="js/scripts.js"></script>
 <style>
-	table{
-		border-collapse: collapse;
-		width: 100%;
-		color: #588c7e;
-		font-family: monospace;
-		font-size : 16px;
-		text-align: left;
-	}
-	th{
-		background-color: #588c7e;
-		color:black;
-	}
-	tr:nth-child(even) {
-        background-color: #f2f2f2;
-	}
-    tr:nth-child(even) .total_row {
-        background-color: #202020;
-    }
 	.sticky {
 		position: fixed;
-		top: 53 px;
+		top: 53px;
 	}
 
 	.top-sticky {
 		position: fixed;
 		top: 0;
 		width: 100%;
-}
+	}
 </style>	
 </head>
 <body>
@@ -96,7 +78,7 @@ $name=$_SESSION['SESS_NAME'];
 
                 <div class="card mt-4">
                     <div class="card-body">
-                        <table class="table table-borderd">
+                        <table class="table table-bordered table-striped table-hover bg-white">
                             <thead>
                                 <tr>
                                     <th>MST</th>
@@ -119,7 +101,7 @@ $name=$_SESSION['SESS_NAME'];
                                 $total_weight = 0;
                                 $num_pkg = 0;
 
-                                if(isset($_GET['from_date']) && isset($_GET['to_date']))
+                                if(isset($_GET['from_date']) && isset($_GET['to_date']) && $_GET['from_date'] != '' && $_GET['to_date'] != '')
                                 {
                                     $from_date = $_GET['from_date'];
                                     $to_date = $_GET['to_date'];

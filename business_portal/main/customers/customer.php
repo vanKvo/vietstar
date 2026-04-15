@@ -21,31 +21,16 @@ error_reporting(E_ALL);
 <link rel="stylesheet" type="text/css" href="../css/navbar.css">
 <script src="js/scripts.js"></script>
 <style>
-    
-	table{
-		border-collapse: collapse;
-		width: 100%;
-		color: #588c7e;
-		font-family: monospace;
-		font-size : 15px;
-		text-align: left;
-	}
-	th{
-		background-color: #588c7e;
-		color:black;
-	}
-	tr:nth-child(even) {background-color: #f2f2f2
-	}
 	.sticky {
 		position: fixed;
-		top: 53 px;
+		top: 53px;
 	}
 
 	.top-sticky {
 		position: fixed;
 		top: 0;
 		width: 100%;
-}
+	}
 </style>	
 </head>
 <body>
@@ -85,7 +70,7 @@ error_reporting(E_ALL);
             <div class="col-md-12">
                 <div class="card mt-4">
                     <div class="card-body">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-striped table-hover bg-white">
                             <thead>
                                 <tr>
                                     <th>ID</th>
