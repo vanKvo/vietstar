@@ -2,16 +2,25 @@
 require_once '../../connect.php';
 require_once '../model/shipping_data.php';
 require_once '../model/inventory_data.php';
-$position = $_SESSION['SESS_POSITION'];
-$name = $_SESSION['SESS_NAME'];
+require_once('../../../auth.php');
+$position = $_SESSION['SESS_POSITION'] ?? '';
+$name = $_SESSION['SESS_NAME'] ?? '';
 
 $mst_raw = isset($_GET['mst']) ? $_GET['mst'] : '';
 $mst = trim(htmlspecialchars($mst_raw));
 $shipord = get_shipping_invoice_info($mst);
-$sales_id = $shipord[0]['sales_id'];
+
+if (empty($shipord)) {
+  echo "<div class='alert alert-danger'>Invoice not found (MST: " . htmlspecialchars($mst) . ").</div>";
+  exit;
+}
+
+$sales_id = (isset($shipord[0]['sales_id'])) ? $shipord[0]['sales_id'] : '';
+$sales_orders = [];
 if (!empty($sales_id)) { // Some instore items are purcahse
   $sales_orders = get_sales_order($sales_id);
 }
+$total_instore = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,19 +90,13 @@ if (!empty($sales_id)) { // Some instore items are purcahse
 
 <body>
   <?php include 'navfixed.php'; ?>
-  <nav class="navbar-primary sticky">
-    <a href="#" class="btn-expand-collapse"><span class="glyphicon glyphicon-menu-left"></span></a>
-    <div class="navbar-primary-menu" id="myTopnav">
-      <li><a class="d-flex align-items-center pl-3 text-white text-decoration-none"><span
-            class="fs-4">Shipping</span></a></li>
-      <li><a href="../../index.php" class="nav-link text-white"><i class="icon-dashboard icon-2x"></i> Dashboard </a>
-      </li>
-      <li><a href="../index.php" class="nav-link text-white">Search Customer</a></li>
-      <li><a href="shipping_form_online.php" class="nav-link text-white">Shipping Form</a></li>
-      <li><a href="online_shipping_order.php" class="nav-link text-white ">Online Shipping Orders</a></li>
-      <li><a href="paid_shipping_order.php" class="nav-link text-white active">Paid Shipping Orders</a></li>
-    </div>
-  </nav><!--/.navbar-primary-->
+  <?php
+  $shipping_base_url = '..';
+  $shipping_view_url = '.';
+  $dashboard_url = '../../index.php';
+  $active_tab = ''; // no specific tab highlighting needed for invoice
+  include '../sidebar.php';
+  ?>
   <div class="main-content mt-10">
     <div class="col-md-12">
       <div id="utility">
@@ -119,31 +122,33 @@ if (!empty($sales_id)) { // Some instore items are purcahse
         <!-- begin invoice-header -->
         <div class="invoice-header">
           <div class="invoice-from">
-            <small>Người Gửi - Sender</small>
+            <small>Sender</small>
             <address class="m-t-5 m-b-5">
-              <strong class="text-inverse"><?= $shipord[0]['cust_name'] ?></strong><br>
-              <?= $shipord[0]['cust_address'] ?><br>
-              <?= $shipord[0]['cust_city'] ?>, <?= $shipord[0]['cust_state'] ?>, <?= $shipord[0]['cust_zipcode'] ?><br>
-              Phone: <?= $shipord[0]['cust_phone'] ?><br>
+              <strong class="text-inverse"><?= htmlspecialchars($shipord[0]['cust_name'] ?? '') ?></strong><br>
+              <?= htmlspecialchars($shipord[0]['cust_address'] ?? '') ?><br>
+              <?= htmlspecialchars($shipord[0]['cust_city'] ?? '') ?>,
+              <?= htmlspecialchars($shipord[0]['cust_state'] ?? '') ?>,
+              <?= htmlspecialchars($shipord[0]['cust_zipcode'] ?? '') ?><br>
+              Phone: <?= htmlspecialchars($shipord[0]['cust_phone'] ?? '') ?><br>
             </address>
           </div>
           <div class="invoice-to">
-            <small>Người Nhận - Recipient</small>
+            <small>Recipient</small>
             <address class="m-t-5 m-b-5">
-              <strong class="text-inverse"><?= $shipord[0]['recipient_name'] ?></strong><br>
-              <?= $shipord[0]['recipient_address'] ?><br>
-              Phone: <?= $shipord[0]['recipient_phone'] ?><br>
+              <strong class="text-inverse"><?= htmlspecialchars($shipord[0]['recipient_name'] ?? '') ?></strong><br>
+              <?= htmlspecialchars($shipord[0]['recipient_address'] ?? '') ?><br>
+              Phone: <?= htmlspecialchars($shipord[0]['recipient_phone'] ?? '') ?><br>
             </address>
           </div>
           <div class="invoice-date">
-            <div class="date text-inverse m-t-5">MST-<?= $shipord[0]['mst'] ?></div>
+            <div class="date text-inverse m-t-5">MST-<?= htmlspecialchars($shipord[0]['mst'] ?? '') ?></div>
             <small>
-              Ngày Gửi - Send date (y/m/d): <?= $shipord[0]['send_date'] ?><br>
-              Cân Nặng - Total Weight: <?= $shipord[0]['total_weight'] ?> lb(s)<br>
-              Số Lượng Thùng - Total packages: <?= $shipord[0]['num_of_packages'] ?><br>
-              Trị Giá Hàng - Value: $<?= $shipord[0]['package_value'] ?><br>
-              Gửi Đến - Send To: <?= $shipord[0]['location'] ?><br>
-              Price/lb: $<?= $shipord[0]['price_per_lb'] ?><br>
+              Send date (y/m/d): <?= htmlspecialchars($shipord[0]['send_date'] ?? '') ?><br>
+              Total Weight: <?= htmlspecialchars($shipord[0]['total_weight'] ?? '') ?> lb(s)<br>
+              Total packages: <?= htmlspecialchars($shipord[0]['num_of_packages'] ?? '') ?><br>
+              Value: $<?= htmlspecialchars($shipord[0]['package_value'] ?? '') ?><br>
+              Send To: <?= htmlspecialchars($shipord[0]['location'] ?? '') ?><br>
+              Price/lb: $<?= htmlspecialchars($shipord[0]['price_per_lb'] ?? '') ?><br>
             </small>
 
           </div>
@@ -168,8 +173,8 @@ if (!empty($sales_id)) { // Some instore items are purcahse
               <?php for ($i = 0; $i < $shipord[0]['num_of_packages']; $i++) { ?>
                 <tr>
                   <td width="25%"><?= ($i + 1) ?></td>
-                  <td width="50%"><?= $shipord[$i]['package_desc'] ?></td>
-                  <td width="25%"><?= $shipord[$i]['package_weight'] ?></td>
+                  <td width="50%"><?= htmlspecialchars($shipord[$i]['package_desc'] ?? '') ?></td>
+                  <td width="25%"><?= htmlspecialchars($shipord[$i]['package_weight'] ?? '') ?></td>
                 </tr>
               <?php } ?>
             </tbody>
@@ -194,16 +199,15 @@ if (!empty($sales_id)) { // Some instore items are purcahse
               </thead>
               <tbody>
                 <?php
-                $total_instore = 0;
                 for ($j = 0; $j < count($sales_orders); $j++) {
                   $total_price = $sales_orders[$j]['qty_picked'] * $sales_orders[$j]['unit_price'];
                   $total_instore = $total_instore + $total_price;
                   ?>
                   <tr>
-                    <td width="25%"><?= $sales_orders[$j]['product_name'] ?></td>
-                    <td width="25%"><?= $sales_orders[$j]['qty_picked'] ?></td>
-                    <td width="25%"><?= $sales_orders[$j]['unit_price'] ?></td>
-                    <td width="25%"><?= $total_price ?></td>
+                    <td width="25%"><?= htmlspecialchars($sales_orders[$j]['product_name'] ?? '') ?></td>
+                    <td width="25%"><?= htmlspecialchars($sales_orders[$j]['qty_picked'] ?? '') ?></td>
+                    <td width="25%"><?= htmlspecialchars($sales_orders[$j]['unit_price'] ?? '') ?></td>
+                    <td width="25%"><?= htmlspecialchars($total_price) ?></td>
                   </tr>
                 <?php } ?>
               </tbody>
@@ -219,7 +223,7 @@ if (!empty($sales_id)) { // Some instore items are purcahse
           <div class="col-12">
             <div class="row">
               <div class="col-6">
-                <label>Phí Vận Chuyển - Shipping fee</label>
+                <label>Shipping fee</label>
               </div><!--col-6-->
               <div class="item col-6">
                 <?php
@@ -230,35 +234,35 @@ if (!empty($sales_id)) { // Some instore items are purcahse
             </div><!--row-->
             <div class="row">
               <div class="col-6">
-                <label>Phí Phụ Thu - Custom Fee</label>
+                <label>Custom Fee</label>
               </div><!--col-6-->
               <div class="item col-6">
-                <?= $shipord[0]['custom_fee']; ?>
+                <?= htmlspecialchars($shipord[0]['custom_fee'] ?? '0.00'); ?>
               </div><!--col-6-->
             </div><!--row-->
             <div class="row">
               <div class="item col-6">
-                <label>Hàng Mua ở Tiệm - Instore Item</label>
+                <label>Instore Item</label>
               </div><!--col-6-->
               <div class="item col-6">
-                <?= $total_instore; ?>
+                <?= htmlspecialchars($total_instore); ?>
               </div><!--col-6-->
             </div><!--row-->
             <div class="row">
               <div class="col-6">
-                <label>Bảo Hiểm - Insurance</label>
+                <label>Insurance</label>
               </div><!--col-6-->
               <div class="item col-6">
-                <?= $shipord[0]['insurance']; ?>
+                <?= htmlspecialchars($shipord[0]['insurance'] ?? '0.00'); ?>
               </div><!--col-6-->
             </div><!--row-->
             <hr>
             <div class="row">
               <div class="item col-6">
-                <label class="fw-bold invoice-price-left">Tổng Cộng - Total Amount</label>
+                <label class="fw-bold invoice-price-left">Total Amount</label>
               </div><!--col-6-->
               <div class="item col-6">
-                <strong><?= $shipord[0]['amount'] ?> </strong>
+                <strong><?= htmlspecialchars($shipord[0]['amount'] ?? '0.00') ?> </strong>
               </div><!--col-6-->
             </div><!--row-->
             <div class="row mt-3">
@@ -266,7 +270,7 @@ if (!empty($sales_id)) { // Some instore items are purcahse
                 <label class="fw-bold">Payment Method</label>
               </div><!--col-6-->
               <div class="col-6">
-                <strong><?= $shipord[0]['payment_method'] ?> </strong>
+                <strong><?= htmlspecialchars($shipord[0]['payment_method'] ?? '') ?> </strong>
               </div><!--col-6-->
             </div><!--row-->
           </div><!--col-12-->

@@ -59,12 +59,12 @@ function search_customer($search_input) {
   if (valid_phone($search_input)) {
    // echo "<br>Do st with valid phone<br>";
     $phone_number = preg_replace('/[^0-9]/', '', $search_input); // keep numbers only
-    //$email = '%';
-    //$cust_id = '%';
   } else if (valid_email($search_input)) {
     //echo "<br>Do st with valid email<br>";
     $email = strtolower(trim($search_input));
-    //$phone = '%';
+  } else {
+    // Neither valid phone nor email
+    return array(0, 0);
   }
   
   $query = 'SELECT * FROM customer c LEFT JOIN recipient r
@@ -338,7 +338,7 @@ function valid_customer($cust_name, $cust_phone) {
     echo '<br>Customer data exists in DB<br>'; 
     return false;
   }
-  $stmt-->closeCursor();
+  $stmt->closeCursor();
   echo "<br>End valid customer<br>"; 
 }
   

@@ -18,17 +18,13 @@
 
 <body>
   <?php include 'navfixed.php'; ?>
-  <nav class="navbar-primary">
-    <ul class="navbar-primary-menu">
-      <li><a class="d-flex align-items-center pl-3 text-white text-decoration-none"><span
-            class="fs-4">Shipping</span></a></li>
-      <li><a href="../index.php" class="nav-link text-white"><i class="icon-dashboard icon-2x"></i> Dashboard </a></li>
-      <li><a href="." class="nav-link text-white active"> Search Customer</a></li>
-      <li><a href="view/shipping_form_online.php" class="nav-link text-white"> Shipping Form</a></li>
-      <li><a href="view/online_shipping_order.php" class="nav-link text-white"> Online Shipping Orders</a></li>
-      <li><a href="view/paid_shipping_order.php" class="nav-link text-white"> Paid Shipping Orders</a></li>
-    </ul>
-  </nav><!--/.navbar-primary-->
+  <?php 
+  $shipping_base_url = '.';
+  $shipping_view_url = 'view';
+  $dashboard_url = '../index.php';
+  $active_tab = 'search_customer';
+  include 'sidebar.php'; 
+  ?>
   <div class="main-content">
     <div class="container center mt-0.5">
       <div class="row">

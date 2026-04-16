@@ -3,8 +3,8 @@ require_once '../../connect.php';
 require_once '../model/shipping_data.php';
 require_once '../model/inventory_data.php';
 require_once('../../../auth.php');
-$position = $_SESSION['SESS_POSITION'];
-$name = $_SESSION['SESS_NAME'];
+$position = $_SESSION['SESS_POSITION'] ?? '';
+$name = $_SESSION['SESS_NAME'] ?? '';
 // Populate the form with existing customer data 
 $search_input_raw = isset($_GET['search_input']) ? $_GET['search_input'] : '';
 $search_input = trim(htmlspecialchars($search_input_raw));
@@ -87,21 +87,13 @@ $tmp = get_temp_shipping_order($shipping_order_id);
 
 <body>
   <?php include 'navfixed.php'; ?>
-  <nav class="navbar-primary sticky">
-    <a href="#" class="btn-expand-collapse"><span class="glyphicon glyphicon-menu-left"></span></a>
-    <div class="navbar-primary-menu" id="myTopnav">
-      <li><a class="d-flex align-items-center pl-3 text-white text-decoration-none">
-          <h4>Shipping</h4>
-        </a></li>
-      <li><a href="../../index.php" class="nav-link text-white"><i class="icon-dashboard icon-2x"></i> Dashboard </a>
-      </li>
-      <li><a href="../index.php" class="nav-link text-white"> Search Customer</a></li>
-      <li><a href="shipping_form_online.php" class="nav-link text-white active"> Shipping Form</a>
-      </li>
-      <li><a href="online_shipping_order.php" class="nav-link text-white"> Online Shipping Orders</a></li>
-      <li><a href="paid_shipping_order.php" class="nav-link text-white"> Paid Shipping Orders</a></li>
-    </div>
-  </nav><!--/.navbar-primary-->
+  <?php
+  $shipping_base_url = '..';
+  $shipping_view_url = '.';
+  $dashboard_url = '../../index.php';
+  $active_tab = 'shipping_form';
+  include '../sidebar.php';
+  ?>
   <div class="main-content mt-10">
     <div class="content-header">
       Shipping Form
@@ -110,7 +102,8 @@ $tmp = get_temp_shipping_order($shipping_order_id);
       onSubmit="return formValidation();">
       <div class="container center">
         <div class="row">
-          <input type="hidden" id="cust_id" name="cust_id" value="<?= $customer[0]['customer_id'] ?> ">
+          <input type="hidden" id="cust_id" name="cust_id"
+            value="<?= (isset($customer[0]) && is_array($customer[0]) && isset($customer[0]['customer_id'])) ? htmlspecialchars($customer[0]['customer_id']) : '' ?> " />
           <div class="subheader"> Sender</div>
           <div class="col-6">
             <div class="item">
@@ -210,23 +203,27 @@ $tmp = get_temp_shipping_order($shipping_order_id);
           <div class="row">
             <div class="subheader"> Recipient</div>
             <div class="item" id="recipient_form">
+              <input type="hidden" name="recipient_id" value="" />
               <div class="item">
-                <label for="name">New Recipient<span class="required">*</span></label>
-                <input id="name" type="text" id="recipient_name" name="recipient_name"
-                  value="<?= $tmp[0]['recipient_name'] ?>" required />
+                <label for="recipient_name">New Recipient<span class="required">*</span></label>
+                <input type="text" id="recipient_name" name="recipient_name"
+                  value="<?= isset($tmp[0]['recipient_name']) ? htmlspecialchars($tmp[0]['recipient_name']) : '' ?>"
+                  required />
               </div>
               <div class="item">
-                <label for="address">Address<span class="required">*</span></label>
-                <input id="address" type="text" id="recipient_address" name="recipient_address"
-                  value="<?= $tmp[0]['recipient_address'] ?>" required />
+                <label for="recipient_address">Address<span class="required">*</span></label>
+                <input type="text" id="recipient_address" name="recipient_address"
+                  value="<?= isset($tmp[0]['recipient_address']) ? htmlspecialchars($tmp[0]['recipient_address']) : '' ?>"
+                  required />
               </div>
               <div class="item">
-                <label for="phone">Phone (10 digits only)<span class="required">*</span></label>
+                <label for="recipient_phone">Phone (10 digits only)<span class="required">*</span></label>
                 <input id="recipient_phone" type="text" name="recipient_phone" placeholder="XXX-XXX-XXXX"
-                  value="<?= $tmp[0]['recipient_phone'] ?>" required />
+                  value="<?= isset($tmp[0]['recipient_phone']) ? htmlspecialchars($tmp[0]['recipient_phone']) : '' ?>"
+                  required />
               </div>
               <div class="item">
-                <label for="email">Email (optional)</label>
+                <label for="recipient_email">Email (optional)</label>
                 <input id="recipient_email" type="text" name="recipient_email" />
               </div>
             </div><!--item-->
@@ -237,33 +234,38 @@ $tmp = get_temp_shipping_order($shipping_order_id);
             <div class="item">
               <label for="recipient">Select Recipient<span>*</span></label>
               <select name="recipient_id" id="recipient" class="chzn-select" data-placeholder="Choose a recipient...">
-                <?php for ($i = 0; $i < count($customer) - 1; $i++) { ?>
-                  <!--count($customer)-1: the number of recipients-->
-                  <option value="<?= $customer[$i]['recipient_id'] ?>"><?= $customer[$i]['recipient_name'] ?> -
-                    <?= $customer[$i]['recipient_phone'] ?> - <?= $customer[$i]['recipient_address'] ?>
-                  </option>
-                <?php } ?>
+                <option value=""></option>
+                <?php for ($i = 0; $i < count($customer) - 1; $i++) {
+                  if (!empty($customer[$i]['recipient_id']) && $customer[$i]['customer_id'] == $customer[0]['customer_id']) {
+                    ?>
+                    <!--count($customer)-1: the number of recipients-->
+                    <option value="<?= $customer[$i]['recipient_id'] ?>">
+                      <?= htmlspecialchars($customer[$i]['recipient_name']) ?> -
+                      <?= htmlspecialchars($customer[$i]['recipient_phone']) ?> -
+                      <?= htmlspecialchars($customer[$i]['recipient_address']) ?>
+                    </option>
+                  <?php }
+                } ?>
               </select>
             </div>
             <button type="button" class="custom-btn add-recipient-btn col-2">Add New Recipient</button>
             <div class="item hidden" id="recipient_form">
               <div class="item">
-                <label for="name">New Recipient</label>
-                <input id="name" type="text" id="recipient_name" name="recipient_name" />
+                <label for="recipient_name">New Recipient</label>
+                <input type="text" id="recipient_name" name="recipient_name" />
               </div>
               <div class="item">
-                <label for="address">Address</label>
-                <input id="address" type="text" id="recipient_address" name="recipient_address" />
+                <label for="recipient_address">Address</label>
+                <input type="text" id="recipient_address" name="recipient_address" />
               </div>
               <div class="item">
-                <label for="phone">Phone (10 digits only)</label>
-                <input id="recipient_phone" type="text" name="recipient_phone" placeholder="XXX-XXX-XXXX" />
+                <label for="recipient_phone_new">Phone (10 digits only)</label>
+                <input id="recipient_phone_new" type="text" name="recipient_phone" placeholder="XXX-XXX-XXXX" />
               </div>
               <div class="item">
-                <label for="email">Email (optional)</label>
+                <label for="recipient_email">Email (optional)</label>
                 <input id="recipient_email" type="text" name="recipient_email" />
               </div>
-              <input type="hidden" id="cust_id" name="cust_id" value="<?= $customer[0]['customer_id'] ?> ">
             </div><!--item-->
           </div><!--row-->
         <?php } ?>
@@ -299,9 +301,9 @@ $tmp = get_temp_shipping_order($shipping_order_id);
               </div><!--col-4-->
               <div class="col-4">
                 <label>Send Date<span class="required">*</span></label>
-                <input type="date" name="send_dt" required />
+                <input type="date" name="send_dt" min="<?= date('Y-m-d') ?>" required />
                 <label>Departure Date:</label>
-                <input type="date" name="airport_dt">
+                <input type="date" name="airport_dt" min="<?= date('Y-m-d') ?>">
               </div><!--col-4-->
               <div class="col-4">
                 <div class="item">
@@ -320,7 +322,7 @@ $tmp = get_temp_shipping_order($shipping_order_id);
                   <label style="font-weight: bold">Pkg #<?= ($i + 1) ?> Description of Goods</label>
                   <textarea class="form-control" name="pkg_desc<?= $i ?>" id="exampleFormControlTextarea1" rows="3"
                     required><?= $tmp[$i]['package_desc'] ?></textarea>
-                  <label>Weight (lbs)</label>
+                  <label>Weight (lbs)<span class="required">*</span></label>
                   <input id="pkg_wt<?= $i ?>" type="text" id="pkg_wt<?= $i ?>" name="pkg_wt<?= $i ?>" class="pkg_weight"
                     required />
                   <hr>
@@ -442,11 +444,11 @@ $tmp = get_temp_shipping_order($shipping_order_id);
               $shipord = get_last_shipord();
               $mst = $shipord['mst'];
               ?>
-              <label class="fs-4">MST (next MST: <?= $mst + 1 ?>)</label>
+              <label class="fw-bold" style="float: left;">Shipping Order ID: <?= $mst + 1 ?></label>
               <input type="hidden" id="next_mst" name="next_mst" value="<?= $mst + 1 ?>">
             </div><!--col-6-->
             <div class="col-6">
-              <input type="text" id="mst" name="mst" value="<?= $mst + 1 ?>" required>
+              <input type="hidden" id="mst" name="mst" value="<?= $mst + 1 ?>" required>
             </div><!--col-6-->
           </div><!--row-->
           <div>
@@ -489,13 +491,44 @@ $tmp = get_temp_shipping_order($shipping_order_id);
 
     // Assign 10-digit unformatted values back before submit
     cust_phone.value = cust_phone_raw;
-    if (recipient_phone) {
-      recipient_phone.value = recipient_phone_raw;
+
+    // Check recipient logic
+    var isNewCustomer = <?= ($customer[0] == 0) ? 'true' : 'false' ?>;
+    if (!isNewCustomer) {
+      // Existing customer: ensure they select a recipient OR enter a new one
+      var selectedRecipient = document.getElementById('recipient').value;
+      var isAddingNew = !document.getElementById('recipient_form').classList.contains('hidden');
+
+      var recName = document.getElementById('recipient_name').value;
+
+      if (!selectedRecipient && (!isAddingNew || !recName)) {
+        alert("Please select a recipient, or click 'Add New Recipient' to fill out the information.");
+        return false;
+      }
+
+      if (isAddingNew && recName) {
+        var recAddress = document.getElementById('recipient_address').value;
+        var rPhone = document.getElementById('recipient_phone_new');
+        if (!recAddress) {
+          alert('Address is required for new recipient.');
+          return false;
+        }
+        if (!rPhone.value || rPhone.value.replace(/-/g, '').length !== 10) {
+          alert("Phone number for recipient must be 10 characters long.");
+          rPhone.focus();
+          return false;
+        }
+        rPhone.value = rPhone.value.replace(/-/g, '');
+      }
+    } else {
+      if (recipient_phone) {
+        recipient_phone.value = recipient_phone_raw;
+      }
     }
 
     // checking if valid mst 
     if ($('#mst').val() !== $('#next_mst').val()) {
-      alert("Please enter a correct next MST: " + $('#next_mst').val());
+      alert("Please enter a correct shipping order id (MST): " + $('#next_mst').val());
       return false;
     }
     return true;

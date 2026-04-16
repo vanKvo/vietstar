@@ -3,8 +3,8 @@ require_once '../connect.php';
 require_once 'model/shipping_data.php';
 require_once 'model/inventory_data.php';
 require_once('../../auth.php');
-$position = $_SESSION['SESS_POSITION'];
-$name = $_SESSION['SESS_NAME'];
+$position = $_SESSION['SESS_POSITION'] ?? '';
+$name = $_SESSION['SESS_NAME'] ?? '';
 
 /** Get action */
 $action_raw = isset($_POST['action']) ? $_POST['action'] : '';
@@ -28,9 +28,12 @@ switch ($action) {
 		header("location: view/shipping_form_online.php");
 		break;
 	case "search_customer":
+		//echo "<br>search input: $search_input <br>";
 		if (isset($search_input)) {
+			//echo"isset($search_input)";
 			$customer = search_customer($search_input);
-			if ($customer[1] >= 1) {// the number of result row customer[1] may be equal or more than one because one customer can have more than one recipient
+			$count = end($customer);
+			if ($count >= 1) {// the number of result row customer[1] may be equal or more than one because one customer can have more than one recipient
 				header("location: view/shipping_form_online.php?search_input=$search_input");
 			} else {
 				include 'search_form.php';

@@ -2,8 +2,8 @@
 require_once '../../connect.php';
 require_once '../model/shipping_data.php';
 require_once('../../../auth.php');
-$position = $_SESSION['SESS_POSITION'];
-$name = $_SESSION['SESS_NAME'];
+$position = $_SESSION['SESS_POSITION'] ?? '';
+$name = $_SESSION['SESS_NAME'] ?? '';
 $search_input_raw = isset($_GET['search_input']) ? $_GET['search_input'] : '';
 $search_input = trim(htmlspecialchars($search_input_raw));
 $customer = search_customer($search_input);
@@ -74,19 +74,13 @@ $customer = search_customer($search_input);
 
 <body>
   <?php include 'navfixed.php'; ?>
-  <nav class="navbar-primary sticky">
-    <a href="#" class="btn-expand-collapse"><span class="glyphicon glyphicon-menu-left"></span></a>
-    <div class="navbar-primary-menu" id="myTopnav">
-      <li><a class="d-flex align-items-center pl-3 text-white text-decoration-none"><span
-            class="fs-4">Shipping</span></a></li>
-      <li><a href="../../index.php" class="nav-link text-white"><i class="icon-dashboard icon-2x"></i> Dashboard </a>
-      </li>
-      <li><a href="../index.php" class="nav-link text-white"> Search Customer</a></li>
-      <li><a href="shipping_form_online.php" class="nav-link text-white"> Shipping Form</a></li>
-      <li><a href="online_shipping_order.php" class="nav-link text-white "> Online Shipping Orders</a></li>
-      <li><a href="paid_shipping_order.php" class="nav-link text-white active"> Paid Shipping Orders</a></li>
-    </div>
-  </nav><!--/.navbar-primary-->
+  <?php 
+  $shipping_base_url = '..';
+  $shipping_view_url = '.';
+  $dashboard_url = '../../index.php';
+  $active_tab = 'paid_shipping_order';
+  include '../sidebar.php'; 
+  ?>
   <div class="main-content mt-10">
     <div class="container" id="searchApp">
       <br />

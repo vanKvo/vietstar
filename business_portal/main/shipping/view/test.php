@@ -12,6 +12,6 @@ require_once '../model/inventory_data.php';
 //add_sales_order('2','64','214');
 //$sales_orders = get_sales_order('224');
 //print_r($sales_orders);
-add_sales_order('10','59', '9', '100', '14006'); // add a new sales order
+add_sales_order('10', '59', '9', '100', '14006'); // add a new sales order
 
 ?>
