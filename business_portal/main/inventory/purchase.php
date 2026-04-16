@@ -2,8 +2,8 @@
 include('../connect.php');
 include('function.php');
 require_once('auth.php');
-$position=$_SESSION['SESS_POSITION'];
-$name=$_SESSION['SESS_NAME'];
+$position = $_SESSION['SESS_POSITION'] ?? '';
+$name = $_SESSION['SESS_NAME'] ?? '';
 $finalcode=createRandomPassword();
 ?>
 <html>
@@ -158,7 +158,7 @@ $(document).ready(function() {
 		}
 		return false;
 	});
-
+});
 </script>
 <?php include('footer.php');?>
 

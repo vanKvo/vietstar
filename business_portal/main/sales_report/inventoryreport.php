@@ -68,8 +68,8 @@ $name=$_SESSION['SESS_NAME'];
                                  <div class="col-md-4">
                                     <div class="form-group">
                                       <button type="submit" class="btn btn-primary">Filter</button>
-                                      <!--<button onclick="window.print()" class= "btn btn-primary">Print</button>-->
-                                      <a href="javascript:Clickheretoprint()" class="btn btn-primary"><i class="fa fa-print t-plus-1 fa-fw fa-lg"></i> Print</a>
+                                      <a href="inventoryreport.php" class="btn btn-secondary">Reset</a>
+                                      <a href="javascript:Clickheretoprint()" class="btn btn-info"><i class="fa fa-print t-plus-1 fa-fw fa-lg"></i> Print</a>
                                     </div>
                                 </div>
                             </div>
@@ -100,11 +100,15 @@ $name=$_SESSION['SESS_NAME'];
 
                                 if(isset($_GET['from_date']) && isset($_GET['to_date']) && $_GET['from_date'] != '' && $_GET['to_date'] != '')
                                 {
-                                    $from_date = $_GET['from_date'];
-                                    $to_date = $_GET['to_date'];
-
-                                    $query = "SELECT * FROM sales WHERE sales_date BETWEEN '$from_date' AND '$to_date' ";
-                                    $query_run = mysqli_query($con, $query);
+                                    $from_date = mysqli_real_escape_string($con, $_GET['from_date']);
+                                    $to_date = mysqli_real_escape_string($con, $_GET['to_date']);
+                                    $query = "SELECT * FROM sales WHERE DATE(sales_date) >= '$from_date' AND DATE(sales_date) <= '$to_date' ";
+                                }
+                                else
+                                {
+                                    $query = "SELECT * FROM sales ORDER BY sales_date DESC LIMIT 100";
+                                }
+                                $query_run = mysqli_query($con, $query);
 
                                     if(mysqli_num_rows($query_run) > 0)
                                     {
@@ -124,12 +128,14 @@ $name=$_SESSION['SESS_NAME'];
                                             <?php
                                         }
                                     }
+                                    else if (!$query_run)
+                                    {
+                                        echo "Query Failed: " . mysqli_error($con);
+                                    }
                                     else
                                     {
                                         echo "No Record Found";
                                     }
-
-                                }
                             ?>
                                             <tr>
                                                 <td>TOTAL</td>

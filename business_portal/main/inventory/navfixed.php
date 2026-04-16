@@ -1,3 +1,4 @@
+<style>.top-sticky { z-index: 1050 !important; }</style>
 <nav class="navbar navbar-inverse navbar-global navbar-fixed-top top-sticky">
 	<div class="container-fluid">
 		<div class="navbar-header">

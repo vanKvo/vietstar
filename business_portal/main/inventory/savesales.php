@@ -5,19 +5,25 @@ $position=$_SESSION['SESS_POSITION'];
 $name=$_SESSION['SESS_NAME'];
 
 include('../connect.php');
-$v1 = $_POST['invoice'];
-$v2 = strtolower($_POST['ptype']);
-if (empty($_POST['cname'])) $v3 = 'NA';
-else $v3 = $_POST['cname'];
+$v1 = htmlspecialchars($_POST['invoice'] ?? '');
+$v2 = strtolower(htmlspecialchars($_POST['ptype'] ?? ''));
+if (empty($_POST['cname'])) {
+    $v3 = 'NA';
+} else {
+    $v3 = htmlspecialchars($_POST['cname']);
+}
 
-$v4 = $_POST['cust_payment'];
+$v4 = (float)($_POST['cust_payment'] ?? 0);
 
-if (empty($_POST['discount'])) $v5 = 0;
-else $v5 = $_POST['discount'];
-$v6 = $_POST['date']; // '2022-11-21'; Mysql format date(y-m-d) in PHP
-$v7 = $_POST['amount'];
+if (empty($_POST['discount'])) {
+    $v5 = 0;
+} else {
+    $v5 = (float)$_POST['discount'];
+}
+$v6 = htmlspecialchars($_POST['date'] ?? date('Y-m-d'));
+$v7 = (float)($_POST['amount'] ?? 0);
 $v8 = '0';
-$v9 = $user_id; 
+$v9 = (int)$user_id; 
 
 
 echo "Invoice: $v1 | Ptype: $v2 | Cname: $v3 | CPayment: $v4 |Total payment: $v5 |Sales Date: $v6 | Amt: $v7 |MST: $v8 | UserId: $v9  ";

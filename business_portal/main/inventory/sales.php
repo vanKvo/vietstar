@@ -10,7 +10,7 @@ function getLastSalesinvoice()
 	$result = $db->prepare("SELECT * FROM sales WHERE sales_id = (SELECT MAX(sales_id) FROM sales)");
 	$res = $result->execute();
 	$row = $result->fetch();
-	$invoice_no = $row['invoice_number'];
+	$invoice_no = isset($row['invoice_number']) ? $row['invoice_number'] : 0;
 	return $invoice_no;
 }
 
@@ -22,8 +22,8 @@ function createRandomPassword()
 }
 
 
-$position = $_SESSION['SESS_POSITION'];
-$name = $_SESSION['SESS_NAME'];
+$position = $_SESSION['SESS_POSITION'] ?? '';
+$name = $_SESSION['SESS_NAME'] ?? '';
 $finalcode = createRandomPassword();
 ?>
 <html>
@@ -129,7 +129,6 @@ $finalcode = createRandomPassword();
 						<?php
 						include('../connect.php');
 						$result = $db->prepare("SELECT * FROM products");
-						$result->bindParam(':invoice_id', $res);
 						$result->execute();
 						for ($i = 0; $row = $result->fetch(); $i++) {
 							?>
@@ -165,7 +164,7 @@ $finalcode = createRandomPassword();
 					<tbody>
 
 						<?php
-						$id = $_GET['invoice'];
+						$id = $_GET['invoice'] ?? '';
 						include('../connect.php');
 						$query = "SELECT * FROM sales_order so JOIN products p 
 				ON so.product_id = p.product_id
@@ -194,7 +193,7 @@ $finalcode = createRandomPassword();
 									?>
 								</td>
 								<td width="90"><a
-										href="delete.php?sales_order_id=<?php echo $row['sales_order_id']; ?>&invoice=<?php echo $_GET['invoice']; ?>&pmt_method=<?php echo $_GET['pmt_method']; ?>&qty_picked=<?php echo $row['qty_picked']; ?>&product_id=<?php echo $row['product_id']; ?>"><button
+										href="delete.php?sales_order_id=<?php echo $row['sales_order_id']; ?>&invoice=<?php echo htmlspecialchars($_GET['invoice'] ?? ''); ?>&pmt_method=<?php echo htmlspecialchars($_GET['pmt_method'] ?? ''); ?>&qty_picked=<?php echo $row['qty_picked']; ?>&product_id=<?php echo $row['product_id']; ?>"><button
 											class="btn btn-mini btn-warning"><i class="icon icon-remove"></i> Cancel
 										</button></a></td>
 							</tr>
@@ -229,7 +228,7 @@ $finalcode = createRandomPassword();
 										}
 										return $number;
 									}
-									$invoice = $_GET['invoice'];
+									$invoice = $_GET['invoice'] ?? '';
 									$resultas = $db->prepare("SELECT sum(sales_order_amount) FROM sales_order WHERE invoice= :a");
 									$resultas->bindParam(':a', $invoice);
 									$resultas->execute();
@@ -246,7 +245,7 @@ $finalcode = createRandomPassword();
 				</table>
 				<br>
 				<a rel="facebox"
-					href="checkout.php?payment_method=<?php echo $_GET['pmt_method'] ?>&invoice=<?php echo $_GET['invoice'] ?>&total_amount=<?php echo $total_amount ?>&total_profit=<?php echo $total_profit ?>&cashier=<?php echo $_SESSION['SESS_FIRST_NAME'] ?>"><button
+					href="checkout.php?payment_method=<?php echo htmlspecialchars($_GET['pmt_method'] ?? '') ?>&invoice=<?php echo htmlspecialchars($_GET['invoice'] ?? '') ?>&total_amount=<?php echo $total_amount ?>&total_profit=<?php echo $total_profit ?>&cashier=<?php echo htmlspecialchars($_SESSION['SESS_FIRST_NAME'] ?? '') ?>"><button
 						class="btn btn-success btn-large btn-block">SUBMIT</button></a>
 
 				<div class="clearfix"></div>

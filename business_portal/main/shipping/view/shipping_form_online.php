@@ -444,7 +444,7 @@ $tmp = get_temp_shipping_order($shipping_order_id);
               $shipord = get_last_shipord();
               $mst = $shipord['mst'];
               ?>
-              <label class="fw-bold" style="float: left;">Shipping Order ID: <?= $mst + 1 ?></label>
+              <label class="fw-bold" style="float: left;">MST: <?= $mst + 1 ?></label>
               <input type="hidden" id="next_mst" name="next_mst" value="<?= $mst + 1 ?>">
             </div><!--col-6-->
             <div class="col-6">
@@ -528,7 +528,7 @@ $tmp = get_temp_shipping_order($shipping_order_id);
 
     // checking if valid mst 
     if ($('#mst').val() !== $('#next_mst').val()) {
-      alert("Please enter a correct shipping order id (MST): " + $('#next_mst').val());
+      alert("Please enter a correct MST: " + $('#next_mst').val());
       return false;
     }
     return true;

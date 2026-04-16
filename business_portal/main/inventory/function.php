@@ -4,7 +4,7 @@ function getLastSalesinvoice() {
     $result = $db->prepare("SELECT * FROM sales WHERE sales_id = (SELECT MAX(sales_id) FROM sales)");
 	$res = $result->execute();
     $row = $result->fetch();
-    $invoice_no = $row['invoice_number'];
+    $invoice_no = isset($row['invoice_number']) ? $row['invoice_number'] : 0;
     $result->closeCursor();
     return $invoice_no;
 }
