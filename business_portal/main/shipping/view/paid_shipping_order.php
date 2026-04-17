@@ -70,6 +70,9 @@ $customer = search_customer($search_input);
 
     }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </head>
 
 <body>
@@ -88,11 +91,17 @@ $customer = search_customer($search_input);
       <br />
       <div class="center strong">
         From : <input type="date" v-model="date1" class="tcal" /> To: <input type="date" v-model="date2" class="tcal" />
-        <button class="btn btn-info" type="submit" @click="fetchData(date1, date2)"><i
-            class="icon icon-search icon-large"></i> Search</button>
+        <button class="btn btn-info" type="submit" @click="fetchData(date1, date2)"><i class="icon icon-search icon-large"></i> Search</button>
+        <div class="btn-group">
+            <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-download"></i> Export
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="javascript:exportTableToExcel('tblData', 'Paid_Shipping_Orders')"><i class="fa fa-file-excel-o"></i> Excel</a></li>
+                <li><a class="dropdown-item" href="javascript:exportToPDF('tblData', 'Paid Shipping Orders')"><i class="fa fa-file-pdf-o"></i> PDF</a></li>
+            </ul>
+        </div>
       </div>
-      <button onclick="exportTableToExcel('tblData')"><i class="fa fa-table" aria-hidden="true"></i> Export To
-        Excel</button>
       <div class="panel panel-default mb-3">
         <div class="panel-heading">
           <div class="row">
@@ -255,34 +264,27 @@ $customer = search_customer($search_input);
     }
   });
 
-  function exportTableToExcel(tableID, filename = '') {
-    var downloadLink;
-    var dataType = 'application/vnd.ms-excel';
-    var tableSelect = document.getElementById(tableID);
-    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+  function exportTableToExcel(tableID, filename = 'Paid_Shipping_Orders') {
+    var table = document.getElementById(tableID);
+    var wb = XLSX.utils.table_to_book(table, {sheet: "Sheet1"});
+    XLSX.writeFile(wb, filename + ".xlsx");
+  }
 
-    // Specify file name
-    filename = filename ? filename + '.xls' : 'excel_data.xls';
-
-    // Create download link element
-    downloadLink = document.createElement("a");
-
-    document.body.appendChild(downloadLink);
-
-    if (navigator.msSaveOrOpenBlob) {
-      var blob = new Blob(['\ufeff', tableHTML], {
-        type: dataType
-      });
-      navigator.msSaveOrOpenBlob(blob, filename);
-    } else {
-      // Create a link to the file
-      downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-
-      // Setting the file name
-      downloadLink.download = filename;
-
-      //triggering the function
-      downloadLink.click();
-    }
+  function exportToPDF(tableID, title) {
+    const { jsPDF } = window.jspdf;
+    var doc = new jsPDF('l', 'pt', 'a2'); // Using A2 landscape for many columns
+    
+    doc.text(title, 40, 40);
+    doc.setFontSize(10);
+    
+    doc.autoTable({
+        html: '#' + tableID,
+        startY: 60,
+        theme: 'grid',
+        styles: { fontSize: 7, cellPadding: 2 },
+        headStyles: { fillColor: [41, 128, 185], textColor: 255 }
+    });
+    
+    doc.save(title.replace(/ /g, '_') + ".pdf");
   }
 </script>
