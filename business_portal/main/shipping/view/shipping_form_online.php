@@ -291,8 +291,8 @@ $tmp = get_temp_shipping_order($shipping_order_id);
                   <option value="Tỉnh (Province)" name="province">Tỉnh</option>
                 </datalist>
                 <label>Price/lb ($)<span class="required">*</span></label>
-                <input type="text" id="price_per_lb" name="price_per_lb" list="price_per_lb_list" placeholder="0.00"
-                  required />
+                <input type="number" id="price_per_lb" name="price_per_lb" list="price_per_lb_list" placeholder="0.00"
+                  step="0.01" min="0" required />
                 <datalist id="price_per_lb_list">
                   <option value="3.25" name="SG">3.25</option>
                   <option value="3.5" name="SG">3.5</option>
@@ -399,7 +399,7 @@ $tmp = get_temp_shipping_order($shipping_order_id);
                 <label>Custom Fee</label>
               </div><!--col-6-->
               <div class="item col-6">
-                <div><input type="text" name="custom_fee" class="fee" placeholder="0.00" required></div>
+                <div><input type="text" id="custom_fee" name="custom_fee" class="fee" placeholder="0.00"></div>
               </div><!--col-6-->
             </div><!--row-->
             <div class="row">
@@ -407,7 +407,7 @@ $tmp = get_temp_shipping_order($shipping_order_id);
                 <label>Insurance</label>
               </div><!--col-6-->
               <div class="item col-6">
-                <div><input type="text" name="insurance" class="fee" placeholder="0.00"></div>
+                <div><input type="text" id="insurance" name="insurance" class="fee" placeholder="0.00"></div>
               </div><!--col-6-->
             </div><!--row-->
             <hr>
@@ -628,49 +628,48 @@ $tmp = get_temp_shipping_order($shipping_order_id);
       $('#instore').val(total_instore.toFixed(2));
     });
 
-    // Automatically calculate total package weight
-    $(".item").on('input', '.pkg_weight', function () {
+    // --- NEW CALCULATION LOGIC ---
+    function updateTotalWeight() {
       var sum = 0;
-      $('.item .pkg_weight').each(function () {
-        var inputVal = $(this).val();
-        if ($.isNumeric(inputVal)) {
-          sum += parseFloat(inputVal);
+      $('.pkg_weight').each(function () {
+        var val = parseFloat($(this).val());
+        if (!isNaN(val)) {
+          sum += val;
         }
       });
-      $('#total_wt').text(' ' + sum + ' lb(s)');
-      $('#total_weight').val(sum); // Pass total weight to the server
-    });
+      $('#total_wt').text(' ' + sum.toFixed(2) + ' lb(s)');
+      $('#total_weight').val(sum.toFixed(2));
+      updateShippingFee();
+    }
 
-    // Automatically calculate total payment
-    $(".item").on('input', '.fee', function () {
+    function updateShippingFee() {
+      var wt = parseFloat($('#total_weight').val()) || 0;
+      var price = parseFloat($('#price_per_lb').val()) || 0;
+      var fee = (wt * price).toFixed(2);
+      $('#shipping_fee').val(fee);
+      updateTotalAmount();
+    }
+
+    function updateTotalAmount() {
       var sum = 0;
-      $('.item .fee').each(function () {
-        var inputVal = $(this).val();
-        if ($.isNumeric(inputVal)) {
-          sum += parseFloat(inputVal);
+      $('.fee').each(function () {
+        var val = parseFloat($(this).val());
+        if (!isNaN(val)) {
+          sum += val;
         }
       });
       $('#total_pmt').text(' $' + sum.toFixed(2));
       $('#amount').val(sum.toFixed(2));
-    });
+    }
 
-    // Automatically calculate Shipping Fee 
-    $(".item").on('input', '.pkg_weight', function () { // when user change a package weight
-      $('.item .pkg_weight').each(function () {
-        var wt = parseFloat($('#total_wt').val());
-        var price_per_lb = parseFloat($('#price_per_lb').val());
-        $('#shipping_fee').val((wt * price_per_lb).toFixed(2));
-      });
-      $('#total_weight').val(sum); // Pass total weight to the server
-    });
+    // Set initial calculations on page load if values exist
+    updateTotalWeight();
 
-    // Update total shipping fee & total amount when user change price per lb
-    $('#price_per_lb').change(function () {
-      // update total shiping fee
-      var wt = parseFloat($('#total_wt').val());
-      var price_per_lb = parseFloat($('#price_per_lb').val());
-      $('#shipping_fee').val((wt * price_per_lb).toFixed(2));
-    });
+    // Event listeners
+    $(document).on('input', '.pkg_weight', updateTotalWeight);
+    $(document).on('input change', '#price_per_lb', updateShippingFee);
+    $(document).on('input', '.fee', updateTotalAmount);
+    // --- END NEW CALCULATION LOGIC ---
 
 
   });
