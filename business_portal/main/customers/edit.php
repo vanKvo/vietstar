@@ -41,6 +41,7 @@ $cust_phone = $customer['cust_phone'];
     <style>
         .sticky { position: fixed; top: 53px; }
         .top-sticky { position: fixed; top: 0; width: 100%; }
+        .required { color: red; }
     </style>
 </head>
 
@@ -65,25 +66,25 @@ $cust_phone = $customer['cust_phone'];
                         <div class="card-body">
                             <form action="update.php?ID=<?php echo $customer_id ?>" method="post">
                                 <div class="mb-3">
-                                    <label class="form-label">Full Name</label>
-                                    <input type="text" class="form-control" name="name" value="<?php echo htmlspecialchars($cust_name) ?>">
+                                    <label class="form-label">Full Name <span class="required">*</span></label>
+                                    <input type="text" class="form-control" name="name" value="<?php echo htmlspecialchars($cust_name) ?>" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Address</label>
-                                    <input type="text" class="form-control" name="address" value="<?php echo htmlspecialchars($cust_address) ?>">
+                                    <label class="form-label">Address <span class="required">*</span></label>
+                                    <input type="text" class="form-control" name="address" value="<?php echo htmlspecialchars($cust_address) ?>" required>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">City</label>
-                                        <input type="text" class="form-control" name="city" value="<?php echo htmlspecialchars($cust_city) ?>">
+                                        <label class="form-label">City <span class="required">*</span></label>
+                                        <input type="text" class="form-control" name="city" value="<?php echo htmlspecialchars($cust_city) ?>" required>
                                     </div>
                                     <div class="col-md-3 mb-3">
-                                        <label class="form-label">State</label>
-                                        <input type="text" class="form-control" name="state" value="<?php echo htmlspecialchars($cust_state) ?>">
+                                        <label class="form-label">State <span class="required">*</span></label>
+                                        <input type="text" class="form-control" name="state" value="<?php echo htmlspecialchars($cust_state) ?>" required>
                                     </div>
                                     <div class="col-md-3 mb-3">
-                                        <label class="form-label">Zipcode</label>
-                                        <input type="text" class="form-control" name="zipcode" value="<?php echo htmlspecialchars($cust_zipcode) ?>">
+                                        <label class="form-label">Zipcode <span class="required">*</span></label>
+                                        <input type="text" class="form-control" name="zipcode" value="<?php echo htmlspecialchars($cust_zipcode) ?>" pattern="[0-9]{5}" title="Please enter a 5-digit zipcode" required>
                                     </div>
                                 </div>
                                 <div class="mb-3">
@@ -91,8 +92,9 @@ $cust_phone = $customer['cust_phone'];
                                     <input type="email" class="form-control" name="email" value="<?php echo htmlspecialchars($cust_email) ?>">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Phone</label>
-                                    <input type="text" class="form-control" name="phone" value="<?php echo htmlspecialchars($cust_phone) ?>">
+                                    <label class="form-label">Phone <span class="required">*</span></label>
+                                    <input type="tel" id="phone" class="form-control" name="phone" value="<?php echo htmlspecialchars($cust_phone) ?>" placeholder="XXX-XXX-XXXX" required>
+                                    <small class="text-muted">Format: 10 digits</small>
                                 </div>
                                 <button class="btn btn-primary w-100" name="update">Update Customer</button>
                             </form>
@@ -102,6 +104,26 @@ $cust_phone = $customer['cust_phone'];
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#phone').on('input', function(e) {
+                var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+                e.target.value = !x[2] ? x[1] : x[1] + '-' + x[2] + (x[3] ? '-' + x[3] : '');
+            });
+
+            $('form').on('submit', function() {
+                // Remove dashes before submitting to database
+                var phoneVal = $('#phone').val().replace(/-/g, '');
+                if (phoneVal.length !== 10) {
+                    alert('Phone number must be exactly 10 digits.');
+                    return false;
+                }
+                $('#phone').val(phoneVal);
+                return true;
+            });
+        });
+    </script>
 </body>
 
 </html>
